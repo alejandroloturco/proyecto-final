@@ -6,7 +6,7 @@ class InitialWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('Aviso de Seguridad')
-        self.setGeometry(100, 100, 1280, 720)
+        self.setGeometry(100, 100, 640, 480)
         self.setStyleSheet("background-color: green;")
         
         layout = QVBoxLayout()
