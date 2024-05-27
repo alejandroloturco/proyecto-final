@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QLabel, QStackedWidget, QLineEdit, QFormLayout, QComboBox
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QLabel, QStackedWidget, QLineEdit, QFormLayout, QComboBox, QStackedLayout
 from PyQt5.QtCore import QTimer, Qt
 
 class Advertencia(QWidget):
@@ -88,7 +88,7 @@ class Menu_Login(QWidget):
         
         self.setLayout(setup)
 
-class Menu__pre_registro(QWidget):
+class Menu_pre_registro(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('Pre-Registro')
@@ -115,7 +115,7 @@ class Menu__pre_registro(QWidget):
         setup.addLayout(organizador)
 
         self.setLayout(setup)
-class Menu_registro(QWidget):
+class Menu_registro_cuidador(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('Registro')
@@ -123,6 +123,12 @@ class Menu_registro(QWidget):
         
         setup = QVBoxLayout()
         organizador = QFormLayout()
+        self.opciones = QComboBox()
+        self.setup_stakeado = QStackedLayout()
+        self.salud_widget = QWidget()
+        self.familiar_widget = QWidget()
+        self.nada_widget = QWidget()
+        widgets_stakeados = QWidget()
         
         self.usuario_respuesta = QLineEdit()
         self.contraseña_respuesta = QLineEdit()
@@ -130,30 +136,51 @@ class Menu_registro(QWidget):
         self.nombre_cuidador = QLineEdit()
         self.cedula_cuidador = QLineEdit()
         self.cecular_cuidador = QLineEdit()
+        self.opciones.addItem("...")
+        self.opciones.addItem("Salud")
+        self.opciones.addItem("Familiar")
         
-        self.opciones = QComboBox()
-        self.opciones.addItem("Opción 1")
-        self.opciones.addItem("Opción 2")
-        self.opciones.addItem("Opción 3")
+        formato_1 = QVBoxLayout(self.salud_widget)
+        formato_2 = QVBoxLayout(self.familiar_widget)
+
+        formato_1.addWidget(QLabel('Formación:'))
+        formato_1.addWidget(QLineEdit())
+        formato_1.addWidget(QLabel('Tiempo de cuidado:'))
+        formato_1.addWidget(QLineEdit())
+        formato_2.addWidget(QLabel('Relación:'))
+        formato_2.addWidget(QLineEdit())
+        formato_2.addWidget(QLabel('Parentesco:'))
+        formato_2.addWidget(QLineEdit())
+
+        self.setup_stakeado.addWidget(self.nada_widget)
+        self.setup_stakeado.addWidget(self.salud_widget)
+        self.setup_stakeado.addWidget(self.familiar_widget)
+        self.opciones.currentIndexChanged.connect(self.setup_stakeado.setCurrentIndex)
+        widgets_stakeados.setLayout(self.setup_stakeado)
 
         organizador.addRow('Usuario:', self.usuario_respuesta)
         organizador.addRow('Contraseña:', self.contraseña_respuesta)
         organizador.addRow('Nombre:', self.nombre_cuidador)
         organizador.addRow('CC:', self.cedula_cuidador)
         organizador.addRow('Teléfono:', self.cecular_cuidador)
-        organizador.addRow('Formación:', self.opciones)
+        organizador.addRow('Relacion:', self.opciones)
+        organizador.addWidget(widgets_stakeados)
         organizador.setFormAlignment(Qt.AlignCenter)
         organizador.setLabelAlignment(Qt.AlignCenter)
         organizador.setSpacing(15)
         organizador.setContentsMargins(50, 50, 50, 50)
-        
+
         self.boton_registro = QPushButton('Registrar')
         
         setup.addLayout(organizador)
         setup.addWidget(self.boton_registro)
         
         self.setLayout(setup)
-
+class Menu_registro_paciente(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle('Registro')
+        self.setGeometry(100, 100, 640, 480)
 class Menu_moca(QWidget):
     def __init__(self):
         super().__init__()
@@ -175,32 +202,39 @@ class MainApp(QStackedWidget):
         self.advertencia = Advertencia()
         self.menu_inicial = Menu_inicial()
         self.menu_login = Menu_Login()
-        self.menu_registro = Menu_registro()
+        self.menu_registro = Menu_registro_cuidador()
+        self.menu_pre_registro = Menu_pre_registro()
         self.menu_moca = Menu_moca()
         
         self.addWidget(self.advertencia)
         self.addWidget(self.menu_inicial)
         self.addWidget(self.menu_login)
+        self.addWidget(self.menu_pre_registro)
         self.addWidget(self.menu_registro)
         self.addWidget(self.menu_moca)
         
-        QTimer.singleShot(5000, self.show_main_window)
+        QTimer.singleShot(5000, self.ventana_principal)
         
-        self.menu_inicial.boton_login.clicked.connect(self.show_login_window)
-        self.menu_inicial.boton_pre_registro.clicked.connect(self.show_registro_window)
+        self.menu_inicial.boton_login.clicked.connect(self.ventana_login)
+        self.menu_inicial.boton_pre_registro.clicked.connect(self.ventana_pre_registro)
         self.menu_inicial.boton_moca.clicked.connect(self.show_moca_window)
         self.menu_inicial.boton_salida.clicked.connect(self.close)
         
-        self.menu_login.boton_login.clicked.connect(self.show_main_window)
+        self.menu_login.boton_login.clicked.connect(self.ventana_principal)
         self.menu_login.boton_salida.clicked.connect(self.close)
+
+        self.menu_pre_registro.boton_registro.clicked.connect(self.ventana_registro)
         
-    def show_main_window(self):
+    def ventana_principal(self):
         self.setCurrentWidget(self.menu_inicial)
         
-    def show_login_window(self):
+    def ventana_login(self):
         self.setCurrentWidget(self.menu_login)
         
-    def show_registro_window(self):
+    def ventana_pre_registro(self):
+        self.setCurrentWidget(self.menu_pre_registro)
+
+    def ventana_registro(self):
         self.setCurrentWidget(self.menu_registro)
         
     def show_moca_window(self):

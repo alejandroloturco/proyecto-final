@@ -9,6 +9,41 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cv2
 import pydicom
+import nltk
+from spellchecker import SpellChecker
+import spacy
+
+nlp = spacy.load('en_core_web_sm')
+
+spell = SpellChecker()
+
+def es_valida(palabra):
+    
+    if spell.correction(palabra) != palabra:
+        return False
+
+    if not palabra.lower().startswith('p'):
+        return False
+
+    doc = nlp(palabra)
+    token = doc[0]
+
+    if token.pos_ == 'NOUN':
+        return False
+    if token.pos_ == 'VERB' and token.tag_ != 'VB':
+        return False
+
+    if token.tag_ not in ['VB', 'JJ', 'RB']: 
+        return False
+
+    return True
+
+palabras = ["poder", "parando", "paciente", "parto", "pienso", "pulir", "pintar"]
+
+palabras_validas = [palabra for palabra in palabras if es_valida(palabra)]
+
+print("Palabras válidas:", palabras_validas)
+
 
 
 def crear_BDSQL():
