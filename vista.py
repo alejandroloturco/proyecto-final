@@ -63,16 +63,15 @@ class Menu_inicial(QWidget):
         organizador.addRow(self.boton_login)
         organizador.addRow(self.boton_pre_registro)
         organizador.addRow(self.boton_moca)
-        organizador.addRow(self.boton_salida)
+        organizador.addRow(self.boton_salidav)
         organizador.setFormAlignment(Qt.AlignCenter)
         organizador.setLabelAlignment(Qt.AlignCenter)
         organizador.setSpacing(15)
         organizador.setContentsMargins(50, 50, 50, 50)
 
         setup.addWidget(titulo)
-        setup.addLayout(organizador)
-        
-        self.setLayout(setup)
+        setup.addLayout(organizador)        
+        self.setLayout(setup)    
 
 class Menu_Login(QWidget):
     def __init__(self):
@@ -196,10 +195,29 @@ class Menu_registro_paciente(QWidget):
         super().__init__()
         self.setWindowTitle('Registro')
         self.setGeometry(100, 100, 640, 480)
+
+class Advertencia_Moca(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle('Aviso de Seguridad')
+        self.setGeometry(100, 100, 640, 480)
+        self.setStyleSheet("background-color: green;")
+        
+        setup = QVBoxLayout()
+        texto_1 = QLineEdit('!ADIVOS DE SALUD Y SEGURIDAD¡')
+        texto_1.setStyleSheet("color: white; font-size: 35px;")
+        texto_1.setReadOnly(True)
+        texto_1.setAlignment(Qt.AlignCenter)
+        setup.addWidget(texto_1)
+        texto_2 = QLabel('Para el ingreso de info se debe de tener al cuidador en la sala')
+        texto_2.setStyleSheet("color: white; font-size: 30px;")
+        texto_2.setAlignment(Qt.AlignCenter)
+        setup.addWidget(texto_2)
+        self.setLayout(setup)
 class Menu_moca(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle('MOcA')
+        self.setWindowTitle('MOCA')
         self.setGeometry(100, 100, 640, 480)
         
         setup = QVBoxLayout()
@@ -208,7 +226,7 @@ class Menu_moca(QWidget):
         setup.addWidget(self.texto)
         self.setLayout(setup)
 
-class MainApp(QStackedWidget):
+class Menu_Principal(QStackedWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('AlzCare')
@@ -219,6 +237,7 @@ class MainApp(QStackedWidget):
         self.menu_login = Menu_Login()
         self.menu_registro = Menu_registro_cuidador()
         self.menu_pre_registro = Menu_pre_registro()
+        self.advertencia_moca = Advertencia_Moca()
         self.menu_moca = Menu_moca()
         
         self.addWidget(self.advertencia)
@@ -232,7 +251,7 @@ class MainApp(QStackedWidget):
         
         self.menu_inicial.boton_login.clicked.connect(self.ventana_login)
         self.menu_inicial.boton_pre_registro.clicked.connect(self.ventana_pre_registro)
-        self.menu_inicial.boton_moca.clicked.connect(self.show_moca_window)
+        self.menu_inicial.boton_moca.clicked.connect(self.advertencia_moca)
         self.menu_inicial.boton_salida.clicked.connect(self.close)
         
         self.menu_login.boton_login.clicked.connect(self.ventana_principal)
@@ -252,11 +271,14 @@ class MainApp(QStackedWidget):
     def ventana_registro(self):
         self.setCurrentWidget(self.menu_registro)
         
-    def show_moca_window(self):
+    def ventana_moca(self):
         self.setCurrentWidget(self.menu_moca)
+    
+    def ventana_advertencia_moca(self):
+        self.setCurrentWidget(self.advertencia_moca)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    window = MainApp()
+    window = Menu_Principal()
     window.show()
     sys.exit(app.exec_())
