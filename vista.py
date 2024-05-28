@@ -42,7 +42,22 @@ class Menu_inicial(QWidget):
         self.boton_pre_registro.setFixedSize(200, 50)
         self.boton_moca = QPushButton('MOCA')
         self.boton_moca.setFixedSize(200, 50)
-        self.boton_salida = QPushButton('Salir')
+        self.boton_salida = QPushButton('Salir.')
+        self.boton_salida.setStyleSheet("""
+                                        QPushButton {
+                                            background-color: #333;
+                                            color: white;
+                                            border: none;
+                                            border-radius: 25px;
+                                            padding: 10px;
+                                        }
+                                        QPushButton:hover {
+                                            background-color: #666;
+                                        }
+                                        QPushButton:pressed {
+                                            background-color: #999;
+                                        }
+                                    """)
         self.boton_salida.setFixedSize(200, 50)
 
         organizador.addRow(self.boton_login)
@@ -99,7 +114,7 @@ class Menu_pre_registro(QWidget):
 
         self.boton_registro = QPushButton('Registrar')
         self.boton_registro.setFixedSize(200, 50)
-        self.boton_importar = QPushButton('Importar')
+        self.boton_importar = QPushButton('Importar perfil')
         self.boton_importar.setFixedSize(200, 50)
         self.boton_salida = QPushButton('Salir')
         self.boton_salida.setFixedSize(200, 50)
@@ -213,7 +228,7 @@ class MainApp(QStackedWidget):
         self.addWidget(self.menu_registro)
         self.addWidget(self.menu_moca)
         
-        QTimer.singleShot(5000, self.ventana_principal)
+        QTimer.singleShot(500, self.ventana_principal)
         
         self.menu_inicial.boton_login.clicked.connect(self.ventana_login)
         self.menu_inicial.boton_pre_registro.clicked.connect(self.ventana_pre_registro)

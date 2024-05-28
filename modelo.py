@@ -13,11 +13,9 @@ import nltk
 from spellchecker import SpellChecker
 import spacy
 
-nlp = spacy.load('en_core_web_sm')
-
-spell = SpellChecker()
-
 def es_valida(palabra):
+    nlp = spacy.load('en_core_web_sm')
+    spell = SpellChecker()
     
     if spell.correction(palabra) != palabra:
         return False
@@ -43,8 +41,6 @@ palabras = ["poder", "parando", "paciente", "parto", "pienso", "pulir", "pintar"
 palabras_validas = [palabra for palabra in palabras if es_valida(palabra)]
 
 print("Palabras válidas:", palabras_validas)
-
-
 
 def crear_BDSQL():
     cnx = mysql.connector.connect(
@@ -77,15 +73,8 @@ def crear_tablasSQL():
     cursorSQL.execute("CREATE TABLE IF NOT EXISTS paciente (ID INT UNSIGNED PRIMARY KEY,ID_Cuidador INT UNSIGNED NOT NULL,Nombre VARCHAR(225) NOT NULL,Apellido VARCHAR(225) NOT NULL,Nacimiento VARCHAR(225) NOT NULL,Procedencia VARCHAR(225) NOT NULL,Fase VARCHAR(225) NOT NULL,Escolaridad VARCHAR(225) NOT NULL,Mano_dominante VARCHAR(225) NOT NULL,FOREIGN KEY (ID_Cuidador) REFERENCES cuidador(ID) ON UPDATE CASCADE ON DELETE CASCADE)")
     cursorSQL.execute("CREATE TABLE IF NOT EXISTS registro (ID INT UNSIGNED PRIMARY KEY,ID_Paciente INT UNSIGNED NOT NULL,Fecha_Registro VARCHAR(225) NOT NULL,Pregunta_1 INT NOT NULL,Pregunta_2 INT NOT NULL,Pregunta_3 INT NOT NULL,Pregunta_4 INT NOT NULL,Pregunta_5 INT NOT NULL,Pregunta_6 INT NOT NULL,Pregunta_7 INT NOT NULL,Pregunta_8 INT NOT NULL,Pregunta_9 INT NOT NULL,Pregunta_10 INT NOT NULL,Pregunta_11 INT NOT NULL,Pregunta_12 INT NOT NULL,Pregunta_13 INT NOT NULL,Pregunta_14 INT NOT NULL,Pregunta_15 INT NOT NULL,Pregunta_16 INT NOT NULL,Pregunta_17 INT NOT NULL,FOREIGN KEY (ID_Paciente) REFERENCES paciente(ID) ON UPDATE CASCADE ON DELETE CASCADE)")
     desconectar_SQL(cnx,cursorSQL)
-class Cuidador:
+class Paciente:
 
-    def __init__(self, ID, Nombre, Apellido, Telefono, Cedula, Formacion, Usuario, Contraseña):
-        self.ID = ID
-        self.Nombre = Nombre
-        self.Apellido = Apellido
-        self.Telefono = Telefono
-        self.Cedula = Cedula
-        self.Formacion = Formacion
-        self.Usuario = Usuario
-        self.Contraseña = Contraseña
+    def __init__(self):
+        
 
