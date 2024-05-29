@@ -71,7 +71,7 @@ def obtener_dataSQL():
     listpac = []
     listreg = []
     cuidador = "SELECT * FROM  cuidador"
-    pacientes = "SELECT * FROM  pacientes"
+    pacientes = "SELECT * FROM  paciente"
     seguimiento = "SELECT * FROM seguimiento"
     cursorSQL.execute(cuidador)
     resultado = cursorSQL.fetchall()    
@@ -142,14 +142,15 @@ def imagenes():
     return imagenes
 
 class Cuidador:
-    def __init__(self,usuraio,contraseña,nombre,cedula,numero,email,ocupacion):
-        self.__usuario = usuraio
-        self.__contraseña = contraseña
-        self._cedula = cedula
-        self._nombre = nombre   
-        self._numero = numero
-        self._email = email
-        self._ocupacion = ocupacion      
+    def __init__(self, listcui,i):
+        self._nombre = listcui[i]['Nombre']
+        self._apellido = listcui[i]['Apellido']
+        self._telefono = listcui[i]['Telefono']
+        self._cedula = listcui[i]['Cedula']
+        self._formacion = listcui[i]['Formacion']
+        self._usuario = listcui[i]['Usuario']
+        self._contraseña = listcui[i]['Contraseña']
+            
     def SetNombre(self,n):
         self._nombre = n
     def SetCedula(self,n):
@@ -171,15 +172,13 @@ class Cuidador:
         return self._ocupacion 
   
 class Paciente(Cuidador):
-    def __init__(self, nombre,cedula, edad, numero, residencia, nacimiento, fase,estudio,dominancia, tiempo_alz):
-        super().__init__(nombre,numero,cedula)
-        self._edad = edad
-        self._residencia = residencia
-        self._nacimiento = nacimiento
-        self._fase = fase
-        self._estudio = estudio
-        self._dominancia = dominancia
-        self._tiempoalz = tiempo_alz
+    def __init__(self, listpac,i):
+        super().__init__()
+        self._nacimiento = listpac[i]['Nacimiento']
+        self._residencia = listpac[i]['Procedencia']
+        self._fase = listpac[i]['Fase']
+        self._estudio = listpac[i]['Escolaridad']
+        self._dominancia = listpac[i]['Mano_Dominante']
     
     def SetEdad(self,n):
         self._edad = n
@@ -213,7 +212,6 @@ class Paciente(Cuidador):
 
 
 class Seguimiento:
-
     def __init__(self):
         pass
 
