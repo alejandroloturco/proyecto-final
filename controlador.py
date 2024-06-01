@@ -1,22 +1,26 @@
 from modelo import *
 from vista import *
 class Controlador():
-    def __init__(self, usuario, contrasena, nombre_cuidador, cedula_cuidador, numero_cuidador, email_cuidador, ocupacion_cuidador, nombre_paciente, cedula_paciente, edad_paciente, numero_paciente, residencia_paciente, nacimiento_paciente, fase_paciente, estudio_paciente, dominancia_paciente, tiempo_alz_paciente):
+    def __init__(self,listcui, listpac, listreg):
         self.aplicacion = QApplication(sys.argv)
-        self.cuidador = Cuidador(usuario, contrasena, nombre_cuidador, cedula_cuidador, numero_cuidador, email_cuidador, ocupacion_cuidador)
-        self.paciente = Paciente(nombre_paciente, cedula_paciente, edad_paciente, numero_paciente, residencia_paciente, nacimiento_paciente, fase_paciente, estudio_paciente, dominancia_paciente, tiempo_alz_paciente)
-        self.seguimiento = Seguimiento()
+        self.cuidador = Cuidador(listcui)
+        self.paciente = Paciente(listpac)
+        self.seguimiento = Seguimiento(listreg)
+        self.puntos_moca = 0
 
     def inicio(self):
-        self.menu = Menu_Principal()
+        self.menu = Menu_Principal(self)
+        self.menu.setup()
         self.menu.show()
         sys.exit(self.aplicacion.exec_())  
 
+    def conteo_puntos(self):
+        self.puntos_moca += 1
 
 if __name__ == '__main__':
     crear_BDSQL()
     crear_tablasSQL()
     listcui, listpac, listreg = obtener_dataSQL()
-    
-    controlador = Controlador("usuario", "contrasena", "nombre_cuidador", "cedula_cuidador", "numero_cuidador", "email_cuidador", "ocupacion_cuidador", "nombre_paciente", "cedula_paciente", "edad_paciente", "numero_paciente", "residencia_paciente", "nacimiento_paciente", "fase_paciente", "estudio_paciente", "dominancia_paciente", "tiempo_alz_paciente")
+
+    controlador = Controlador(listcui, listpac, listreg)
     controlador.inicio()

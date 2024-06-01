@@ -2,7 +2,6 @@ from datetime import datetime
 import mysql.connector
 import json
 import os
-import pymongo
 import random
 from bson import json_util
 import numpy as np
@@ -12,6 +11,7 @@ import pydicom
 import nltk
 from spellchecker import SpellChecker
 import spacy
+import sys
 
 def vaidacion_p(palabra):
     nlp = spacy.load('en_core_web_sm')
@@ -142,14 +142,8 @@ def imagenes():
     return imagenes
 
 class Cuidador:
-    def __init__(self, listcui,i):
-        self._nombre = listcui[i]['Nombre']
-        self._apellido = listcui[i]['Apellido']
-        self._telefono = listcui[i]['Telefono']
-        self._cedula = listcui[i]['Cedula']
-        self._formacion = listcui[i]['Formacion']
-        self._usuario = listcui[i]['Usuario']
-        self._contraseña = listcui[i]['Contraseña']
+    def __init__(self,listcui):
+        self._listcui = listcui
             
     def SetNombre(self,n):
         self._nombre = n
@@ -172,13 +166,8 @@ class Cuidador:
         return self._ocupacion 
   
 class Paciente(Cuidador):
-    def __init__(self, listpac,i):
-        super().__init__()
-        self._nacimiento = listpac[i]['Nacimiento']
-        self._residencia = listpac[i]['Procedencia']
-        self._fase = listpac[i]['Fase']
-        self._estudio = listpac[i]['Escolaridad']
-        self._dominancia = listpac[i]['Mano_Dominante']
+    def __init__(self, listpac):
+        self._listpac = listpac
     
     def SetEdad(self,n):
         self._edad = n
@@ -212,8 +201,8 @@ class Paciente(Cuidador):
 
 
 class Seguimiento:
-    def __init__(self):
-        pass
+    def __init__(self, listreg):
+        self._listreg = listreg
 
 
         

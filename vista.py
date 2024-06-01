@@ -1,4 +1,3 @@
-import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QLabel, QStackedWidget, QLineEdit, QFormLayout, QComboBox, QStackedLayout, QMessageBox, QGraphicsView, QGraphicsScene, QGraphicsProxyWidget
 from PyQt5.QtCore import QTimer, Qt
 
@@ -232,107 +231,107 @@ class Advertencia_Moca(QWidget):
         setup.addWidget(texto_2)
         self.setLayout(setup)
 class Menu_moca_1(QWidget):
+        def __init__(self, controlador):
+            super().__init__()   
+            self.controlador = controlador
+            setup = QVBoxLayout()
+            self.view = QGraphicsView()
+            self.scene = QGraphicsScene(self)
+            self.view.setScene(self.scene)    
+            self.secuencia_molde = ['1', 'A', '2', 'B', '3', 'C', '4', 'D', '5', 'E']
+            self.posicion = 0  
+            self.puntos = 0
+            self.primer_intento = True
+            titulo = QLineEdit('1) Selecciona en el orden correcto la siguiente secuencia de botones')
+            titulo.setStyleSheet("font-size: 20px; border: 1px solid black;")
+            titulo.setAlignment(Qt.AlignCenter)
+            titulo.adjustSize()
+            titulo.setReadOnly(True)
+            self.siguiente = QPushButton('Siguiente') 
+            self.siguiente.hide()
+            self.botones_orden = {
+                '1': QPushButton('1'),
+                '2': QPushButton('2'),
+                '3': QPushButton('3'),
+                '4': QPushButton('4'),
+                '5': QPushButton('5'),
+                'A': QPushButton('A'),
+                'B': QPushButton('B'),
+                'C': QPushButton('C'),
+                'D': QPushButton('D'),
+                'E': QPushButton('E'),
+            }
+            self.posiciones = {
+                '1': (210, 190),
+                '2': (480, 130),
+                '3': (480, 300),
+                '4': (310, 270),
+                '5': (80, 130),
+                'A': (380, 60),
+                'B': (340, 140),
+                'C': (210, 330),
+                'D': (100, 270),
+                'E': (210, 70),
+            }    
+            for boton in self.botones_orden.values():
+                boton.setFixedSize(50, 50)
+                boton.setStyleSheet("""
+                                QPushButton {
+                                    background-color: #333;
+                                    color: white;
+                                    border: none;
+                                    border-radius: 25px;
+                                    padding: 10px;
+                                }
+                                QPushButton:hover {
+                                    background-color: #666;
+                                }
+                                QPushButton:pressed {
+                                    background-color: #999;
+                                }
+                            """) 
+            for boton, posicion in self.posiciones.items():
+                configuracion = QGraphicsProxyWidget()
+                configuracion.setWidget(self.botones_orden[boton])
+                self.scene.addItem(configuracion)
+                configuracion.setPos(*posicion)  
+            for x in self.botones_orden:
+                self.botones_orden[x].clicked.connect(self.boton_secuenciado)    
+            setup.addWidget(titulo)
+            setup.addWidget(self.view)
+            setup.addWidget(self.siguiente)
+            self.setLayout(setup)
+
+        def boton_secuenciado(self):
+            
+            secuencia = self.sender().text()
+            if secuencia == self.secuencia_molde[self.posicion]:
+                self.posicion += 1
+                if self.posicion == len(self.secuencia_molde):
+                    QMessageBox.information(self, 'Correcto', 'Felicitaciones, la secuencia es correcta!')
+                    self.posicion = 0
+                    self.siguiente.show()
+                    if self.primer_intento:
+                        self.controlador.conteo_puntos()
+                        self.primer_intento = False
+            
+            else:
+                QMessageBox.warning(self, 'Error', 'Secuencia incorrecta, intente de nuevo.')
+                self.posicion = 0
+                self.primer_intento = False
+
+class Menu_moca_2(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle('MOCA')
+        self.setWindowTitle('Registro')
         self.setGeometry(100, 100, 640, 480)
-        
-        setup = QVBoxLayout()
-        self.texto = QLabel('Opcional: NO SE GUARDA')
-        self.texto.setStyleSheet("color: white; font-size: 18px;")
-        setup.addWidget(self.texto)
-        self.setLayout(setup)
-
-class ButtonSequenceGame(QWidget):
-    def __init__(self):
-        super().__init__()
-
-        setup = QVBoxLayout()
-        self.view = QGraphicsView()
-        self.scene = QGraphicsScene(self)
-        self.view.setScene(self.scene)
-
-        self.sequence = ['1', 'A', '2', 'B', '3', 'C', '4', 'D', '5', 'E']
-        self.current_index = 0
-
-        titulo = QLineEdit('1) Selecciona en el orden correcto la siguiente secuencia de botones')
-        titulo.setStyleSheet("font-size: 20px; border: 1px solid black;")
-        titulo.setAlignment(Qt.AlignCenter)
-        titulo.adjustSize()
-        titulo.setReadOnly(True)
-        siguiente = QPushButton('Siguiente')
-
-        self.botones_orden = {
-            '1': QPushButton('1'),
-            '2': QPushButton('2'),
-            '3': QPushButton('3'),
-            '4': QPushButton('4'),
-            '5': QPushButton('5'),
-            'A': QPushButton('A'),
-            'B': QPushButton('B'),
-            'C': QPushButton('C'),
-            'D': QPushButton('D'),
-            'E': QPushButton('E'),
-        }
-        self.posiciones = {
-            '1': (210, 190),
-            '2': (480, 130),
-            '3': (480, 300),
-            '4': (310, 270),
-            '5': (80, 130),
-            'A': (380, 60),
-            'B': (340, 140),
-            'C': (210, 330),
-            'D': (100, 270),
-            'E': (210, 70),
-        }
-
-        for boton in self.botones_orden.values():
-            boton.setFixedSize(50, 50)
-            boton.setStyleSheet("""
-                            QPushButton {
-                                background-color: #333;
-                                color: white;
-                                border: none;
-                                border-radius: 25px;
-                                padding: 10px;
-                            }
-                            QPushButton:hover {
-                                background-color: #666;
-                            }
-                            QPushButton:pressed {
-                                background-color: #999;
-                            }
-                        """)
-
-        for boton, posicion in self.posiciones.items():
-            configuracion = QGraphicsProxyWidget()
-            configuracion.setWidget(self.botones_orden[boton])
-            self.scene.addItem(configuracion)
-            configuracion.setPos(*posicion)
-
-        for x in self.botones_orden:
-            self.botones_orden[x].clicked.connect(self.buttonClicked)
-
-        setup.addWidget(titulo)
-        setup.addWidget(self.view)
-        setup.addWidget(siguiente)
-        self.setLayout(setup)
-
-    def buttonClicked(self):
-        sender = self.sender().text()
-        if sender == self.sequence[self.current_index]:
-            self.current_index += 1
-            if self.current_index == len(self.sequence):
-                QMessageBox.information(self, 'Success', 'You pressed all botones_orden in the correct sequence!')
-                self.current_index = 0
-        else:
-            QMessageBox.warning(self, 'Error', 'Wrong sequence, try again!')
-            self.current_index = 0
 
 class Menu_Principal(QStackedWidget):
-    def __init__(self):
+    def __init__(self, controlador):
         super().__init__()
+        self.controlador = controlador
+
+    def setup(self):
         self.setWindowTitle('AlzCare')
         self.setGeometry(100, 100, 640, 480)
         self.setStyleSheet("""
@@ -362,7 +361,8 @@ class Menu_Principal(QStackedWidget):
         self.menu_registro_paciente = Menu_registro_paciente()
         self.menu_pre_registro = Menu_pre_registro()
         self.advertencia_moca = Advertencia_Moca()
-        self.menu_moca_1 = ButtonSequenceGame()
+        self.menu_moca_1 = Menu_moca_1(self.controlador)
+        self.menu_moca_2 = Menu_moca_2()
         
         self.addWidget(self.advertencia)
         self.addWidget(self.menu_inicial)
@@ -389,7 +389,9 @@ class Menu_Principal(QStackedWidget):
 
         self.menu_registro_cuidador.boton_siguiente.clicked.connect(self.ventana_registro_paciente)
         self.menu_registro_cuidador.boton_volver.clicked.connect(self.ventana_pre_registro)
-        
+
+        self.menu_moca_1.siguiente.clicked.connect(self.ventana_moca_2)
+
     def ventana_principal(self):
         self.setCurrentWidget(self.menu_inicial)
         
@@ -405,10 +407,13 @@ class Menu_Principal(QStackedWidget):
     def ventana_registro_paciente(self):
         self.setCurrentWidget(self.menu_registro_paciente)
         
-    def ventana_moca(self):
+    def ventana_moca_1(self):
         self.setCurrentWidget(self.menu_moca_1)
-    
+
+    def ventana_moca_2(self):
+        self.setCurrentWidget(self.menu_moca_2)
+        
     def ventana_advertencia_moca(self):
         self.setCurrentWidget(self.advertencia_moca)
-        QTimer.singleShot(500, self.ventana_moca)
+        QTimer.singleShot(500, self.ventana_moca_1)
 
