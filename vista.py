@@ -1,5 +1,6 @@
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QLabel, QStackedWidget, QLineEdit, QFormLayout, QComboBox, QStackedLayout, QMessageBox, QGraphicsView, QGraphicsScene, QGraphicsProxyWidget
-from PyQt5.QtCore import QTimer, Qt
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout ,QPushButton, QLabel, QStackedWidget, QLineEdit, QFormLayout, QComboBox, QStackedLayout, QMessageBox, QGraphicsView, QGraphicsScene, QGraphicsProxyWidget, QLabel
+from PyQt5.QtCore import QTimer, Qt, QTimer
+from PyQt5.QtGui import QPixmap
 
 class Advertencia(QWidget):
     def __init__(self):
@@ -29,11 +30,10 @@ class Menu_inicial(QWidget):
         setup = QVBoxLayout()
         organizador = QFormLayout()
 
-        titulo = QLineEdit('Bienvenido a AlzCare')
+        titulo = QLabel('Bienvenido a AlzCare')
         titulo.setStyleSheet("font-size: 30px; border: 1px solid black;")
         titulo.setAlignment(Qt.AlignCenter)
         titulo.adjustSize()
-        titulo.setReadOnly(True)
         
         self.boton_login = QPushButton('Login')
         self.boton_login.setFixedSize(200, 50)
@@ -119,11 +119,10 @@ class Menu_registro_cuidador(QWidget):
         self.setWindowTitle('Registro')
         self.setGeometry(100, 100, 640, 480)
 
-        titulo = QLineEdit('Registro del Cuidador')
+        titulo = QLabel('Registro del Cuidador')
         titulo.setStyleSheet("font-size: 30px; border: 1px solid black;")
         titulo.setAlignment(Qt.AlignCenter)
         titulo.adjustSize()
-        titulo.setReadOnly(True)
         
         setup = QVBoxLayout()
         organizador = QFormLayout()
@@ -234,19 +233,18 @@ class Menu_moca_1(QWidget):
         def __init__(self, controlador):
             super().__init__()   
             self.controlador = controlador
+            self.setWindowTitle('MOCA')
             setup = QVBoxLayout()
             self.view = QGraphicsView()
             self.scene = QGraphicsScene(self)
             self.view.setScene(self.scene)    
             self.secuencia_molde = ['1', 'A', '2', 'B', '3', 'C', '4', 'D', '5', 'E']
-            self.posicion = 0  
-            self.puntos = 0
+            self.posicion = 0 
             self.primer_intento = True
-            titulo = QLineEdit('1) Selecciona en el orden correcto la siguiente secuencia de botones')
+            titulo = QLabel('1) Selecciona en el orden correcto la siguiente secuencia de botones')
             titulo.setStyleSheet("font-size: 20px; border: 1px solid black;")
             titulo.setAlignment(Qt.AlignCenter)
             titulo.adjustSize()
-            titulo.setReadOnly(True)
             self.siguiente = QPushButton('Siguiente') 
             self.siguiente.hide()
             self.botones_orden = {
@@ -321,11 +319,123 @@ class Menu_moca_1(QWidget):
                 self.primer_intento = False
 
 class Menu_moca_2(QWidget):
-    def __init__(self):
-        super().__init__()
-        self.setWindowTitle('Registro')
-        self.setGeometry(100, 100, 640, 480)
+    def __init__(self, controlador):
+        super().__init__()   
+        self.controlador = controlador
+        self.setWindowTitle('MOCA')
+        setup = QVBoxLayout()
+        self.stacked_widget = QStackedWidget()
+        self.primer_intento = True
+        titulo = QLabel('2) Seleccione la imagen que coincida con la que acaba de ver.')
+        titulo.setStyleSheet("font-size: 20px; border: 1px solid black;")
+        titulo.setAlignment(Qt.AlignCenter)
+        titulo.adjustSize()
+        self.siguiente = QPushButton('Siguiente') 
+        self.siguiente.hide()
+        
+        self.imagen = QLabel(self)
+        pixmap = QPixmap('MoCA/CUBO/1.jpg')
+        self.imagen.setPixmap(pixmap)
+        self.imagen.setAlignment(Qt.AlignCenter)
+        self.stacked_widget.addWidget(self.imagen)
 
+        self.opciones_widget = QWidget()
+        opciones_layout = QHBoxLayout()
+        self.opciones_widget.setLayout(opciones_layout)
+        self.opciones = []
+        for i in range(1, 5):
+            opcion_layout = QVBoxLayout()
+            opcion_imagen = QLabel(self)
+            pixmap = QPixmap(f'MoCA/CUBO/{i}.jpg')
+            pixmap = pixmap.scaled(250, 250, Qt.KeepAspectRatio)
+            opcion_imagen.setPixmap(pixmap)
+            opcion_imagen.setAlignment(Qt.AlignCenter)
+            boton = QPushButton(f'Opción {i}', self.opciones_widget)
+            boton.clicked.connect(lambda checked, i=i: self.boton_precionado(i))
+            self.opciones.append(boton)
+            opcion_layout.addWidget(opcion_imagen)
+            opcion_layout.addWidget(boton)
+            opciones_layout.addLayout(opcion_layout)
+        self.stacked_widget.addWidget(self.opciones_widget)
+
+        setup.addWidget(titulo)
+        setup.addWidget(self.stacked_widget)
+        setup.addWidget(self.siguiente)
+        self.setLayout(setup)
+    
+    def showEvent(self, event):
+        super().showEvent(event)
+        QTimer.singleShot(5000, self.mostrar_opciones)
+
+    def mostrar_opciones(self):
+        self.stacked_widget.setCurrentWidget(self.opciones_widget)
+
+    def boton_precionado(self, opcion):
+        if opcion == 1:
+            QMessageBox.information(self, 'Correcto', 'Felicitaciones, la imagen es correcta!')
+            self.siguiente.show()
+            if self.primer_intento:
+                self.controlador.conteo_puntos()
+                self.primer_intento = False
+                self.siguiente.show()
+        else:
+            QMessageBox.warning(self, 'Error', 'Imagen incorrecta, intente de nuevo.')
+            self.primer_intento = False
+
+class Menu_moca_3(QWidget):
+    def __init__(self,controlador):
+        super().__init__()
+        self.controlador = controlador
+        self.setWindowTitle('MOCA')
+        setup = QVBoxLayout()
+        self.stacked_widget = QStackedWidget()
+        self.primer_intento = True
+        titulo = QLabel('3) Seleccione el reloj que vea de mejor manera.')
+        titulo.setStyleSheet("font-size: 20px; border: 1px solid black;")
+        titulo.setAlignment(Qt.AlignCenter)
+        titulo.adjustSize()
+        self.siguiente = QPushButton('Siguiente') 
+        self.siguiente.hide()
+
+        self.opciones_widget = QWidget()
+        opciones_layout = QHBoxLayout()
+        self.opciones_widget.setLayout(opciones_layout)
+        self.opciones = []
+        for i in range(1, 4):
+            opcion_layout = QVBoxLayout()
+            opcion_imagen = QLabel(self)
+            pixmap = QPixmap(f'MoCA/RELOJ/{i}.jpg')
+            pixmap = pixmap.scaled(250, 250, Qt.KeepAspectRatio)
+            opcion_imagen.setPixmap(pixmap)
+            opcion_imagen.setAlignment(Qt.AlignCenter)
+            boton = QPushButton(f'Opción {i}', self.opciones_widget)
+            boton.clicked.connect(lambda checked, i=i: self.boton_precionado(i))
+            self.opciones.append(boton)
+            opcion_layout.addWidget(opcion_imagen)
+            opcion_layout.addWidget(boton)
+            opciones_layout.addLayout(opcion_layout)
+        self.stacked_widget.addWidget(self.opciones_widget)
+
+        for i in range(4, 7):
+            opcion_layout = QVBoxLayout()
+            opcion_imagen = QLabel(self)
+            pixmap = QPixmap(f'MoCA/RELOJ/{i}.jpg')
+            pixmap = pixmap.scaled(250, 250, Qt.KeepAspectRatio)
+            opcion_imagen.setPixmap(pixmap)
+            opcion_imagen.setAlignment(Qt.AlignCenter)
+            boton = QPushButton(f'Opción {i}', self.opciones_widget)
+            boton.clicked.connect(lambda checked, i=i: self.boton_precionado(i))
+            self.opciones.append(boton)
+            opcion_layout.addWidget(opcion_imagen)
+            opcion_layout.addWidget(boton)
+            opciones_layout.addLayout(opcion_layout)
+        self.stacked_widget.addWidget(self.opciones_widget)
+
+        setup.addWidget(titulo)
+        setup.addWidget(self.stacked_widget)
+        setup.addWidget(self.siguiente)
+        self.setLayout(setup)
+    
 class Menu_Principal(QStackedWidget):
     def __init__(self, controlador):
         super().__init__()
@@ -362,7 +472,8 @@ class Menu_Principal(QStackedWidget):
         self.menu_pre_registro = Menu_pre_registro()
         self.advertencia_moca = Advertencia_Moca()
         self.menu_moca_1 = Menu_moca_1(self.controlador)
-        self.menu_moca_2 = Menu_moca_2()
+        self.menu_moca_2 = Menu_moca_2(self.controlador)
+        self.menu_moca_3 = Menu_moca_3(self.controlador)
         
         self.addWidget(self.advertencia)
         self.addWidget(self.menu_inicial)
@@ -372,6 +483,8 @@ class Menu_Principal(QStackedWidget):
         self.addWidget(self.menu_registro_paciente)
         self.addWidget(self.advertencia_moca)
         self.addWidget(self.menu_moca_1)
+        self.addWidget(self.menu_moca_2)
+        self.addWidget(self.menu_moca_3)
         
         QTimer.singleShot(500, self.ventana_principal)
         
@@ -391,6 +504,7 @@ class Menu_Principal(QStackedWidget):
         self.menu_registro_cuidador.boton_volver.clicked.connect(self.ventana_pre_registro)
 
         self.menu_moca_1.siguiente.clicked.connect(self.ventana_moca_2)
+        self.menu_moca_2.siguiente.clicked.connect(self.ventana_moca_3)
 
     def ventana_principal(self):
         self.setCurrentWidget(self.menu_inicial)
@@ -412,6 +526,9 @@ class Menu_Principal(QStackedWidget):
 
     def ventana_moca_2(self):
         self.setCurrentWidget(self.menu_moca_2)
+
+    def ventana_moca_3(self):
+        self.setCurrentWidget(self.menu_moca_3)
         
     def ventana_advertencia_moca(self):
         self.setCurrentWidget(self.advertencia_moca)

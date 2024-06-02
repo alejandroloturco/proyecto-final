@@ -16,6 +16,7 @@ class Controlador():
 
     def conteo_puntos(self):
         self.puntos_moca += 1
+        print(self.puntos_moca)
 
 if __name__ == '__main__':
     crear_BDSQL()
