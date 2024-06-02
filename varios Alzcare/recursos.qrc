@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="prefijoNuevo">
+    <file>Img_interfaz2/cuidador.png</file>
+    <file>Img_interfaz2/paciente.png</file>
+  </qresource>
+</RCC>
