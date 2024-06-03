@@ -1,0 +1,32 @@
+[
+    {
+        "Memoria": {
+            "palabras": ["Rostro","Seda","Iglesia","Clavel","Rojo"]            
+        }
+    },
+    {
+        "Atencion": {
+            "numeros": [[2,1,8,5,4],
+                        [7,4,2]],
+            "letras": ["F","B","A","C","M","N","A","A","J","K","L","B","A","F","A","K","D","E","A","A","A","J","A","M","O","F","A","A","B"]
+        }
+    },
+    {
+        "Lenguaje": {
+            "refran1": "El gato se esconde bajo el sofá cuando los perros entran en la sala",
+            "refran2": "Espero que él le entregue mensaje una vez que ella se lo pida"
+        }
+    },
+    {
+        "Abastraccion": {"manzana-naranja":["fruta","dulce","comida"],"tren-bicicleta":["transporte","ruedas","metal"],"reloj-regla":["medir","numeros",""]}
+    },
+    {
+        "Recuerdo_diferido":{"pista1":["Parte del cuerpo","Textil","Estructura","Flor","Color"],
+                            "pista2": [["Cara","Rostro","Cabeza","Craneo"],
+                                        ["Tejido","Hilo","Tela","Seda"],
+                                        ["Iglesia","Capilla","Monasterio","Templo"],
+                                        ["Clavel","Tulipan","Orquidea","Girasol"],
+                                        ["Amarillo","Rojo","Rosado","Fucsia"]]}
+    }
+]
+    
