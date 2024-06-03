@@ -88,7 +88,8 @@ QLineEdit:focus {
 
 QPushButton{
 	border-radius: 10px;
-	background-color: rgb(0, 180, 216);
+	color: white;
+	background-color: rgb(0, 119, 182)
 }</string>
    </property>
    <widget class="QWidget" name="widget_3" native="true">
@@ -126,19 +127,6 @@ QPushButton{
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bienvenido a Alzcare, por favor seleccione&lt;/p&gt;&lt;p&gt;el tipo de usuario a registrar&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_regresar">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>560</y>
-      <width>93</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Regresar</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -179,19 +167,6 @@ QPushButton{
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_salir">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>560</y>
-      <width>93</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Salir</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton_paciente">
     <property name="geometry">
      <rect>
@@ -221,6 +196,45 @@ QPushButton{
     </property>
     <property name="text">
      <string>Cuidador</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>570</y>
+      <width>141</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Importar información</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_regresar">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>570</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Regresar</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_salir">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>570</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Salir</string>
     </property>
    </widget>
   </widget>
