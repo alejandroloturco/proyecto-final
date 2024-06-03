@@ -204,12 +204,7 @@ class Paciente(Cuidador):
         self._listpac.append({"ID": len(self._listpac)+1, "ID_Cuidador": 1, "Nombre": nombre, "Apellido": apellido, "Telefono": telefono, "Cedula": cedula, "Nacimiento": nacimiento, "Procedencia": residencia, "Fase": fase, "Escolaridad": estudio, "Mano_Dominante": dominancia, "Tiempo_Alz": tiempoalz})
         
 
-
-
 class Seguimiento:
     def __init__(self, listreg):
         self._listreg = listreg
 
-
-        
-        

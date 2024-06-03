@@ -11,7 +11,7 @@ class Controlador():
     def inicio(self):
         self.menu = Botonera(controlador) 
         self.menu.show()
-        sys.exit(self.aplicacion.exec_())  
+        sys.exit(self.aplicacion.exec_())
 
     def conteo_puntos(self):
         self.puntos_moca += 1
