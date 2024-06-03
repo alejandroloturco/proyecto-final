@@ -1,5 +1,5 @@
-from modelo import *
-from vista import *
+from modelo_todo import *
+from vista_todo import *
 class Controlador():
     def __init__(self,listcui, listpac, listreg):
         self.aplicacion = QApplication(sys.argv)
@@ -9,7 +9,7 @@ class Controlador():
         self.puntos_moca = 0
 
     def inicio(self):
-        self.menu = Botonera(controlador)
+        self.menu = Botonera(controlador) 
         self.menu.show()
         sys.exit(self.aplicacion.exec_())  
 
@@ -19,6 +19,9 @@ class Controlador():
 
     def validar_usuario(self, usuario, contrasena):
         return self.cuidador.validar_usuario(usuario, contrasena)
+    
+    def regitro_paciente(self, nombre, apellido, telefono, cedula, residencia, nacimiento, fase, estudio, dominancia, tiempoalz):
+        return self.paciente.registro_paciente(nombre, apellido,telefono, cedula, residencia, nacimiento, fase, estudio, dominancia, tiempoalz)
 
 if __name__ == '__main__':
     crear_BDSQL()

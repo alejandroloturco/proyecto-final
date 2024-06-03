@@ -2,116 +2,6 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QDialog, QVBoxLa
 from PyQt5.QtCore  import QTimer, Qt, QTimer, QSize, QRect, QCoreApplication, QMetaObject
 from PyQt5.QtGui  import QPixmap, QFont, QIcon
 
-class Advertencia(QWidget):
-    def __init__(self):
-        super().__init__()
-        self.setWindowTitle('Aviso de Seguridad')
-        self.setStyleSheet("background-color: green;")
-        
-        setup = QVBoxLayout()
-        texto_1 = QLineEdit('!ADIVOS DE SALUD Y SEGURIDAD¡')
-        texto_1.setStyleSheet("color: white; font-size: 35px;")
-        texto_1.setReadOnly(True)
-        texto_1.setAlignment(Qt.AlignCenter)
-        setup.addWidget(texto_1)
-        texto_2 = QLabel('Para el ingreso de info se debe de tener al cuidador en la sala')
-        texto_2.setStyleSheet("color: white; font-size: 30px;")
-        texto_2.setAlignment(Qt.AlignCenter)
-        setup.addWidget(texto_2)
-        self.setLayout(setup)
-
-class Menu_inicial(QMainWindow):
-    def __init__(self):
-        super().__init__()
-        self.setWindowTitle('Ventana de Inicio')
-        
-        setup = QVBoxLayout()
-        organizador = QFormLayout()
-
-        titulo = QLabel('Bienvenido a AlzCare')
-        titulo.setStyleSheet("font-size: 30px; border: 1px solid black;")
-        titulo.setAlignment(Qt.AlignCenter)
-        titulo.adjustSize()
-        
-        self.boton_login = QPushButton('Login')
-        self.boton_login.setFixedSize(200, 50)
-        self.boton_pre_registro = QPushButton('Registro')
-        self.boton_pre_registro.setFixedSize(200, 50)
-        self.boton_moca = QPushButton('MOCA')
-        self.boton_moca.setFixedSize(200, 50)
-        self.boton_salida = QPushButton('Salir.')
-        self.boton_salida.setFixedSize(200, 50)
-
-        organizador.addRow(self.boton_login)
-        organizador.addRow(self.boton_pre_registro)
-        organizador.addRow(self.boton_moca)
-        organizador.addRow(self.boton_salida)
-        organizador.setFormAlignment(Qt.AlignCenter)
-        organizador.setLabelAlignment(Qt.AlignCenter)
-        organizador.setSpacing(15)
-        organizador.setContentsMargins(50, 50, 50, 50)
-
-        setup.addWidget(titulo)
-        setup.addLayout(organizador)        
-        self.setLayout(setup)    
-
-class Menu_Login(QMainWindow):
-    def __init__(self):
-        super().__init__()
-        self.setWindowTitle('Login')
-        self.setGeometry(100, 100, 640, 480)
-        
-        widget = QWidget()
-        setup = QVBoxLayout(widget)
-        organizador = QFormLayout()
-        
-        self.usuario_respuesta = QLineEdit()
-        self.contraseña_respuesta = QLineEdit()
-        self.contraseña_respuesta.setEchoMode(QLineEdit.Password)
-        
-        organizador.addRow('Usuario:', self.usuario_respuesta)
-        organizador.addRow('Contraseña:', self.contraseña_respuesta)
-        organizador.setFormAlignment(Qt.AlignCenter)
-        organizador.setLabelAlignment(Qt.AlignCenter)
-        organizador.setSpacing(15)
-        organizador.setContentsMargins(50, 50, 50, 50)
-
-        self.boton_login = QPushButton('Entrar')
-        self.boton_volver = QPushButton('Volver')
-        
-        setup.addLayout(organizador)
-        setup.addWidget(self.boton_login)
-        setup.addWidget(self.boton_volver)
-        
-        self.setCentralWidget(widget)
-
-class Menu_pre_registro(QWidget):
-    def __init__(self):
-        super().__init__()
-        self.setWindowTitle('Pre-Registro')
-        self.setGeometry(100, 100, 640, 480)
-
-        setup = QVBoxLayout()
-        organizador = QFormLayout()
-
-        self.boton_registro = QPushButton('Registrar')
-        self.boton_registro.setFixedSize(200, 50)
-        self.boton_importar = QPushButton('Importar perfil')
-        self.boton_importar.setFixedSize(200, 50)
-        self.boton_volver = QPushButton('Volver')
-        self.boton_volver.setFixedSize(200, 50)
-
-        organizador.addRow(self.boton_registro)
-        organizador.addRow(self.boton_importar)
-        organizador.addRow(self.boton_volver)
-        organizador.setFormAlignment(Qt.AlignCenter)
-        organizador.setLabelAlignment(Qt.AlignCenter)
-        organizador.setSpacing(15)
-        organizador.setContentsMargins(50, 50, 50, 50)
-
-        setup.addLayout(organizador)
-
-        self.setLayout(setup)
 class Menu_registro_cuidador(QWidget):
     def __init__(self):
         super().__init__()
@@ -210,25 +100,6 @@ class Menu_registro_paciente(QWidget):
         self.setWindowTitle('Registro')
         self.setGeometry(100, 100, 640, 480)
 
-class Advertencia_Moca(QWidget):
-    def __init__(self):
-        super().__init__()
-        self.setWindowTitle('Aviso de Seguridad')
-        self.setGeometry(100, 100, 640, 480)
-        self.setStyleSheet("background-color: green;")
-        
-        setup = QVBoxLayout()
-        texto_1 = QLineEdit('!ADIVOS DE SALUD Y SEGURIDAD¡')
-        texto_1.setStyleSheet("color: white; font-size: 35px;")
-        texto_1.setReadOnly(True)
-        texto_1.setAlignment(Qt.AlignCenter)
-        setup.addWidget(texto_1)
-        texto_2 = QLabel('Para el ingreso de info se debe de tener al cuidador en la sala')
-        texto_2.setStyleSheet("color: white; font-size: 30px;")
-        texto_2.setAlignment(Qt.AlignCenter)
-        setup.addWidget(texto_2)
-        self.setLayout(setup)
-        
 class Menu_moca_1(QWidget):
         def __init__(self, controlador):
             super().__init__()   
@@ -435,120 +306,16 @@ class Menu_moca_3(QWidget):
         setup.addWidget(self.stacked_widget)
         setup.addWidget(self.siguiente)
         self.setLayout(setup)
-    
-class Menu_Principal(QStackedWidget):
-    def __init__(self, controlador):
-        super().__init__()
-        self.controlador = controlador
-
-    def setup(self):
-        self.setWindowTitle('AlzCare')
-        self.setGeometry(100, 100, 640, 480)
-        self.setStyleSheet("""
-                           QWidget {
-                            background-color: rgba(144, 224, 239, 0.5);  /* Azul claro opaco */
-                            }
-                            QPushButton {
-                                background-color: #333;
-                                color: white;
-                                border: none;
-                                border-radius: 25px;
-                                padding: 10px;
-                            }
-                            QPushButton:hover {
-                                background-color: #666;
-                            }
-                            QPushButton:pressed {
-                                background-color: #999;
-                            }
-                        """)
-
-        
-        self.advertencia = Advertencia()
-        self.menu_inicial = Menu_inicial()
-        self.menu_login = Menu_Login()
-        self.menu_registro_cuidador = Menu_registro_cuidador()
-        self.menu_registro_paciente = Menu_registro_paciente()
-        self.menu_pre_registro = Menu_pre_registro()
-        self.advertencia_moca = Advertencia_Moca()
-        self.menu_moca_1 = Menu_moca_1(self.controlador)
-        self.menu_moca_2 = Menu_moca_2(self.controlador)
-        self.menu_moca_3 = Menu_moca_3(self.controlador)
-        
-        self.addWidget(self.advertencia)
-        self.addWidget(self.menu_inicial)
-        self.addWidget(self.menu_login)
-        self.addWidget(self.menu_pre_registro)
-        self.addWidget(self.menu_registro_cuidador)
-        self.addWidget(self.menu_registro_paciente)
-        self.addWidget(self.advertencia_moca)
-        self.addWidget(self.menu_moca_1)
-        self.addWidget(self.menu_moca_2)
-        self.addWidget(self.menu_moca_3)
-        
-        QTimer.singleShot(500, self.ventana_principal)
-        
-        self.menu_inicial.boton_login.clicked.connect(self.ventana_login)
-        self.menu_inicial.boton_pre_registro.clicked.connect(self.ventana_pre_registro)
-        self.menu_inicial.boton_moca.clicked.connect(self.ventana_advertencia_moca)
-        self.menu_inicial.boton_salida.clicked.connect(self.close)
-        
-        self.menu_login.boton_login.clicked.connect(self.ventana_principal)
-        self.menu_login.boton_volver.clicked.connect(self.ventana_principal)
-
-        self.menu_pre_registro.boton_registro.clicked.connect(self.ventana_registro_cuidador)
-        self.menu_pre_registro.boton_importar.clicked.connect(self.ventana_principal)
-        self.menu_pre_registro.boton_volver.clicked.connect(self.ventana_principal)
-
-        self.menu_registro_cuidador.boton_siguiente.clicked.connect(self.ventana_registro_paciente)
-        self.menu_registro_cuidador.boton_volver.clicked.connect(self.ventana_pre_registro)
-
-        self.menu_moca_1.siguiente.clicked.connect(self.ventana_moca_2)
-        self.menu_moca_2.siguiente.clicked.connect(self.ventana_moca_3)
-
-    def ventana_principal(self):
-        self.setCurrentWidget(self.menu_inicial)
-        
-    def ventana_login(self):
-        self.setCurrentWidget(self.menu_login)
-        
-    def ventana_pre_registro(self):
-        self.setCurrentWidget(self.menu_pre_registro)
-
-    def ventana_registro_cuidador(self):
-        self.setCurrentWidget(self.menu_registro_cuidador)
-
-    def ventana_registro_paciente(self):
-        self.setCurrentWidget(self.menu_registro_paciente)
-        
-    def ventana_moca_1(self):
-        self.setCurrentWidget(self.menu_moca_1)
-
-    def ventana_moca_2(self):
-        self.setCurrentWidget(self.menu_moca_2)
-
-    def ventana_moca_3(self):
-        self.setCurrentWidget(self.menu_moca_3)
-        
-    def ventana_advertencia_moca(self):
-        self.setCurrentWidget(self.advertencia_moca)
-        QTimer.singleShot(500, self.ventana_moca_1)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow, controlador):
         self.ventanas_extra = QStackedWidget()
         self.controlador = controlador
 
-        self.menu_registro_cuidador = Menu_registro_cuidador()
-        self.menu_registro_paciente = Menu_registro_paciente()
-        self.menu_pre_registro = Menu_pre_registro()
         self.menu_moca_1 = Menu_moca_1(self.controlador)
         self.menu_moca_2 = Menu_moca_2(self.controlador)
         self.menu_moca_3 = Menu_moca_3(self.controlador)
 
-        self.ventanas_extra.addWidget(self.menu_pre_registro)
-        self.ventanas_extra.addWidget(self.menu_registro_cuidador)
-        self.ventanas_extra.addWidget(self.menu_registro_paciente)
         self.ventanas_extra.addWidget(self.menu_moca_1)
         self.ventanas_extra.addWidget(self.menu_moca_2)
         self.ventanas_extra.addWidget(self.menu_moca_3)

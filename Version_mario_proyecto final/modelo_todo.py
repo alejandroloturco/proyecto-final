@@ -11,7 +11,7 @@ import pydicom
 import nltk
 from spellchecker import SpellChecker
 import spacy
-import sys
+import sys 
 
 def vaidacion_p(palabra):
     nlp = spacy.load('en_core_web_sm')
@@ -61,7 +61,7 @@ def crear_tablasSQL():
     cursorSQL, cnx = conectar_SQL()
     cursorSQL.execute("USE alzcare;")
     cursorSQL.execute("CREATE TABLE IF NOT EXISTS cuidador (ID INT UNSIGNED PRIMARY KEY,Nombre VARCHAR(225) NOT NULL,Apellido VARCHAR(225) NOT NULL,Telefono VARCHAR(225) NOT NULL,Cedula VARCHAR(225) NOT NULL,Formacion VARCHAR(225) NOT NULL,Usuario VARCHAR(225) NOT NULL,Contraseña VARCHAR(225) NOT NULL)")
-    cursorSQL.execute("CREATE TABLE IF NOT EXISTS paciente (ID INT UNSIGNED PRIMARY KEY,ID_Cuidador INT UNSIGNED NOT NULL,Nombre VARCHAR(225) NOT NULL,Apellido VARCHAR(225) NOT NULL,Telefono VARCHAR(225) NOT NULL,Cedula VARCHAR(225) NOT NULL,Nacimiento VARCHAR(225) NOT NULL,Procedencia VARCHAR(225) NOT NULL,Fase VARCHAR(225) NOT NULL,Escolaridad VARCHAR(225) NOT NULL,Mano_dominante VARCHAR(225) NOT NULL,FOREIGN KEY (ID_Cuidador) REFERENCES cuidador(ID) ON UPDATE CASCADE ON DELETE CASCADE)")
+    cursorSQL.execute("CREATE TABLE IF NOT EXISTS paciente (ID INT UNSIGNED PRIMARY KEY,ID_Cuidador INT UNSIGNED NOT NULL,Nombre VARCHAR(225) NOT NULL,Apellido VARCHAR(225) NOT NULL,Telefono VARCHAR(225) NOT NULL,Cedula VARCHAR(225) NOT NULL,Nacimiento VARCHAR(225) NOT NULL,Procedencia VARCHAR(225) NOT NULL,Fase VARCHAR(225) NOT NULL,Escolaridad VARCHAR(225) NOT NULL,Mano_dominante VARCHAR(225) NOT NULL,Tiempo_Alz VARCHAR(225) NOT NULL,FOREIGN KEY (ID_Cuidador) REFERENCES cuidador(ID) ON UPDATE CASCADE ON DELETE CASCADE)")
     cursorSQL.execute("CREATE TABLE IF NOT EXISTS seguimiento (ID INT UNSIGNED PRIMARY KEY,ID_Paciente INT UNSIGNED NOT NULL,Fecha_Registro VARCHAR(225) NOT NULL,Pregunta_1 INT NOT NULL,Pregunta_2 INT NOT NULL,Pregunta_3 INT NOT NULL,Pregunta_4 INT NOT NULL,Pregunta_5 INT NOT NULL,Pregunta_6 INT NOT NULL,Pregunta_7 INT NOT NULL,Pregunta_8 INT NOT NULL,Pregunta_9 INT NOT NULL,Pregunta_10 INT NOT NULL,FOREIGN KEY (ID_Paciente) REFERENCES paciente(ID) ON UPDATE CASCADE ON DELETE CASCADE)")
     desconectar_SQL(cnx,cursorSQL)
     
@@ -136,11 +136,6 @@ def obtener_dataSQL():
     desconectar_SQL(cnx,cursorSQL)
     return listcui, listpac, listreg
     
-def imagenes():
-    path = 'C:/Users/Usuario/Downloads/Proyecto/Proyecto/imagenes'
-    imagenes = os.listdir(path)
-    return imagenes
-
 class Cuidador:
     def __init__(self,listcui):
         self._listcui = listcui
@@ -204,6 +199,11 @@ class Paciente(Cuidador):
         return self._dominancia 
     def GetTiempoalz(self):
         return self._tiempoalz
+    
+    def registro_paciente(self, nombre, apellido,telefono, cedula, residencia, nacimiento, fase, estudio, dominancia, tiempoalz):
+        self._listpac.append({"ID": len(self._listpac)+1, "ID_Cuidador": 1, "Nombre": nombre, "Apellido": apellido, "Telefono": telefono, "Cedula": cedula, "Nacimiento": nacimiento, "Procedencia": residencia, "Fase": fase, "Escolaridad": estudio, "Mano_Dominante": dominancia, "Tiempo_Alz": tiempoalz})
+        
+
 
 
 class Seguimiento:
