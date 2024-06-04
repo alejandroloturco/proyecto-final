@@ -1,326 +1,8 @@
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QDialog, QVBoxLayout, QHBoxLayout ,QPushButton, QLabel, QStackedWidget, QLineEdit, QFormLayout, QComboBox, QStackedLayout, QMessageBox, QGraphicsView, QGraphicsScene, QGraphicsProxyWidget, QLabel, QGridLayout, QSpacerItem, QSizePolicy, QStatusBar
 from PyQt5.QtCore  import QTimer, Qt, QTimer, QSize, QRect, QCoreApplication, QMetaObject
 from PyQt5.QtGui  import QPixmap, QFont, QIcon
-
-class Menu_registro_cuidador(QWidget):
-    def __init__(self):
-        super().__init__()
-        self.setWindowTitle('Registro')
-        self.setGeometry(100, 100, 640, 480)
-
-        titulo = QLabel('Registro del Cuidador')
-        titulo.setStyleSheet("font-size: 30px; border: 1px solid black;")
-        titulo.setAlignment(Qt.AlignCenter)
-        titulo.adjustSize()
-        
-        setup = QVBoxLayout()
-        organizador = QFormLayout()
-        self.opciones = QComboBox()
-        self.setup_stakeado = QStackedLayout()
-        self.salud_widget = QWidget()
-        self.familiar_widget = QWidget()
-        self.nada_widget = QWidget()
-        widgets_stakeados = QWidget()
-        
-        self.usuario_respuesta = QLineEdit()
-        self.usuario_respuesta.setPlaceholderText('Nombre de usuario')
-        self.contraseña_respuesta = QLineEdit()
-        self.contraseña_respuesta.setEchoMode(QLineEdit.Password)
-        self.contraseña_respuesta.setPlaceholderText('Contraseña123')
-        self.nombre_cuidador = QLineEdit()
-        self.nombre_cuidador.setPlaceholderText('Pedro, Juan, Maria...')
-        self.apellido_cuidador = QLineEdit()
-        self.apellido_cuidador.setPlaceholderText('Perez, Rodriguez, Gomez...')
-        self.cedula_cuidador = QLineEdit()
-        self.cedula_cuidador.setPlaceholderText('1234567890')
-        self.telefono_cuidador = QLineEdit()
-        self.telefono_cuidador.setPlaceholderText('+57 1234567890')
-        self.formacion_salud = QLineEdit()
-        self.formacion_salud.setPlaceholderText('Enfermeria, Medicina, Psicologia...')
-        self.tiempo_cuidado_salud = QLineEdit()
-        self.tiempo_cuidado_salud.setPlaceholderText('1 año, 2 meses, 3 semanas...')
-        self.relacion_familiar = QLineEdit()
-        self.relacion_familiar.setPlaceholderText('Hijo, Hermano, Sobrino...')
-        self.parentesco_familiar = QLineEdit()
-        self.parentesco_familiar.setPlaceholderText('Padre, Madre, Abuelo...')
-        self.opciones.currentIndexChanged.connect(self.limpiar_line_edits)
-        self.opciones.addItem("...")
-        self.opciones.addItem("Salud")
-        self.opciones.addItem("Familiar")
-        
-        formato_1 = QVBoxLayout(self.salud_widget)
-        formato_2 = QVBoxLayout(self.familiar_widget)
-
-        formato_1.addWidget(QLabel('Formación:'))
-        formato_1.addWidget(self.formacion_salud)
-        formato_1.addWidget(QLabel('Tiempo de cuidado:'))
-        formato_1.addWidget(self.tiempo_cuidado_salud)
-        formato_2.addWidget(QLabel('Relación:'))
-        formato_2.addWidget(self.relacion_familiar)
-        formato_2.addWidget(QLabel('Parentesco:'))
-        formato_2.addWidget(self.parentesco_familiar)
-
-        self.setup_stakeado.addWidget(self.nada_widget)
-        self.setup_stakeado.addWidget(self.salud_widget)
-        self.setup_stakeado.addWidget(self.familiar_widget)
-        self.opciones.currentIndexChanged.connect(self.setup_stakeado.setCurrentIndex)
-        widgets_stakeados.setLayout(self.setup_stakeado)
-
-        organizador.addRow('Usuario:', self.usuario_respuesta)
-        organizador.addRow('Contraseña:', self.contraseña_respuesta)
-        organizador.addRow('Nombre:', self.nombre_cuidador)
-        organizador.addRow('Apellido:', self.apellido_cuidador)
-        organizador.addRow('CC:', self.cedula_cuidador)
-        organizador.addRow('Teléfono:', self.telefono_cuidador)
-        organizador.addRow('Relacion:', self.opciones)
-        organizador.addWidget(widgets_stakeados)
-        organizador.setFormAlignment(Qt.AlignCenter)
-        organizador.setLabelAlignment(Qt.AlignCenter)
-        organizador.setSpacing(15)
-        organizador.setContentsMargins(50, 50, 50, 50)
-
-        self.boton_siguiente = QPushButton('Siguiente')
-        self.boton_volver = QPushButton('Volver')
-        
-        setup.addWidget(titulo)
-        setup.addLayout(organizador)
-        setup.addWidget(self.boton_siguiente)
-        setup.addWidget(self.boton_volver)
-        
-        self.setLayout(setup)
-
-    def limpiar_line_edits(self):
-        self.formacion_salud.clear()
-        self.tiempo_cuidado_salud.clear()
-        self.relacion_familiar.clear()
-        self.parentesco_familiar.clear()
-class Menu_registro_paciente(QWidget):
-    def __init__(self):
-        super().__init__()
-        self.setWindowTitle('Registro')
-        self.setGeometry(100, 100, 640, 480)
-
-class Menu_moca_1(QWidget):
-        def __init__(self, controlador):
-            super().__init__()   
-            self.controlador = controlador
-            self.setWindowTitle('MOCA')
-            setup = QVBoxLayout()
-            self.view = QGraphicsView()
-            self.scene = QGraphicsScene(self)
-            self.view.setScene(self.scene)    
-            self.secuencia_molde = ['1', 'A', '2', 'B', '3', 'C', '4', 'D', '5', 'E']
-            self.posicion = 0 
-            self.primer_intento = True
-            titulo = QLabel('1) Selecciona en el orden correcto la siguiente secuencia de botones')
-            titulo.setStyleSheet("font-size: 20px; border: 1px solid black;")
-            titulo.setAlignment(Qt.AlignCenter)
-            titulo.adjustSize()
-            self.siguiente = QPushButton('Siguiente') 
-            self.siguiente.hide()
-            self.botones_orden = {
-                '1': QPushButton('1'),
-                '2': QPushButton('2'),
-                '3': QPushButton('3'),
-                '4': QPushButton('4'),
-                '5': QPushButton('5'),
-                'A': QPushButton('A'),
-                'B': QPushButton('B'),
-                'C': QPushButton('C'),
-                'D': QPushButton('D'),
-                'E': QPushButton('E'),
-            }
-            self.posiciones = {
-                '1': (210, 190),
-                '2': (480, 130),
-                '3': (480, 300),
-                '4': (310, 270),
-                '5': (80, 130),
-                'A': (380, 60),
-                'B': (340, 140),
-                'C': (210, 330),
-                'D': (100, 270),
-                'E': (210, 70),
-            }    
-            for boton in self.botones_orden.values():
-                boton.setFixedSize(50, 50)
-                boton.setStyleSheet("""
-                                QPushButton {
-                                    background-color: #333;
-                                    color: white;
-                                    border: none;
-                                    border-radius: 25px;
-                                    padding: 10px;
-                                }
-                                QPushButton:hover {
-                                    background-color: #666;
-                                }
-                                QPushButton:pressed {
-                                    background-color: #999;
-                                }
-                            """) 
-            for boton, posicion in self.posiciones.items():
-                configuracion = QGraphicsProxyWidget()
-                configuracion.setWidget(self.botones_orden[boton])
-                self.scene.addItem(configuracion)
-                configuracion.setPos(*posicion)  
-            for x in self.botones_orden:
-                self.botones_orden[x].clicked.connect(self.boton_secuenciado)    
-            setup.addWidget(titulo)
-            setup.addWidget(self.view)
-            setup.addWidget(self.siguiente)
-            self.setLayout(setup)
-
-        def boton_secuenciado(self):
-            
-            secuencia = self.sender().text()
-            if secuencia == self.secuencia_molde[self.posicion]:
-                self.posicion += 1
-                if self.posicion == len(self.secuencia_molde):
-                    QMessageBox.information(self, 'Correcto', 'Felicitaciones, la secuencia es correcta!')
-                    self.posicion = 0
-                    self.siguiente.show()
-                    if self.primer_intento:
-                        self.controlador.conteo_puntos()
-                        self.primer_intento = False
-            
-            else:
-                QMessageBox.warning(self, 'Error', 'Secuencia incorrecta, intente de nuevo.')
-                self.posicion = 0
-                self.primer_intento = False
-
-class Menu_moca_2(QWidget):
-    def __init__(self, controlador):
-        super().__init__()   
-        self.controlador = controlador
-        self.setWindowTitle('MOCA')
-        setup = QVBoxLayout()
-        self.stacked_widget = QStackedWidget()
-        self.primer_intento = True
-        titulo = QLabel('2) Seleccione la imagen que coincida con la que acaba de ver.')
-        titulo.setStyleSheet("font-size: 20px; border: 1px solid black;")
-        titulo.setAlignment(Qt.AlignCenter)
-        titulo.adjustSize()
-        self.siguiente = QPushButton('Siguiente') 
-        self.siguiente.hide()
-        
-        self.imagen = QLabel(self)
-        pixmap = QPixmap('MoCA/CUBO/1.jpg')
-        self.imagen.setPixmap(pixmap)
-        self.imagen.setAlignment(Qt.AlignCenter)
-        self.stacked_widget.addWidget(self.imagen)
-
-        self.opciones_widget = QWidget()
-        opciones_layout = QHBoxLayout()
-        self.opciones_widget.setLayout(opciones_layout)
-        self.opciones = []
-        for i in range(1, 5):
-            opcion_layout = QVBoxLayout()
-            opcion_imagen = QLabel(self)
-            pixmap = QPixmap(f'MoCA/CUBO/{i}.jpg')
-            pixmap = pixmap.scaled(250, 250, Qt.KeepAspectRatio)
-            opcion_imagen.setPixmap(pixmap)
-            opcion_imagen.setAlignment(Qt.AlignCenter)
-            boton = QPushButton(f'Opción {i}', self.opciones_widget)
-            boton.clicked.connect(lambda checked, i=i: self.boton_precionado(i))
-            self.opciones.append(boton)
-            opcion_layout.addWidget(opcion_imagen)
-            opcion_layout.addWidget(boton)
-            opciones_layout.addLayout(opcion_layout)
-        self.stacked_widget.addWidget(self.opciones_widget)
-
-        setup.addWidget(titulo)
-        setup.addWidget(self.stacked_widget)
-        setup.addWidget(self.siguiente)
-        self.setLayout(setup)
-    
-    def showEvent(self, event):
-        super().showEvent(event)
-        QTimer.singleShot(5000, self.mostrar_opciones)
-
-    def mostrar_opciones(self):
-        self.stacked_widget.setCurrentWidget(self.opciones_widget)
-
-    def boton_precionado(self, opcion):
-        if opcion == 1:
-            QMessageBox.information(self, 'Correcto', 'Felicitaciones, la imagen es correcta!')
-            self.siguiente.show()
-            if self.primer_intento:
-                self.controlador.conteo_puntos()
-                self.primer_intento = False
-                self.siguiente.show()
-        else:
-            QMessageBox.warning(self, 'Error', 'Imagen incorrecta, intente de nuevo.')
-            self.primer_intento = False
-
-class Menu_moca_3(QWidget):
-    def __init__(self,controlador):
-        super().__init__()
-        self.controlador = controlador
-        self.setWindowTitle('MOCA')
-        setup = QVBoxLayout()
-        self.stacked_widget = QStackedWidget()
-        self.primer_intento = True
-        titulo = QLabel('3) Seleccione el reloj que vea de mejor manera.')
-        titulo.setStyleSheet("font-size: 20px; border: 1px solid black;")
-        titulo.setAlignment(Qt.AlignCenter)
-        titulo.adjustSize()
-        self.siguiente = QPushButton('Siguiente') 
-        self.siguiente.hide()
-
-        self.opciones_widget = QWidget()
-        opciones_layout = QHBoxLayout()
-        self.opciones_widget.setLayout(opciones_layout)
-        self.opciones = []
-        for i in range(1, 4):
-            opcion_layout = QVBoxLayout()
-            opcion_imagen = QLabel(self)
-            pixmap = QPixmap(f'MoCA/RELOJ/{i}.jpg')
-            pixmap = pixmap.scaled(250, 250, Qt.KeepAspectRatio)
-            opcion_imagen.setPixmap(pixmap)
-            opcion_imagen.setAlignment(Qt.AlignCenter)
-            boton = QPushButton(f'Opción {i}', self.opciones_widget)
-            boton.clicked.connect(lambda checked, i=i: self.boton_precionado(i))
-            self.opciones.append(boton)
-            opcion_layout.addWidget(opcion_imagen)
-            opcion_layout.addWidget(boton)
-            opciones_layout.addLayout(opcion_layout)
-        self.stacked_widget.addWidget(self.opciones_widget)
-
-        for i in range(4, 7):
-            opcion_layout = QVBoxLayout()
-            opcion_imagen = QLabel(self)
-            pixmap = QPixmap(f'MoCA/RELOJ/{i}.jpg')
-            pixmap = pixmap.scaled(250, 250, Qt.KeepAspectRatio)
-            opcion_imagen.setPixmap(pixmap)
-            opcion_imagen.setAlignment(Qt.AlignCenter)
-            boton = QPushButton(f'Opción {i}', self.opciones_widget)
-            boton.clicked.connect(lambda checked, i=i: self.boton_precionado(i))
-            self.opciones.append(boton)
-            opcion_layout.addWidget(opcion_imagen)
-            opcion_layout.addWidget(boton)
-            opciones_layout.addLayout(opcion_layout)
-        self.stacked_widget.addWidget(self.opciones_widget)
-
-        setup.addWidget(titulo)
-        setup.addWidget(self.stacked_widget)
-        setup.addWidget(self.siguiente)
-        self.setLayout(setup)
-
 class Ui_MainWindow(object):
-    def setupUi(self, MainWindow, controlador):
-        self.ventanas_extra = QStackedWidget()
-        self.controlador = controlador
-
-        self.menu_moca_1 = Menu_moca_1(self.controlador)
-        self.menu_moca_2 = Menu_moca_2(self.controlador)
-        self.menu_moca_3 = Menu_moca_3(self.controlador)
-
-        self.ventanas_extra.addWidget(self.menu_moca_1)
-        self.ventanas_extra.addWidget(self.menu_moca_2)
-        self.ventanas_extra.addWidget(self.menu_moca_3)
-
-
+    def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(921, 612)
         MainWindow.setStyleSheet("QWidget {\n"
@@ -983,7 +665,7 @@ class Pre_Registro(object):
         self.label = QLabel(self.widget)
         self.label.setGeometry(QRect(130, 230, 191, 191))
         self.label.setText("")
-        self.label.setPixmap(QPixmap(r"Version_mario_proyecto_final/Recursos_Interfaz/Alzcare.png"))
+        self.label.setPixmap(QPixmap(r"Version_mario_proyecto_final\Recursos_Interfaz\Alzcare.png"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.widget_2 = QWidget(Form)
@@ -1015,7 +697,8 @@ class Pre_Registro(object):
 "\n"
 "QPushButton{\n"
 "    border-radius: 10px;\n"
-"    background-color: rgb(0, 180, 216);\n"
+"    color: white;\n"
+"    background-color: rgb(0, 119, 182)\n"
 "}")
         self.widget_2.setObjectName("widget_2")
         self.widget_3 = QWidget(self.widget_2)
@@ -1029,29 +712,23 @@ class Pre_Registro(object):
         self.label_4.setGeometry(QRect(30, 40, 341, 61))
         font = QFont()
         font.setFamily("Montserrat")
-        font.setPointSize(-1)
+        font.setPointSize(1)
         font.setBold(False)
         font.setWeight(50)
         self.label_4.setFont(font)
         self.label_4.setObjectName("label_4")
-        self.pushButton_regresar = QPushButton(self.widget_2)
-        self.pushButton_regresar.setGeometry(QRect(90, 560, 93, 28))
-        self.pushButton_regresar.setObjectName("pushButton_regresar")
         self.label_2 = QLabel(self.widget_2)
         self.label_2.setGeometry(QRect(30, 230, 171, 191))
         self.label_2.setText("")
-        self.label_2.setPixmap(QPixmap(":/prefijoNuevo/Img_interfaz2/paciente.png"))
+        self.label_2.setPixmap(QPixmap(r"Version_mario_proyecto_final\Recursos_Interfaz\paciente.png"))
         self.label_2.setScaledContents(True)
         self.label_2.setObjectName("label_2")
         self.label_3 = QLabel(self.widget_2)
         self.label_3.setGeometry(QRect(240, 250, 171, 171))
         self.label_3.setText("")
-        self.label_3.setPixmap(QPixmap(":/prefijoNuevo/Img_interfaz2/cuidador.png"))
+        self.label_3.setPixmap(QPixmap(r"Version_mario_proyecto_final\Recursos_Interfaz\cuidador.png"))
         self.label_3.setScaledContents(True)
         self.label_3.setObjectName("label_3")
-        self.pushButton_salir = QPushButton(self.widget_2)
-        self.pushButton_salir.setGeometry(QRect(250, 560, 93, 28))
-        self.pushButton_salir.setObjectName("pushButton_salir")
         self.pushButton_paciente = QPushButton(self.widget_2)
         self.pushButton_paciente.setGeometry(QRect(70, 230, 93, 28))
         self.pushButton_paciente.setStyleSheet("QPusButton{\n"
@@ -1061,19 +738,29 @@ class Pre_Registro(object):
         self.pushButton_cuidador = QPushButton(self.widget_2)
         self.pushButton_cuidador.setGeometry(QRect(280, 230, 93, 28))
         self.pushButton_cuidador.setObjectName("pushButton_cuidador")
+        self.pushButton = QPushButton(self.widget_2)
+        self.pushButton.setGeometry(QRect(290, 570, 141, 28))
+        self.pushButton.setObjectName("pushButton")
+        self.pushButton_regresar = QPushButton(self.widget_2)
+        self.pushButton_regresar.setGeometry(QRect(170, 570, 93, 28))
+        self.pushButton_regresar.setObjectName("pushButton_regresar")
+        self.pushButton_salir = QPushButton(self.widget_2)
+        self.pushButton_salir.setGeometry(QRect(40, 570, 93, 28))
+        self.pushButton_salir.setObjectName("pushButton_salir")
 
         self.retranslateUi(Form)
-        self.pushButton_salir.clicked['bool'].connect(Form.close) 
+        self.pushButton_salir.clicked['bool'].connect(Form.close) # type: ignore
         QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
         _translate = QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
         self.label_4.setText(_translate("Form", "<html><head/><body><p>Bienvenido a Alzcare, por favor seleccione</p><p>el tipo de usuario a registrar</p></body></html>"))
-        self.pushButton_regresar.setText(_translate("Form", "Regresar"))
-        self.pushButton_salir.setText(_translate("Form", "Salir"))
         self.pushButton_paciente.setText(_translate("Form", "Paciente"))
         self.pushButton_cuidador.setText(_translate("Form", "Cuidador"))
+        self.pushButton.setText(_translate("Form", "Importar información"))
+        self.pushButton_regresar.setText(_translate("Form", "Regresar"))
+        self.pushButton_salir.setText(_translate("Form", "Salir"))
 
 class Formato_Pre_Registro(QDialog):
     def __init__(self, parent=None):
@@ -1081,14 +768,263 @@ class Formato_Pre_Registro(QDialog):
         self.ui = Pre_Registro()
         self.ui.setupUi(self)
 
+class Registro_Cuidador(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(906, 601)
+        self.widget = QWidget(Form)
+        self.widget.setGeometry(QRect(0, 0, 921, 621))
+        font = QFont()
+        font.setPointSize(15)
+        self.widget.setFont(font)
+        self.widget.setStyleSheet("QWidget {\n"
+"    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #0077b6, stop:0.5 #0096c7, stop:1 #00b4d8);\n"
+"}\n"
+"\n"
+"QLabel {\n"
+"    background-color: transparent;  /* Fondo transparente para QLabel */\n"
+"    color: white;  /* Color del texto del QLabel */\n"
+"    font-size: 16px;  /* Tamaño de fuente del QLabel */\n"
+"}\n"
+"\n"
+"QLineEdit {\n"
+"    background-color: white;  /* Fondo sólido blanco para QLineEdit */\n"
+"    border: 2px solid #00b4d8;\n"
+"    border-radius: 10px;\n"
+"    padding: 10px;\n"
+"    font-size: 16px;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid #0077b6; /* Color del borde al enfocar */\n"
+"    outline: none;\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton{\n"
+"    border-radius: 10px;\n"
+"    color: white;\n"
+"    background-color: rgb(0, 119, 182)\n"
+"}")
+        self.widget.setObjectName("widget")
+        self.label = QLabel(self.widget)
+        self.label.setGeometry(QRect(300, 10, 421, 91))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label.setFont(font)
+        self.label.setObjectName("label")
+        self.lineEdit_nombre = QLineEdit(self.widget)
+        self.lineEdit_nombre.setGeometry(QRect(440, 170, 421, 41))
+        self.lineEdit_nombre.setObjectName("lineEdit_nombre")
+        self.lineEdit_2 = QLineEdit(self.widget)
+        self.lineEdit_2.setGeometry(QRect(440, 230, 421, 41))
+        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.lineEdit_3 = QLineEdit(self.widget)
+        self.lineEdit_3.setGeometry(QRect(440, 290, 421, 41))
+        self.lineEdit_3.setEchoMode(QLineEdit.Password)
+        self.lineEdit_3.setObjectName("lineEdit_3")
+        self.lineEdit_4 = QLineEdit(self.widget)
+        self.lineEdit_4.setGeometry(QRect(440, 350, 421, 41))
+        self.lineEdit_4.setObjectName("lineEdit_4")
+        self.label_2 = QLabel(self.widget)
+        self.label_2.setGeometry(QRect(350, 180, 81, 31))
+        self.label_2.setObjectName("label_2")
+        self.label_3 = QLabel(self.widget)
+        self.label_3.setGeometry(QRect(320, 240, 111, 21))
+        self.label_3.setObjectName("label_3")
+        self.label_4 = QLabel(self.widget)
+        self.label_4.setGeometry(QRect(340, 300, 91, 21))
+        self.label_4.setObjectName("label_4")
+        self.label_5 = QLabel(self.widget)
+        self.label_5.setGeometry(QRect(250, 360, 181, 31))
+        self.label_5.setObjectName("label_5")
+        self.pushButton = QPushButton(self.widget)
+        self.pushButton.setGeometry(QRect(440, 420, 421, 31))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(9)
+        self.pushButton.setFont(font)
+        self.pushButton.setStyleSheet("")
+        self.pushButton.setObjectName("pushButton")
+        self.label_7 = QLabel(self.widget)
+        self.label_7.setGeometry(QRect(300, 80, 261, 20))
+        self.label_7.setObjectName("label_7")
+        self.pushButton_2 = QPushButton(self.widget)
+        self.pushButton_2.setGeometry(QRect(580, 550, 93, 28))
+        font = QFont()
+        font.setPointSize(9)
+        self.pushButton_2.setFont(font)
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.pushButton_3 = QPushButton(self.widget)
+        self.pushButton_3.setGeometry(QRect(730, 550, 93, 28))
+        font = QFont()
+        font.setPointSize(9)
+        self.pushButton_3.setFont(font)
+        self.pushButton_3.setObjectName("pushButton_3")
+
+        self.retranslateUi(Form)
+        self.pushButton_3.clicked['bool'].connect(Form.close) # type: ignore
+        QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        _translate = QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Form"))
+        self.label.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:16pt;\">REGISTRO DEL CUIDADOR</span></p></body></html>"))
+        self.label_2.setText(_translate("Form", "<html><head/><body><p align=\"right\"><span style=\" font-size:10pt;\">Nombre: </span></p></body></html>"))
+        self.label_3.setText(_translate("Form", "<html><head/><body><p align=\"right\"><span style=\" font-size:10pt;\">Documento:</span></p></body></html>"))
+        self.label_4.setText(_translate("Form", "<html><head/><body><p align=\"right\"><span style=\" font-size:10pt;\">Contraseña: </span></p></body></html>"))
+        self.label_5.setText(_translate("Form", "<html><head/><body><p align=\"right\"><span style=\" font-size:10pt;\">Telefono de contacto:</span></p></body></html>"))
+        self.pushButton.setText(_translate("Form", "Aceptar"))
+        self.label_7.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:9pt;\">Complete los siguientes campos</span></p></body></html>"))
+        self.pushButton_2.setText(_translate("Form", "Regresar"))
+        self.pushButton_3.setText(_translate("Form", "Salir"))
+
+class Formato_Registro_Cuidador(QDialog):
+    def __init__(self, parent=None):
+        super(Formato_Registro_Cuidador, self).__init__(parent)
+        self.ui = Registro_Cuidador()
+        self.ui.setupUi(self)
+
+class Registro_Paciente(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(905, 606)
+        self.widget = QWidget(Form)
+        self.widget.setGeometry(QRect(-10, -10, 931, 631))
+        self.widget.setStyleSheet("QWidget {\n"
+"    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #0077b6, stop:0.5 #0096c7, stop:1 #00b4d8);\n"
+"}\n"
+"\n"
+"QLabel {\n"
+"    background-color: transparent;  /* Fondo transparente para QLabel */\n"
+"    color: white;  /* Color del texto del QLabel */\n"
+"    font-size: 16px;  /* Tamaño de fuente del QLabel */\n"
+"}\n"
+"\n"
+"QLineEdit {\n"
+"    background-color: white;  /* Fondo sólido blanco para QLineEdit */\n"
+"    border: 2px solid #00b4d8;\n"
+"    border-radius: 10px;\n"
+"    padding: 10px;\n"
+"    font-size: 16px;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid #0077b6; /* Color del borde al enfocar */\n"
+"    outline: none;\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton{\n"
+"    border-radius: 10px;\n"
+"    color: white;\n"
+"    background-color: rgb(0, 119, 182)\n"
+"}")
+        self.widget.setObjectName("widget")
+        self.label = QLabel(self.widget)
+        self.label.setGeometry(QRect(250, 0, 421, 91))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label.setFont(font)
+        self.label.setObjectName("label")
+        self.lineEdit_nombre = QLineEdit(self.widget)
+        self.lineEdit_nombre.setGeometry(QRect(440, 120, 421, 51))
+        self.lineEdit_nombre.setObjectName("lineEdit_nombre")
+        self.pushButton = QPushButton(self.widget)
+        self.pushButton.setGeometry(QRect(440, 530, 421, 31))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(9)
+        self.pushButton.setFont(font)
+        self.pushButton.setStyleSheet("")
+        self.pushButton.setObjectName("pushButton")
+        self.label_2 = QLabel(self.widget)
+        self.label_2.setGeometry(QRect(350, 130, 81, 21))
+        self.label_2.setObjectName("label_2")
+        self.label_3 = QLabel(self.widget)
+        self.label_3.setGeometry(QRect(350, 190, 81, 21))
+        self.label_3.setObjectName("label_3")
+        self.label_4 = QLabel(self.widget)
+        self.label_4.setGeometry(QRect(350, 250, 81, 31))
+        self.label_4.setObjectName("label_4")
+        self.label_5 = QLabel(self.widget)
+        self.label_5.setGeometry(QRect(360, 310, 71, 21))
+        self.label_5.setObjectName("label_5")
+        self.label_6 = QLabel(self.widget)
+        self.label_6.setGeometry(QRect(270, 370, 161, 20))
+        self.label_6.setObjectName("label_6")
+        self.label_7 = QLabel(self.widget)
+        self.label_7.setGeometry(QRect(270, 430, 161, 20))
+        self.label_7.setObjectName("label_7")
+        self.label_8 = QLabel(self.widget)
+        self.label_8.setGeometry(QRect(250, 70, 391, 20))
+        self.label_8.setObjectName("label_8")
+        self.pushButton_2 = QPushButton(self.widget)
+        self.pushButton_2.setGeometry(QRect(40, 560, 93, 28))
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.pushButton_3 = QPushButton(self.widget)
+        self.pushButton_3.setGeometry(QRect(180, 560, 93, 28))
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.lineEdit_nombre_2 = QLineEdit(self.widget)
+        self.lineEdit_nombre_2.setGeometry(QRect(440, 180, 421, 51))
+        self.lineEdit_nombre_2.setObjectName("lineEdit_nombre_2")
+        self.lineEdit_nombre_3 = QLineEdit(self.widget)
+        self.lineEdit_nombre_3.setGeometry(QRect(440, 240, 421, 51))
+        self.lineEdit_nombre_3.setObjectName("lineEdit_nombre_3")
+        self.lineEdit_nombre_4 = QLineEdit(self.widget)
+        self.lineEdit_nombre_4.setGeometry(QRect(440, 300, 421, 51))
+        self.lineEdit_nombre_4.setObjectName("lineEdit_nombre_4")
+        self.lineEdit_nombre_5 = QLineEdit(self.widget)
+        self.lineEdit_nombre_5.setGeometry(QRect(440, 360, 421, 51))
+        self.lineEdit_nombre_5.setObjectName("lineEdit_nombre_5")
+        self.lineEdit_nombre_6 = QLineEdit(self.widget)
+        self.lineEdit_nombre_6.setGeometry(QRect(440, 420, 421, 51))
+        self.lineEdit_nombre_6.setObjectName("lineEdit_nombre_6")
+
+        self.retranslateUi(Form)
+        self.pushButton_3.clicked.connect(Form.close) # type: ignore
+        QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        _translate = QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Form"))
+        self.label.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:16pt;\">REGISTRO DEL PACIENTE</span></p></body></html>"))
+        self.pushButton.setText(_translate("Form", "Aceptar"))
+        self.label_2.setText(_translate("Form", "<html><head/><body><p align=\"right\"><span style=\" font-size:10pt;\">Nombre:</span></p></body></html>"))
+        self.label_3.setText(_translate("Form", "<html><head/><body><p align=\"right\"><span style=\" font-size:10pt;\">Cedula:</span></p></body></html>"))
+        self.label_4.setText(_translate("Form", "<html><head/><body><p align=\"right\"><span style=\" font-size:10pt;\">Edad:</span></p></body></html>"))
+        self.label_5.setText(_translate("Form", "<html><head/><body><p align=\"right\"><span style=\" font-size:10pt;\">Celular:</span></p></body></html>"))
+        self.label_6.setText(_translate("Form", "<html><head/><body><p align=\"right\"><span style=\" font-size:10pt;\">Lugar de residencia:</span></p></body></html>"))
+        self.label_7.setText(_translate("Form", "<html><head/><body><p align=\"right\"><span style=\" font-size:10pt;\">Lugar de nacimiento:</span></p></body></html>"))
+        self.label_8.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:9pt;\">Complete los siguientes campos en presencia del cuidador</span></p></body></html>"))
+        self.pushButton_2.setText(_translate("Form", "Regresar"))
+        self.pushButton_3.setText(_translate("Form", "Salir"))
+
+class Formato_Registro_Paciente(QDialog):
+    def __init__(self, parent=None):
+        super(Formato_Registro_Paciente, self).__init__(parent)
+        self.ui = Registro_Paciente()
+        self.ui.setupUi(self)
+
 class Botonera(QMainWindow, Ui_MainWindow):
     def __init__(self, controlador):
         super().__init__()
         self.controlador = controlador
-        self.setupUi(self,self.controlador)
+        self.setupUi(self)
+
 
         self.menu_login = Formato_Log_in()
-        self.menu_registro = Formato_Pre_Registro()
+        self.menu_pre_registro = Formato_Pre_Registro()
+        self.menu_registro_cuidador = Formato_Registro_Cuidador()
+        self.menu_registro_paciente = Formato_Registro_Paciente()
 
         self.icon_2.setHidden(True)
         
@@ -1101,15 +1037,27 @@ class Botonera(QMainWindow, Ui_MainWindow):
         self.boton_registro1.clicked.connect(self.boton_paginaRegistro)
         self.boton_registro2.clicked.connect(self.boton_paginaRegistro)
 
-        self.boton_moca1.clicked.connect(self.boton_paginaMoca)
-        self.boton_moca2.clicked.connect(self.boton_paginaMoca)
 
         self.menu_login.ui.pushButton.clicked.connect(self.ventanas_inicio)
         self.menu_login.ui.pushButton_2.clicked.connect(self.ventana_seguimiento)
 
+        self.menu_pre_registro.ui.pushButton_paciente.clicked.connect(self.ventana_registro_paciente)
+        self.menu_pre_registro.ui.pushButton_cuidador.clicked.connect(self.ventana_registro_cuidador)
+        self.menu_pre_registro.ui.pushButton_salir.clicked.connect(self.close)
+        self.menu_pre_registro.ui.pushButton_regresar.clicked.connect(self.ventanas_inicio)
+        self.menu_pre_registro.ui.pushButton.clicked.connect(self.importacion_datos)
+
+        self.menu_registro_cuidador.ui.pushButton.clicked.connect(self.registrar_cuidador)
+        self.menu_registro_cuidador.ui.pushButton_2.clicked.connect(self.ventanas_inicio)
+
+        self.menu_registro_paciente.ui.pushButton.clicked.connect(self.registrar_paciente)
+        self.menu_registro_paciente.ui.pushButton_2.clicked.connect(self.ventanas_inicio)
+
     def ventanas_inicio(self):
         self.menu_login.close()
-        self.menu_registro.close()
+        self.menu_pre_registro.close()
+        self.menu_registro_cuidador.close()
+        self.menu_registro_paciente.close()
         self.show()
         self.stackedWidget.setCurrentIndex(0)
         
@@ -1123,17 +1071,6 @@ class Botonera(QMainWindow, Ui_MainWindow):
     def ventana_login(self):
         self.close()
         self.menu_login.show()
-    
-    def boton_paginaRegistro(self):
-        self.stackedWidget.setCurrentIndex(2)
-        QTimer.singleShot(4000, self.ventana_registro)
-    
-    def ventana_registro(self):
-        self.close()
-        self.menu_registro.show()
-    
-    def boton_paginaMoca(self):
-        self.stackedWidget.setCurrentIndex(3)
 
     def ventana_seguimiento(self):
         usuario = self.menu_login.ui.lineEdit.text()
@@ -1143,3 +1080,36 @@ class Botonera(QMainWindow, Ui_MainWindow):
             self.menu_seguimiento.show()
         else:
             QMessageBox.warning(self, "Error", "Usuario o contraseña incorrectos")
+    
+    def boton_paginaRegistro(self):
+        self.stackedWidget.setCurrentIndex(2)
+        QTimer.singleShot(4000, self.ventana_registro)
+    
+    def ventana_registro(self):
+        self.close()
+        self.menu_pre_registro.show()
+
+    def ventana_registro_paciente(self):
+        self.menu_pre_registro.close()
+        self.menu_registro_paciente.show()
+    
+    def ventana_registro_cuidador(self):
+        self.menu_pre_registro.close()
+        self.menu_registro_cuidador.show()
+    
+    def registrar_paciente(self):
+        self.menu_pre_registro.close()
+        self.menu_registro_paciente.show()
+    
+    def registrar_cuidador(self):
+        nombre = self.menu_registro_cuidador.ui.lineEdit_nombre.text()
+        documento = self.menu_registro_cuidador.ui.lineEdit_2.text()
+        contrasena = self.menu_registro_cuidador.ui.lineEdit_3.text()
+        telefono = self.menu_registro_cuidador.ui.lineEdit_4.text()
+        self.controlador.registrar_cuidador(nombre, documento, contrasena, telefono)
+    
+    def boton_paginaMoca(self):
+        self.stackedWidget.setCurrentIndex(3)
+
+    def importacion_datos(self):
+        self.menu_pre_registro.close()

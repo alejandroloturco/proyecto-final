@@ -20,6 +20,9 @@ class Controlador():
     def validar_usuario(self, usuario, contrasena):
         return self.cuidador.validar_usuario(usuario, contrasena)
     
+    def registro_cuidador(self, nombre, apellido, telefono, cedula, formacion, usuario, contraseña):
+        return self.cuidador.registro_cuidador(nombre, apellido, telefono, cedula, formacion, usuario, contraseña)
+    
     def regitro_paciente(self, nombre, apellido, telefono, cedula, residencia, nacimiento, fase, estudio, dominancia, tiempoalz):
         return self.paciente.registro_paciente(nombre, apellido,telefono, cedula, residencia, nacimiento, fase, estudio, dominancia, tiempoalz)
 

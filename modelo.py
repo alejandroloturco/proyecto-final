@@ -62,7 +62,7 @@ def crear_tablasSQL():
     cursorSQL.execute("USE alzcare;")
     cursorSQL.execute("CREATE TABLE IF NOT EXISTS cuidador (ID INT UNSIGNED PRIMARY KEY,Nombre VARCHAR(225) NOT NULL,Apellido VARCHAR(225) NOT NULL,Telefono VARCHAR(225) NOT NULL,Cedula VARCHAR(225) NOT NULL,Formacion VARCHAR(225) NOT NULL,Usuario VARCHAR(225) NOT NULL,Contraseña VARCHAR(225) NOT NULL)")
     cursorSQL.execute("CREATE TABLE IF NOT EXISTS paciente (ID INT UNSIGNED PRIMARY KEY,ID_Cuidador INT UNSIGNED NOT NULL,Nombre VARCHAR(225) NOT NULL,Apellido VARCHAR(225) NOT NULL,Telefono VARCHAR(225) NOT NULL,Cedula VARCHAR(225) NOT NULL,Nacimiento VARCHAR(225) NOT NULL,Procedencia VARCHAR(225) NOT NULL,Fase VARCHAR(225) NOT NULL,Escolaridad VARCHAR(225) NOT NULL,Mano_dominante VARCHAR(225) NOT NULL,FOREIGN KEY (ID_Cuidador) REFERENCES cuidador(ID) ON UPDATE CASCADE ON DELETE CASCADE)")
-    cursorSQL.execute("CREATE TABLE IF NOT EXISTS seguimiento (ID INT UNSIGNED PRIMARY KEY,ID_Paciente INT UNSIGNED NOT NULL,Fecha_Registro VARCHAR(225) NOT NULL,Pregunta_1 INT NOT NULL,Pregunta_2 INT NOT NULL,Pregunta_3 INT NOT NULL,Pregunta_4 INT NOT NULL,Pregunta_5 INT NOT NULL,Pregunta_6 INT NOT NULL,Pregunta_7 INT NOT NULL,Pregunta_8 INT NOT NULL,Pregunta_9 INT NOT NULL,Pregunta_10 INT NOT NULL,Pregunta_11 INT NOT NULL,Pregunta_12 INT NOT NULL,Pregunta_13 INT NOT NULL,Pregunta_14 INT NOT NULL,Pregunta_15 INT NOT NULL,Pregunta_16 INT NOT NULL,Pregunta_17 INT NOT NULL,FOREIGN KEY (ID_Paciente) REFERENCES paciente(ID) ON UPDATE CASCADE ON DELETE CASCADE)")
+    cursorSQL.execute("CREATE TABLE IF NOT EXISTS seguimiento (ID INT UNSIGNED PRIMARY KEY,ID_Paciente INT UNSIGNED NOT NULL,Fecha_Registro VARCHAR(225) NOT NULL,Pregunta_1 INT NOT NULL,Pregunta_2 INT NOT NULL,Pregunta_3 INT NOT NULL,Pregunta_4 INT NOT NULL,Pregunta_5 INT NOT NULL,Pregunta_6 INT NOT NULL,Pregunta_7 INT NOT NULL,Pregunta_8 INT NOT NULL,Pregunta_9 INT NOT NULL,Pregunta_10 INT NOT NULL,FOREIGN KEY (ID_Paciente) REFERENCES paciente(ID) ON UPDATE CASCADE ON DELETE CASCADE)")
     desconectar_SQL(cnx,cursorSQL)
     
 def obtener_dataSQL():
@@ -123,23 +123,12 @@ def obtener_dataSQL():
                 "Pregunta_7": (i[9]),
                 "Pregunta_8": (i[10]),
                 "Pregunta_9": (i[11]),
-                "Pregunta_10": (i[12]),
-                "Pregunta_11": (i[13]),
-                "Pregunta_12": (i[14]),
-                "Pregunta_13": (i[15]),
-                "Pregunta_14": (i[16]),
-                "Pregunta_15": (i[17]),
-                "Pregunta_16": (i[18]),
-                "Pregunta_17": (i[19])             
+                "Pregunta_10": (i[12]),            
                 }
             listreg.append(dichm) 
     desconectar_SQL(cnx,cursorSQL)
     return listcui, listpac, listreg
     
-def imagenes():
-    path = 'C:/Users/Usuario/Downloads/Proyecto/Proyecto/imagenes'
-    imagenes = os.listdir(path)
-    return imagenes
 
 class Cuidador:
     def __init__(self,listcui):

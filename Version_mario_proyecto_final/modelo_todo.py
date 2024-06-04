@@ -123,88 +123,88 @@ def obtener_dataSQL():
                 "Pregunta_7": (i[9]),
                 "Pregunta_8": (i[10]),
                 "Pregunta_9": (i[11]),
-                "Pregunta_10": (i[12]),
-                "Pregunta_11": (i[13]),
-                "Pregunta_12": (i[14]),
-                "Pregunta_13": (i[15]),
-                "Pregunta_14": (i[16]),
-                "Pregunta_15": (i[17]),
-                "Pregunta_16": (i[18]),
-                "Pregunta_17": (i[19])             
+                "Pregunta_10": (i[12])         
                 }
             listreg.append(dichm) 
     desconectar_SQL(cnx,cursorSQL)
     return listcui, listpac, listreg
+
+def añadir_cuidador(nombre,apellido,telefono,cedula,formacion,usuario,contraseña, listcui):
+    '''Se ingresa un cuidador a la base de datos'''
+    try:            
+        cursorSQL, cnxSQL = conectar_SQL()
+        listdatareg = []
+        listus = ()        
+        listus = (len(listcui)+1,nombre,apellido,telefono,cedula,formacion,usuario,contraseña)
+        listdatareg.append(listus)
+        cursorSQL.executemany("""INSERT INTO cuidador (ID, Nombre, Apellido, Telefono, Cedula, Formacion, Usuario, Contraseña) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)""", listdatareg)
+        desconectar_SQL(cnxSQL,cursorSQL)
+    except: 
+        print("Dato ingresado no valido")
+
+def añadir_paciente(id_cuidador,nombre,apellido,telefono,cedula,nacimiento,procedencia,fase,escolaridad,mano_dominante,tiempo_alz, listpac):
+    '''Se ingresa un paciente a la base de datos'''
+    try:            
+        cursorSQL, cnxSQL = conectar_SQL()
+        listdatareg = []
+        listus = ()        
+        listus = (len(listpac)+1,id_cuidador,nombre,apellido,telefono,cedula,nacimiento,procedencia,fase,escolaridad,mano_dominante,tiempo_alz)
+        listdatareg.append(listus)
+        cursorSQL.executemany("""INSERT INTO paciente (ID, ID_Cuidador, Nombre, Apellido, Telefono, Cedula, Nacimiento, Procedencia, Fase, Escolaridad, Mano_dominante, Tiempo_Alz) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", listdatareg)
+        desconectar_SQL(cnxSQL,cursorSQL)
+    except: 
+        print("Dato ingresado no valido")
+
+def añadir_respuestas(id,fecha,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10):    
+    '''Se ingresan las respuestas de las 10 preguntas en fio'''
+    try:            
+        cursorSQL, cnxSQL = conectar_SQL()
+        listdatareg = []
+        listus = ()        
+        listus = (id,fecha,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10)
+        listdatareg.append(listus)
+        cursorSQL.executemany("""INSERT INTO seguimiento (ID_Paciente, Fecha_Registro, Pregunta_1, Pregunta_2, Pregunta_3, Pregunta_4, Pregunta_5, Pregunta_6, Pregunta_7, Pregunta_8, Pregunta_9, Pregunta_10) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", listdatareg)
+        desconectar_SQL(cnxSQL,cursorSQL)
+    except: 
+        print("Dato ingresado no valido")
+    
     
 class Cuidador:
     def __init__(self,listcui):
         self._listcui = listcui
-            
-    def SetNombre(self,n):
-        self._nombre = n
-    def SetCedula(self,n):
-        self._cedula = n
-    def SetNumero(self,n):
-        self._numero = n
-    def SetEmail(self,n):
-        self._email = n
-    def SetOcupacion(self,n):
-        self._ocupacion = n
-    
-    def GetNombre(self):
-        return self._nombre
-    def GetNumero(self):
-        return self._numero 
-    def GetEmail(self):
-        return self._email 
-    def GetOcupacion(self):
-        return self._ocupacion 
+
+    def get_listcui(self):
+        return self._listcui
     
     def validar_usuario(self, usuario, contrasena):
         for i in range(len(self._listcui)):
                 if self._listcui[i]["Usuario"] == usuario and self.cuidador.listcui[i]["Contraseña"] == contrasena:
                     return True
         return False
+
+    def registro_cuidador(self, nombre, apellido, telefono, cedula, formacion, usuario, contraseña):
+        self._listcui.append({"ID": len(self._listcui)+1, "Nombre": nombre, "Apellido": apellido, "Telefono": telefono, "Cedula": cedula, "Formacion": formacion, "Usuario": usuario, "Contraseña": contraseña})
+        añadir_cuidador(nombre,apellido,telefono,cedula,formacion,usuario,contraseña, self._listcui)
   
 class Paciente(Cuidador):
     def __init__(self, listpac):
         self._listpac = listpac
-    
-    def SetEdad(self,n):
-        self._edad = n
-    def SetResidencia(self,r):
-        self._residencia = r
-    def SetNacimiento(self,n):
-        self._nacimiento = n
-    def SetFase(self,f):
-        self._fase = f
-    def SetEstudio(self,e):
-        self._estudio = e
-    def SetDominancia(self,d):
-        self._dominancia = d
-    def SetTiempoalz(self,t):
-        self._tiempoalz = t
-    
-    def GetEdad(self):
-        return self._edad
-    def GetResidencia(self):
-        return self._residencia 
-    def GetNacimiento(self):
-        return self._nacimiento 
-    def GetFase(self):
-        return self._fase 
-    def GetEstudio(self):
-        return self._estudio
-    def GetDominancia(self):
-        return self._dominancia 
-    def GetTiempoalz(self):
-        return self._tiempoalz
+
+    def get_listpac(self):
+        return self._listpac
     
     def registro_paciente(self, nombre, apellido,telefono, cedula, residencia, nacimiento, fase, estudio, dominancia, tiempoalz):
         self._listpac.append({"ID": len(self._listpac)+1, "ID_Cuidador": 1, "Nombre": nombre, "Apellido": apellido, "Telefono": telefono, "Cedula": cedula, "Nacimiento": nacimiento, "Procedencia": residencia, "Fase": fase, "Escolaridad": estudio, "Mano_Dominante": dominancia, "Tiempo_Alz": tiempoalz})
+        añadir_paciente(1,nombre,apellido,telefono,cedula,nacimiento,residencia,fase,estudio,dominancia,tiempoalz, self._listpac)
         
-
 class Seguimiento:
     def __init__(self, listreg):
         self._listreg = listreg
+    
+    def get_listreg(self):
+        return self._listreg
+    
+    def registro_seguimiento(self, id, fecha, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10):
+        self._listreg.append({"ID": len(self._listreg)+1, "ID_Paciente": id, "Fecha_Registro": fecha, "Pregunta_1": p1, "Pregunta_2": p2, "Pregunta_3": p3, "Pregunta_4": p4, "Pregunta_5": p5, "Pregunta_6": p6, "Pregunta_7": p7, "Pregunta_8": p8, "Pregunta_9": p9, "Pregunta_10": p10})
+        añadir_respuestas(id,fecha,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10)
 
