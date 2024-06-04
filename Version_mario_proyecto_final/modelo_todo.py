@@ -135,7 +135,7 @@ def añadir_cuidador(nombre,apellido,telefono,cedula,formacion,usuario,contrase�
         cursorSQL, cnxSQL = conectar_SQL()
         listdatareg = []
         listus = ()        
-        listus = (len(listcui)+1,nombre,apellido,telefono,cedula,formacion,usuario,contraseña)
+        listus = (len(listcui),nombre,apellido,telefono,cedula,formacion,usuario,contraseña)
         listdatareg.append(listus)
         cursorSQL.executemany("""INSERT INTO cuidador (ID, Nombre, Apellido, Telefono, Cedula, Formacion, Usuario, Contraseña) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)""", listdatareg)
         desconectar_SQL(cnxSQL,cursorSQL)
@@ -148,10 +148,11 @@ def añadir_paciente(id_cuidador,nombre,apellido,telefono,cedula,nacimiento,proc
         cursorSQL, cnxSQL = conectar_SQL()
         listdatareg = []
         listus = ()        
-        listus = (len(listpac)+1,id_cuidador,nombre,apellido,telefono,cedula,nacimiento,procedencia,fase,escolaridad,mano_dominante,tiempo_alz)
+        listus = (len(listpac),id_cuidador,nombre,apellido,telefono,cedula,nacimiento,procedencia,fase,escolaridad,mano_dominante,tiempo_alz)
         listdatareg.append(listus)
         cursorSQL.executemany("""INSERT INTO paciente (ID, ID_Cuidador, Nombre, Apellido, Telefono, Cedula, Nacimiento, Procedencia, Fase, Escolaridad, Mano_dominante, Tiempo_Alz) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", listdatareg)
         desconectar_SQL(cnxSQL,cursorSQL)
+        return True
     except: 
         print("Dato ingresado no valido")
 
@@ -165,6 +166,7 @@ def añadir_respuestas(id,fecha,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10):
         listdatareg.append(listus)
         cursorSQL.executemany("""INSERT INTO seguimiento (ID_Paciente, Fecha_Registro, Pregunta_1, Pregunta_2, Pregunta_3, Pregunta_4, Pregunta_5, Pregunta_6, Pregunta_7, Pregunta_8, Pregunta_9, Pregunta_10) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", listdatareg)
         desconectar_SQL(cnxSQL,cursorSQL)
+        return True
     except: 
         print("Dato ingresado no valido")
     
@@ -178,13 +180,16 @@ class Cuidador:
     
     def validar_usuario(self, usuario, contrasena):
         for i in range(len(self._listcui)):
-                if self._listcui[i]["Usuario"] == usuario and self.cuidador.listcui[i]["Contraseña"] == contrasena:
+                if self._listcui[i]["Usuario"] == usuario and self._listcui[i]["Contraseña"] == contrasena:
                     return True
         return False
 
     def registro_cuidador(self, nombre, apellido, telefono, cedula, formacion, usuario, contraseña):
-        self._listcui.append({"ID": len(self._listcui)+1, "Nombre": nombre, "Apellido": apellido, "Telefono": telefono, "Cedula": cedula, "Formacion": formacion, "Usuario": usuario, "Contraseña": contraseña})
-        añadir_cuidador(nombre,apellido,telefono,cedula,formacion,usuario,contraseña, self._listcui)
+        self._listcui.append({"ID": len(self._listcui), "Nombre": nombre, "Apellido": apellido, "Telefono": telefono, "Cedula": cedula, "Formacion": formacion, "Usuario": usuario, "Contraseña": contraseña})
+        if añadir_cuidador(nombre,apellido,telefono,cedula,formacion,usuario,contraseña, self._listcui):
+            return True
+        else:
+            return False
   
 class Paciente(Cuidador):
     def __init__(self, listpac):
@@ -193,9 +198,13 @@ class Paciente(Cuidador):
     def get_listpac(self):
         return self._listpac
     
-    def registro_paciente(self, nombre, apellido,telefono, cedula, residencia, nacimiento, fase, estudio, dominancia, tiempoalz):
-        self._listpac.append({"ID": len(self._listpac)+1, "ID_Cuidador": 1, "Nombre": nombre, "Apellido": apellido, "Telefono": telefono, "Cedula": cedula, "Nacimiento": nacimiento, "Procedencia": residencia, "Fase": fase, "Escolaridad": estudio, "Mano_Dominante": dominancia, "Tiempo_Alz": tiempoalz})
-        añadir_paciente(1,nombre,apellido,telefono,cedula,nacimiento,residencia,fase,estudio,dominancia,tiempoalz, self._listpac)
+    def registro_paciente(self, nombre, apellido,telefono, cedula, residencia, nacimiento, fase, estudio, dominancia, tiempoalz, listcui):
+        ID_cuidador = listcui[-1]["ID"]
+        self._listpac.append({"ID": len(self._listpac)+1, "ID_Cuidador": ID_cuidador , "Nombre": nombre, "Apellido": apellido, "Telefono": telefono, "Cedula": cedula, "Nacimiento": nacimiento, "Procedencia": residencia, "Fase": fase, "Escolaridad": estudio, "Mano_Dominante": dominancia, "Tiempo_Alz": tiempoalz})
+        if añadir_paciente(ID_cuidador,nombre,apellido,telefono,cedula,nacimiento,residencia,fase,estudio,dominancia,tiempoalz, self._listpac):
+            return True
+        else:
+            return False
         
 class Seguimiento:
     def __init__(self, listreg):
