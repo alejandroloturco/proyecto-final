@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="prefijoNuevo">
+    <file>regresar.png</file>
+    <file>salir2.png</file>
+    <file>exportar.png</file>
+    <file>estadisticas.png</file>
+    <file>seguimiento_intprincipal.png</file>
+  </qresource>
+</RCC>
