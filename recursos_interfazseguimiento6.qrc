@@ -1,7 +1,0 @@
-<RCC>
-  <qresource prefix="prefijoNuevo">
-    <file>Alzcare.png</file>
-    <file>regresar.png</file>
-    <file>vestir_int6.png</file>
-  </qresource>
-</RCC>

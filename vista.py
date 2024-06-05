@@ -502,7 +502,8 @@ class Alzcare(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Alzcare"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Alzcare®"))
+        MainWindow.setWindowIcon(QIcon(r'Recursos_Interfaz\Alzcare.png'))
         self.boton_inicio2.setText(_translate("MainWindow", "Inicio"))
         self.boton_ingreso2.setText(_translate("MainWindow", "Ingresar"))
         self.boton_registro2.setText(_translate("MainWindow", "Registro"))
@@ -902,7 +903,6 @@ class Registro_Cuidador(object):
         self.lineEdit_celular.setObjectName("lineEdit_celular")
         self.lineEdit_celular.setValidator(QIntValidator())
         self.lineEdit_celular.setMaxLength(10)
-        self.lineEdit_celular.setInputMask("999-999-9999")
         self.label_6 = QLabel(self.widget)
         self.label_6.setGeometry(QRect(320, 240, 111, 21))
         self.label_6.setObjectName("label_6")
@@ -936,7 +936,6 @@ class Registro_Cuidador(object):
         self.label_6.setText(_translate("Form", "<html><head/><body><p align=\"right\">Apellido: </p></body></html>"))
         self.label_8.setText(_translate("Form", "<html><head/><body><p align=\"right\">Formación:</p></body></html>"))
         self.label_9.setText(_translate("Form", "<html><head/><body><p align=\"right\">Usuario:</p></body></html>"))
-
 
 class Formato_Registro_Cuidador(QDialog):
     def __init__(self, parent=None):
@@ -1046,7 +1045,6 @@ class Registro_Paciente(object):
         self.lineEdit_celular.setObjectName("lineEdit_celular")
         self.lineEdit_celular.setValidator(QIntValidator())
         self.lineEdit_celular.setMaxLength(10)
-        self.lineEdit_celular.setInputMask("999-999-9999")
         self.lineEdit_residencia = QLineEdit(self.widget)
         self.lineEdit_residencia.setGeometry(QRect(440, 360, 421, 51))
         self.lineEdit_residencia.setObjectName("lineEdit_residencia")
@@ -1109,6 +1107,1579 @@ class Formato_Registro_Paciente(QDialog):
         self.ui = Registro_Paciente()
         self.ui.setupUi(self)
 
+class Pregunta_1(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(967, 751)
+        self.widget = QWidget(Form)
+        self.widget.setGeometry(QRect(-90, -110, 1101, 881))
+        self.widget.setStyleSheet("QWidget {\n"
+"    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #0077b6, stop:0.5 #0096c7, stop:1 #00b4d8);\n"
+"}\n"
+"\n"
+"QLabel {\n"
+"    background-color: transparent;  /* Fondo transparente para QLabel */\n"
+"    color: white;  /* Color del texto del QLabel */\n"
+"    font-size: 16px;  /* Tamaño de fuente del QLabel */\n"
+"}\n"
+"\n"
+"QLineEdit {\n"
+"    background-color: white;  /* Fondo sólido blanco para QLineEdit */\n"
+"    border: 2px solid #00b4d8;\n"
+"    border-radius: 10px;\n"
+"    padding: 10px;\n"
+"    font-size: 16px;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid #0077b6; /* Color del borde al enfocar */\n"
+"    outline: none;\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton{\n"
+"    border-radius: 10px;\n"
+"    color: white;\n"
+"    background-color: rgb(0, 119, 182)\n"
+"}")
+        self.widget.setObjectName("widget")
+        self.label_5 = QLabel(self.widget)
+        self.label_5.setGeometry(QRect(610, 330, 61, 51))
+        self.label_5.setText("")
+        self.label_5.setPixmap(QPixmap(r"Recursos_Interfaz\Alzcare.png"))
+        self.label_5.setObjectName("label_5")
+        self.widget_2 = QWidget(self.widget)
+        self.widget_2.setGeometry(QRect(10, 110, 1191, 61))
+        self.widget_2.setStyleSheet("QWidget{\n"
+"    background-color: rgb(144, 224, 239);\n"
+"}")
+        self.widget_2.setObjectName("widget_2")
+        self.label_2 = QLabel(self.widget_2)
+        self.label_2.setGeometry(QRect(160, 20, 151, 21))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_2.setFont(font)
+        self.label_2.setObjectName("label_2")
+        self.label = QLabel(self.widget_2)
+        self.label.setGeometry(QRect(100, 10, 41, 41))
+        self.label.setText("")
+        self.label.setPixmap(QPixmap(r"Recursos_Interfaz\Alzcare.png"))
+        self.label.setScaledContents(True)
+        self.label.setObjectName("label")
+        self.pushButton_regresar = QPushButton(self.widget_2)
+        self.pushButton_regresar.setGeometry(QRect(960, 20, 81, 31))
+        self.pushButton_regresar.setText("")
+        icon = QIcon()
+        icon.addPixmap(QPixmap(r"Recursos_Interfaz\regresar.png"), QIcon.Normal, QIcon.Off)
+        self.pushButton_regresar.setIcon(icon)
+        self.pushButton_regresar.setIconSize(QSize(40, 240))
+        self.pushButton_regresar.setObjectName("pushButton_regresar")
+        self.widget_3 = QWidget(self.widget)
+        self.widget_3.setGeometry(QRect(240, 280, 651, 481))
+        self.widget_3.setStyleSheet("QWidget{\n"
+"    background-color: rgb(202, 240, 248);\n"
+"}\n"
+"QLabel{\n"
+"    color: rgb(0, 119, 182);}\n"
+"\n"
+"QPushButton{\n"
+"    background-color: rgb(0, 119, 182);\n"
+"    color: white;\n"
+"}")
+        self.widget_3.setObjectName("widget_3")
+        self.label_3 = QLabel(self.widget_3)
+        self.label_3.setGeometry(QRect(10, 0, 351, 41))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_3.setFont(font)
+        self.label_3.setObjectName("label_3")
+        self.label_7 = QLabel(self.widget_3)
+        self.label_7.setGeometry(QRect(230, 40, 351, 41))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_7.setFont(font)
+        self.label_7.setObjectName("label_7")
+        self.pushButton = QPushButton(self.widget_3)
+        self.pushButton.setGeometry(QRect(120, 150, 93, 28))
+        self.pushButton.setFont(font)
+        self.pushButton.setObjectName("pushButton")
+        self.pushButton_B = QPushButton(self.widget_3)
+        self.pushButton_B.setGeometry(QRect(120, 210, 93, 28))
+        self.pushButton_B.setFont(font)
+        self.pushButton_B.setObjectName("pushButton_B")
+        self.pushButton_C = QPushButton(self.widget_3)
+        self.pushButton_C.setGeometry(QRect(120, 270, 93, 28))
+        self.pushButton_C.setFont(font)
+        self.pushButton_C.setObjectName("pushButton_C")
+        self.pushButton_D = QPushButton(self.widget_3)
+        self.pushButton_D.setGeometry(QRect(120, 330, 93, 28))
+        self.pushButton_D.setFont(font)
+        self.pushButton_D.setObjectName("pushButton_D")
+        self.label_A = QLabel(self.widget_3)
+        self.label_A.setGeometry(QRect(230, 150, 55, 16))
+        self.label_A.setFont(font)
+        self.label_A.setObjectName("label_A")
+        self.label_B = QLabel(self.widget_3)
+        self.label_B.setGeometry(QRect(230, 210, 55, 16))
+        self.label_B.setFont(font)
+        self.label_B.setObjectName("label_B")
+        self.label_C = QLabel(self.widget_3)
+        self.label_C.setGeometry(QRect(230, 280, 55, 16))
+        self.label_C.setFont(font)
+        self.label_C.setObjectName("label_C")
+        self.label_D = QLabel(self.widget_3)
+        self.label_D.setGeometry(QRect(230, 340, 55, 16))
+        self.label_D.setFont(font)
+        self.label_D.setObjectName("label_D")
+        self.label_9 = QLabel(self.widget_3)
+        self.label_9.setGeometry(QRect(370, 160, 231, 201))
+        self.label_9.setText("")
+        self.label_9.setPixmap(QPixmap(r"Recursos_Interfaz\calendario_int1.png"))
+        self.label_9.setScaledContents(True)
+        self.label_9.setObjectName("label_9")
+        self.label_6 = QLabel(self.widget)
+        self.label_6.setGeometry(QRect(250, 240, 531, 31))
+        self.label_6.setObjectName("label_6")
+
+        self.retranslateUi(Form)
+        QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        _translate = QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Pregunta 1"))
+        Form.setWindowIcon(QIcon(r"Recursos_Interfaz\Alzcare.png"))
+        self.label_2.setText(_translate("Form", "Alzcare - company"))
+        self.label_3.setText(_translate("Form", "<html><head/><body><p>Pregunta 1.</p></body></html>"))
+        self.label_7.setText(_translate("Form", "<html><head/><body><p>¿Qué día es hoy?</p></body></html>"))
+        self.pushButton.setText(_translate("Form", "A"))
+        self.pushButton_B.setText(_translate("Form", "B"))
+        self.pushButton_C.setText(_translate("Form", "C"))
+        self.pushButton_D.setText(_translate("Form", "D"))
+        self.label_A.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Respondio correctamente</span></p></body></html>"))
+        self.label_B.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Se equivoco en la ciudad</span></p></body></html>"))
+        self.label_C.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Se equivoco en el mes</span></p></body></html>"))
+        self.label_D.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Se equivoco en el año</span></p></body></html>"))
+        self.label_6.setText(_translate("Form", "El cuidador deberá estar presente para realizar las siguientes preguntas:"))
+
+class Formato_Pregunta_1(QDialog):
+    def __init__(self, parent=None):
+        super(Formato_Pregunta_1, self).__init__(parent)
+        self.ui = Pregunta_1()
+        self.ui.setupUi(self)
+
+class Pregunta_2(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(967, 751)
+        self.widget = QWidget(Form)
+        self.widget.setGeometry(QRect(-90, -110, 1101, 881))
+        self.widget.setStyleSheet("QWidget {\n"
+"    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #0077b6, stop:0.5 #0096c7, stop:1 #00b4d8);\n"
+"}\n"
+"\n"
+"QLabel {\n"
+"    background-color: transparent;  /* Fondo transparente para QLabel */\n"
+"    color: white;  /* Color del texto del QLabel */\n"
+"    font-size: 16px;  /* Tamaño de fuente del QLabel */\n"
+"}\n"
+"\n"
+"QLineEdit {\n"
+"    background-color: white;  /* Fondo sólido blanco para QLineEdit */\n"
+"    border: 2px solid #00b4d8;\n"
+"    border-radius: 10px;\n"
+"    padding: 10px;\n"
+"    font-size: 16px;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid #0077b6; /* Color del borde al enfocar */\n"
+"    outline: none;\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton{\n"
+"    border-radius: 10px;\n"
+"    color: white;\n"
+"    background-color: rgb(0, 119, 182)\n"
+"}")
+        self.widget.setObjectName("widget")
+        self.label_5 = QLabel(self.widget)
+        self.label_5.setGeometry(QRect(610, 330, 61, 51))
+        self.label_5.setText("")
+        self.label_5.setPixmap(QPixmap(r"Recursos_Interfaz\Alzcare.png"))
+        self.label_5.setObjectName("label_5")
+        self.widget_2 = QWidget(self.widget)
+        self.widget_2.setGeometry(QRect(10, 110, 1191, 61))
+        self.widget_2.setStyleSheet("QWidget{\n"
+"    background-color: rgb(144, 224, 239);\n"
+"}")
+        self.widget_2.setObjectName("widget_2")
+        self.label_2 = QLabel(self.widget_2)
+        self.label_2.setGeometry(QRect(160, 20, 151, 21))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_2.setFont(font)
+        self.label_2.setObjectName("label_2")
+        self.label = QLabel(self.widget_2)
+        self.label.setGeometry(QRect(100, 10, 41, 41))
+        self.label.setText("")
+        self.label.setPixmap(QPixmap(r"Recursos_Interfaz\Alzcare.png"))
+        self.label.setScaledContents(True)
+        self.label.setObjectName("label")
+        self.pushButton_regresar = QPushButton(self.widget_2)
+        self.pushButton_regresar.setGeometry(QRect(960, 20, 81, 31))
+        self.pushButton_regresar.setText("")
+        icon = QIcon()
+        icon.addPixmap(QPixmap(r"Recursos_Interfaz\regresar.png"), QIcon.Normal, QIcon.Off)
+        self.pushButton_regresar.setIcon(icon)
+        self.pushButton_regresar.setIconSize(QSize(40, 240))
+        self.pushButton_regresar.setObjectName("pushButton_regresar")
+        self.widget_3 = QWidget(self.widget)
+        self.widget_3.setGeometry(QRect(240, 280, 651, 481))
+        self.widget_3.setStyleSheet("QWidget{\n"
+"    background-color: rgb(202, 240, 248);\n"
+"}\n"
+"QLabel{\n"
+"    color: rgb(0, 119, 182);}\n"
+"\n"
+"QPushButton{\n"
+"    background-color: rgb(0, 119, 182);\n"
+"    color: white;\n"
+"}")
+        self.widget_3.setObjectName("widget_3")
+        self.label_3 = QLabel(self.widget_3)
+        self.label_3.setGeometry(QRect(10, 0, 351, 41))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_3.setFont(font)
+        self.label_3.setObjectName("label_3")
+        self.label_7 = QLabel(self.widget_3)
+        self.label_7.setGeometry(QRect(230, 40, 351, 41))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_7.setFont(font)
+        self.label_7.setObjectName("label_7")
+        self.pushButton = QPushButton(self.widget_3)
+        self.pushButton.setGeometry(QRect(120, 150, 93, 28))
+        self.pushButton.setFont(font)
+        self.pushButton.setObjectName("pushButton")
+        self.pushButton_C = QPushButton(self.widget_3)
+        self.pushButton_C.setGeometry(QRect(120, 270, 93, 28))
+        self.pushButton_C.setFont(font)
+        self.pushButton_C.setObjectName("pushButton_C")
+        self.label_A = QLabel(self.widget_3)
+        self.label_A.setGeometry(QRect(230, 150, 55, 16))
+        self.label_A.setFont(font)
+        self.label_A.setObjectName("label_A")
+        self.label_C = QLabel(self.widget_3)
+        self.label_C.setGeometry(QRect(230, 280, 55, 16))
+        self.label_C.setFont(font)
+        self.label_C.setObjectName("label_C")
+        self.label_4 = QLabel(self.widget_3)
+        self.label_4.setGeometry(QRect(380, 180, 201, 141))
+        self.label_4.setText("")
+        self.label_4.setPixmap(QPixmap(r"Recursos_Interfaz\nombre_int2.png"))
+        self.label_4.setScaledContents(True)
+        self.label_4.setObjectName("label_4")
+        self.label_6 = QLabel(self.widget)
+        self.label_6.setGeometry(QRect(250, 240, 531, 31))
+        self.label_6.setObjectName("label_6")
+
+        self.retranslateUi(Form)
+        QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        _translate = QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Pregunta 2"))
+        Form.setWindowIcon(QIcon(r"Recursos_Interfaz\Alzcare.png"))
+        self.label_2.setText(_translate("Form", "Alzcare - company"))
+        self.label_3.setText(_translate("Form", "<html><head/><body><p>Pregunta 2.</p></body></html>"))
+        self.label_7.setText(_translate("Form", "<html><head/><body><p>¿Cuál es su nombre?</p></body></html>"))
+        self.pushButton.setText(_translate("Form", "A"))
+        self.pushButton_C.setText(_translate("Form", "C"))
+        self.label_A.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Respondio correctamente</span></p></body></html>"))
+        self.label_C.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Respondio incorrectamente</span></p></body></html>"))
+        self.label_6.setText(_translate("Form", "El cuidador deberá estar presente para realizar las siguientes preguntas:"))
+
+class Formato_Pregunta_2(QDialog):
+    def __init__(self, parent=None):
+        super(Formato_Pregunta_2, self).__init__(parent)
+        self.ui = Pregunta_2()
+        self.ui.setupUi(self)
+
+class Pregunta_3(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(967, 751)
+        self.widget = QWidget(Form)
+        self.widget.setGeometry(QRect(-90, -110, 1101, 881))
+        self.widget.setStyleSheet("QWidget {\n"
+"    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #0077b6, stop:0.5 #0096c7, stop:1 #00b4d8);\n"
+"}\n"
+"\n"
+"QLabel {\n"
+"    background-color: transparent;  /* Fondo transparente para QLabel */\n"
+"    color: white;  /* Color del texto del QLabel */\n"
+"    font-size: 16px;  /* Tamaño de fuente del QLabel */\n"
+"}\n"
+"\n"
+"QLineEdit {\n"
+"    background-color: white;  /* Fondo sólido blanco para QLineEdit */\n"
+"    border: 2px solid #00b4d8;\n"
+"    border-radius: 10px;\n"
+"    padding: 10px;\n"
+"    font-size: 16px;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid #0077b6; /* Color del borde al enfocar */\n"
+"    outline: none;\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton{\n"
+"    border-radius: 10px;\n"
+"    color: white;\n"
+"    background-color: rgb(0, 119, 182)\n"
+"}")
+        self.widget.setObjectName("widget")
+        self.label_5 = QLabel(self.widget)
+        self.label_5.setGeometry(QRect(610, 330, 61, 51))
+        self.label_5.setText("")
+        self.label_5.setPixmap(QPixmap(r"Recursos_Interfaz\Alzcare.png"))
+        self.label_5.setObjectName("label_5")
+        self.widget_2 = QWidget(self.widget)
+        self.widget_2.setGeometry(QRect(10, 110, 1191, 61))
+        self.widget_2.setStyleSheet("QWidget{\n"
+"    background-color: rgb(144, 224, 239);\n"
+"}")
+        self.widget_2.setObjectName("widget_2")
+        self.label_2 = QLabel(self.widget_2)
+        self.label_2.setGeometry(QRect(160, 20, 151, 21))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_2.setFont(font)
+        self.label_2.setObjectName("label_2")
+        self.label = QLabel(self.widget_2)
+        self.label.setGeometry(QRect(100, 10, 41, 41))
+        self.label.setText("")
+        self.label.setPixmap(QPixmap(r"Recursos_Interfaz\Alzcare.png"))
+        self.label.setScaledContents(True)
+        self.label.setObjectName("label")
+        self.pushButton_regresar = QPushButton(self.widget_2)
+        self.pushButton_regresar.setGeometry(QRect(960, 20, 81, 31))
+        self.pushButton_regresar.setText("")
+        icon = QIcon()
+        icon.addPixmap(QPixmap(r"Recursos_Interfaz\regresar.png"), QIcon.Normal, QIcon.Off)
+        self.pushButton_regresar.setIcon(icon)
+        self.pushButton_regresar.setIconSize(QSize(40, 240))
+        self.pushButton_regresar.setObjectName("pushButton_regresar")
+        self.widget_3 = QWidget(self.widget)
+        self.widget_3.setGeometry(QRect(240, 280, 651, 481))
+        self.widget_3.setStyleSheet("QWidget{\n"
+"    background-color: rgb(202, 240, 248);\n"
+"}\n"
+"QLabel{\n"
+"    color: rgb(0, 119, 182);}\n"
+"\n"
+"QPushButton{\n"
+"    background-color: rgb(0, 119, 182);\n"
+"    color: white;\n"
+"}")
+        self.widget_3.setObjectName("widget_3")
+        self.label_3 = QLabel(self.widget_3)
+        self.label_3.setGeometry(QRect(10, 0, 351, 41))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_3.setFont(font)
+        self.label_3.setObjectName("label_3")
+        self.label_7 = QLabel(self.widget_3)
+        self.label_7.setGeometry(QRect(230, 40, 351, 41))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_7.setFont(font)
+        self.label_7.setObjectName("label_7")
+        self.pushButton = QPushButton(self.widget_3)
+        self.pushButton.setGeometry(QRect(120, 150, 93, 28))
+        self.pushButton.setFont(font)
+        self.pushButton.setObjectName("pushButton")
+        self.pushButton_C = QPushButton(self.widget_3)
+        self.pushButton_C.setGeometry(QRect(120, 270, 93, 28))
+        self.pushButton_C.setFont(font)
+        self.pushButton_C.setObjectName("pushButton_C")
+        self.label_A = QLabel(self.widget_3)
+        self.label_A.setGeometry(QRect(230, 150, 55, 16))
+        self.label_A.setFont(font)
+        self.label_A.setObjectName("label_A")
+        self.label_C = QLabel(self.widget_3)
+        self.label_C.setGeometry(QRect(230, 280, 55, 16))
+        self.label_C.setFont(font)
+        self.label_C.setObjectName("label_C")
+        self.label_4 = QLabel(self.widget_3)
+        self.label_4.setGeometry(QRect(390, 190, 151, 141))
+        self.label_4.setText("")
+        self.label_4.setPixmap(QPixmap(r"Recursos_Interfaz\edad_int3.png"))
+        self.label_4.setScaledContents(True)
+        self.label_4.setObjectName("label_4")
+        self.label_6 = QLabel(self.widget)
+        self.label_6.setGeometry(QRect(250, 240, 531, 31))
+        self.label_6.setObjectName("label_6")
+
+        self.retranslateUi(Form)
+        QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        _translate = QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Pregunta 3"))
+        Form.setWindowIcon(QIcon(r"Recursos_Interfaz\Alzcare.png"))
+        self.label_2.setText(_translate("Form", "Alzcare - company"))
+        self.label_3.setText(_translate("Form", "<html><head/><body><p>Pregunta 3.</p></body></html>"))
+        self.label_7.setText(_translate("Form", "<html><head/><body><p>¿Qué edad tiene?</p></body></html>"))
+        self.pushButton.setText(_translate("Form", "A"))
+        self.pushButton_C.setText(_translate("Form", "C"))
+        self.label_A.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Respondio correctamente</span></p></body></html>"))
+        self.label_C.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Respondio incorrectamente</span></p></body></html>"))
+        self.label_6.setText(_translate("Form", "El cuidador deberá estar presente para realizar las siguientes preguntas:"))
+
+class Formato_Pregunta_3(QDialog):
+    def __init__(self, parent=None):
+        super(Formato_Pregunta_3, self).__init__(parent)
+        self.ui = Pregunta_3()
+        self.ui.setupUi(self)
+
+class Pregunta_4(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(967, 751)
+        self.widget = QWidget(Form)
+        self.widget.setGeometry(QRect(-90, -110, 1101, 881))
+        self.widget.setStyleSheet("QWidget {\n"
+"    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #0077b6, stop:0.5 #0096c7, stop:1 #00b4d8);\n"
+"}\n"
+"\n"
+"QLabel {\n"
+"    background-color: transparent;  /* Fondo transparente para QLabel */\n"
+"    color: white;  /* Color del texto del QLabel */\n"
+"    font-size: 16px;  /* Tamaño de fuente del QLabel */\n"
+"}\n"
+"\n"
+"QLineEdit {\n"
+"    background-color: white;  /* Fondo sólido blanco para QLineEdit */\n"
+"    border: 2px solid #00b4d8;\n"
+"    border-radius: 10px;\n"
+"    padding: 10px;\n"
+"    font-size: 16px;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid #0077b6; /* Color del borde al enfocar */\n"
+"    outline: none;\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton{\n"
+"    border-radius: 10px;\n"
+"    color: white;\n"
+"    background-color: rgb(0, 119, 182)\n"
+"}")
+        self.widget.setObjectName("widget")
+        self.label_5 = QLabel(self.widget)
+        self.label_5.setGeometry(QRect(610, 330, 61, 51))
+        self.label_5.setText("")
+        self.label_5.setPixmap(QPixmap(r"Recursos_Interfaz\Alzcare.png"))
+        self.label_5.setObjectName("label_5")
+        self.widget_2 = QWidget(self.widget)
+        self.widget_2.setGeometry(QRect(10, 110, 1191, 61))
+        self.widget_2.setStyleSheet("QWidget{\n"
+"    background-color: rgb(144, 224, 239);\n"
+"}")
+        self.widget_2.setObjectName("widget_2")
+        self.label_2 = QLabel(self.widget_2)
+        self.label_2.setGeometry(QRect(160, 20, 151, 21))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_2.setFont(font)
+        self.label_2.setObjectName("label_2")
+        self.label = QLabel(self.widget_2)
+        self.label.setGeometry(QRect(100, 10, 41, 41))
+        self.label.setText("")
+        self.label.setPixmap(QPixmap(r"Recursos_Interfaz\Alzcare.png"))
+        self.label.setScaledContents(True)
+        self.label.setObjectName("label")
+        self.pushButton_regresar = QPushButton(self.widget_2)
+        self.pushButton_regresar.setGeometry(QRect(960, 20, 81, 31))
+        self.pushButton_regresar.setText("")
+        icon = QIcon()
+        icon.addPixmap(QPixmap(r"Recursos_Interfaz\regresar.png"), QIcon.Normal, QIcon.Off)
+        self.pushButton_regresar.setIcon(icon)
+        self.pushButton_regresar.setIconSize(QSize(40, 240))
+        self.pushButton_regresar.setObjectName("pushButton_regresar")
+        self.widget_3 = QWidget(self.widget)
+        self.widget_3.setGeometry(QRect(240, 280, 651, 481))
+        self.widget_3.setStyleSheet("QWidget{\n"
+"    background-color: rgb(202, 240, 248);\n"
+"}\n"
+"QLabel{\n"
+"    color: rgb(0, 119, 182);}\n"
+"\n"
+"QPushButton{\n"
+"    background-color: rgb(0, 119, 182);\n"
+"    color: white;\n"
+"}")
+        self.widget_3.setObjectName("widget_3")
+        self.label_3 = QLabel(self.widget_3)
+        self.label_3.setGeometry(QRect(10, 0, 351, 41))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_3.setFont(font)
+        self.label_3.setObjectName("label_3")
+        self.label_7 = QLabel(self.widget_3)
+        self.label_7.setGeometry(QRect(200, 50, 351, 41))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_7.setFont(font)
+        self.label_7.setObjectName("label_7")
+        self.pushButton = QPushButton(self.widget_3)
+        self.pushButton.setGeometry(QRect(120, 150, 93, 28))
+        self.pushButton.setFont(font)
+        self.pushButton.setObjectName("pushButton")
+        self.pushButton_C = QPushButton(self.widget_3)
+        self.pushButton_C.setGeometry(QRect(120, 270, 93, 28))
+        self.pushButton_C.setFont(font)
+        self.pushButton_C.setObjectName("pushButton_C")
+        self.label_A = QLabel(self.widget_3)
+        self.label_A.setGeometry(QRect(230, 150, 55, 16))
+        self.label_A.setFont(font)
+        self.label_A.setObjectName("label_A")
+        self.label_C = QLabel(self.widget_3)
+        self.label_C.setGeometry(QRect(230, 280, 55, 16))
+        self.label_C.setFont(font)
+        self.label_C.setObjectName("label_C")
+        self.label_4 = QLabel(self.widget_3)
+        self.label_4.setGeometry(QRect(380, 180, 161, 151))
+        self.label_4.setText("")
+        self.label_4.setPixmap(QPixmap(r"Recursos_Interfaz\memoria_int4.png"))
+        self.label_4.setScaledContents(True)
+        self.label_4.setObjectName("label_4")
+        self.label_6 = QLabel(self.widget)
+        self.label_6.setGeometry(QRect(250, 240, 531, 31))
+        self.label_6.setObjectName("label_6")
+
+        self.retranslateUi(Form)
+        QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        _translate = QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Preunta 4"))
+        Form.setWindowIcon(QIcon(r"Recursos_Interfaz\Alzcare.png"))
+        self.label_2.setText(_translate("Form", "Alzcare - company"))
+        self.label_3.setText(_translate("Form", "<html><head/><body><p>Pregunta 4.</p></body></html>"))
+        self.label_7.setText(_translate("Form", "<html><head/><body><p>¿Tienes problemas de memoria?</p></body></html>"))
+        self.pushButton.setText(_translate("Form", "A"))
+        self.pushButton_C.setText(_translate("Form", "C"))
+        self.label_A.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Reconoce su situacion</span></p></body></html>"))
+        self.label_C.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">No reconoce su situacion</span></p></body></html>"))
+        self.label_6.setText(_translate("Form", "El cuidador deberá estar presente para realizar las siguientes preguntas:"))
+
+class Formato_Pregunta_4(QDialog):
+    def __init__(self, parent=None):
+        super(Formato_Pregunta_4, self).__init__(parent)
+        self.ui = Pregunta_4()
+        self.ui.setupUi(self)
+
+class Pregunta_5(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(967, 751)
+        self.widget = QWidget(Form)
+        self.widget.setGeometry(QRect(-90, -110, 1101, 881))
+        self.widget.setStyleSheet("QWidget {\n"
+"    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #0077b6, stop:0.5 #0096c7, stop:1 #00b4d8);\n"
+"}\n"
+"\n"
+"QLabel {\n"
+"    background-color: transparent;  /* Fondo transparente para QLabel */\n"
+"    color: white;  /* Color del texto del QLabel */\n"
+"    font-size: 16px;  /* Tamaño de fuente del QLabel */\n"
+"}\n"
+"\n"
+"QLineEdit {\n"
+"    background-color: white;  /* Fondo sólido blanco para QLineEdit */\n"
+"    border: 2px solid #00b4d8;\n"
+"    border-radius: 10px;\n"
+"    padding: 10px;\n"
+"    font-size: 16px;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid #0077b6; /* Color del borde al enfocar */\n"
+"    outline: none;\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton{\n"
+"    border-radius: 10px;\n"
+"    color: white;\n"
+"    background-color: rgb(0, 119, 182)\n"
+"}")
+        self.widget.setObjectName("widget")
+        self.label_5 = QLabel(self.widget)
+        self.label_5.setGeometry(QRect(610, 330, 61, 51))
+        self.label_5.setText("")
+        self.label_5.setPixmap(QPixmap(r"Recursos_Interfaz\Alzcare.png"))
+        self.label_5.setObjectName("label_5")
+        self.widget_2 = QWidget(self.widget)
+        self.widget_2.setGeometry(QRect(10, 110, 1191, 61))
+        self.widget_2.setStyleSheet("QWidget{\n"
+"    background-color: rgb(144, 224, 239);\n"
+"}")
+        self.widget_2.setObjectName("widget_2")
+        self.label_2 = QLabel(self.widget_2)
+        self.label_2.setGeometry(QRect(160, 20, 151, 21))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_2.setFont(font)
+        self.label_2.setObjectName("label_2")
+        self.label = QLabel(self.widget_2)
+        self.label.setGeometry(QRect(100, 10, 41, 41))
+        self.label.setText("")
+        self.label.setPixmap(QPixmap(r"Recursos_Interfaz\Alzcare.png"))
+        self.label.setScaledContents(True)
+        self.label.setObjectName("label")
+        self.pushButton_regresar = QPushButton(self.widget_2)
+        self.pushButton_regresar.setGeometry(QRect(960, 20, 81, 31))
+        self.pushButton_regresar.setText("")
+        icon = QIcon()
+        icon.addPixmap(QPixmap(r"Recursos_Interfaz\regresar.png"), QIcon.Normal, QIcon.Off)
+        self.pushButton_regresar.setIcon(icon)
+        self.pushButton_regresar.setIconSize(QSize(40, 240))
+        self.pushButton_regresar.setObjectName("pushButton_regresar")
+        self.widget_3 = QWidget(self.widget)
+        self.widget_3.setGeometry(QRect(240, 280, 651, 481))
+        self.widget_3.setStyleSheet("QWidget{\n"
+"    background-color: rgb(202, 240, 248);\n"
+"}\n"
+"QLabel{\n"
+"    color: rgb(0, 119, 182);}\n"
+"\n"
+"QPushButton{\n"
+"    background-color: rgb(0, 119, 182);\n"
+"    color: white;\n"
+"}")
+        self.widget_3.setObjectName("widget_3")
+        self.label_3 = QLabel(self.widget_3)
+        self.label_3.setGeometry(QRect(10, 0, 351, 41))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_3.setFont(font)
+        self.label_3.setObjectName("label_3")
+        self.label_7 = QLabel(self.widget_3)
+        self.label_7.setGeometry(QRect(230, 40, 351, 41))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_7.setFont(font)
+        self.label_7.setObjectName("label_7")
+        self.pushButton = QPushButton(self.widget_3)
+        self.pushButton.setGeometry(QRect(120, 150, 93, 28))
+        self.pushButton.setFont(font)
+        self.pushButton.setObjectName("pushButton")
+        self.pushButton_C = QPushButton(self.widget_3)
+        self.pushButton_C.setGeometry(QRect(120, 270, 93, 28))
+        self.pushButton_C.setFont(font)
+        self.pushButton_C.setObjectName("pushButton_C")
+        self.label_A = QLabel(self.widget_3)
+        self.label_A.setGeometry(QRect(230, 150, 55, 16))
+        self.label_A.setFont(font)
+        self.label_A.setObjectName("label_A")
+        self.label_C = QLabel(self.widget_3)
+        self.label_C.setGeometry(QRect(230, 280, 55, 16))
+        self.label_C.setFont(font)
+        self.label_C.setObjectName("label_C")
+        self.label_4 = QLabel(self.widget_3)
+        self.label_4.setGeometry(QRect(390, 170, 151, 151))
+        self.label_4.setText("")
+        self.label_4.setPixmap(QPixmap(r"Recursos_Interfaz\cuidador_int5.png"))
+        self.label_4.setScaledContents(True)
+        self.label_4.setObjectName("label_4")
+        self.label_6 = QLabel(self.widget)
+        self.label_6.setGeometry(QRect(250, 240, 531, 31))
+        self.label_6.setObjectName("label_6")
+
+        self.retranslateUi(Form)
+        QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        _translate = QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Pregunta 5"))
+        Form.setWindowIcon(QIcon(r"Recursos_Interfaz\Alzcare.png"))
+        self.label_2.setText(_translate("Form", "Alzcare - company"))
+        self.label_3.setText(_translate("Form", "<html><head/><body><p>Pregunta 1.</p></body></html>"))
+        self.label_7.setText(_translate("Form", "<html><head/><body><p>Sabes cómo se llama tu cuidador?</p></body></html>"))
+        self.pushButton.setText(_translate("Form", "A"))
+        self.pushButton_C.setText(_translate("Form", "C"))
+        self.label_A.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Respondio correctamente</span></p></body></html>"))
+        self.label_C.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Respondio incorrectamente</span></p></body></html>"))
+        self.label_6.setText(_translate("Form", "El cuidador deberá estar presente para realizar las siguientes preguntas:"))
+
+class Formato_Pregunta_5(QDialog):
+    def __init__(self, parent=None):
+        super(Formato_Pregunta_5, self).__init__(parent)
+        self.ui = Pregunta_5()
+        self.ui.setupUi(self)
+
+class Pregunta_6(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(967, 751)
+        self.widget = QWidget(Form)
+        self.widget.setGeometry(QRect(-90, -110, 1101, 881))
+        self.widget.setStyleSheet("QWidget {\n"
+"    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #0077b6, stop:0.5 #0096c7, stop:1 #00b4d8);\n"
+"}\n"
+"\n"
+"QLabel {\n"
+"    background-color: transparent;  /* Fondo transparente para QLabel */\n"
+"    color: white;  /* Color del texto del QLabel */\n"
+"    font-size: 16px;  /* Tamaño de fuente del QLabel */\n"
+"}\n"
+"\n"
+"QLineEdit {\n"
+"    background-color: white;  /* Fondo sólido blanco para QLineEdit */\n"
+"    border: 2px solid #00b4d8;\n"
+"    border-radius: 10px;\n"
+"    padding: 10px;\n"
+"    font-size: 16px;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid #0077b6; /* Color del borde al enfocar */\n"
+"    outline: none;\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton{\n"
+"    border-radius: 10px;\n"
+"    color: white;\n"
+"    background-color: rgb(0, 119, 182)\n"
+"}")
+        self.widget.setObjectName("widget")
+        self.label_5 = QLabel(self.widget)
+        self.label_5.setGeometry(QRect(610, 330, 61, 51))
+        self.label_5.setText("")
+        self.label_5.setPixmap(QPixmap(r"Recursos_Interfaz\Alzcare.png"))
+        self.label_5.setObjectName("label_5")
+        self.widget_2 = QWidget(self.widget)
+        self.widget_2.setGeometry(QRect(10, 110, 1191, 61))
+        self.widget_2.setStyleSheet("QWidget{\n"
+"    background-color: rgb(144, 224, 239);\n"
+"}")
+        self.widget_2.setObjectName("widget_2")
+        self.label_2 = QLabel(self.widget_2)
+        self.label_2.setGeometry(QRect(160, 20, 151, 21))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_2.setFont(font)
+        self.label_2.setObjectName("label_2")
+        self.label = QLabel(self.widget_2)
+        self.label.setGeometry(QRect(100, 10, 41, 41))
+        self.label.setText("")
+        self.label.setPixmap(QPixmap(r"Recursos_Interfaz\Alzcare.png"))
+        self.label.setScaledContents(True)
+        self.label.setObjectName("label")
+        self.pushButton_regresar = QPushButton(self.widget_2)
+        self.pushButton_regresar.setGeometry(QRect(960, 20, 81, 31))
+        self.pushButton_regresar.setText("")
+        icon = QIcon()
+        icon.addPixmap(QPixmap(r"Recursos_Interfaz\regresar.png"), QIcon.Normal, QIcon.Off)
+        self.pushButton_regresar.setIcon(icon)
+        self.pushButton_regresar.setIconSize(QSize(40, 240))
+        self.pushButton_regresar.setObjectName("pushButton_regresar")
+        self.widget_3 = QWidget(self.widget)
+        self.widget_3.setGeometry(QRect(240, 280, 651, 481))
+        self.widget_3.setStyleSheet("QWidget{\n"
+"    background-color: rgb(202, 240, 248);\n"
+"}\n"
+"QLabel{\n"
+"    color: rgb(0, 119, 182);}\n"
+"\n"
+"QPushButton{\n"
+"    background-color: rgb(0, 119, 182);\n"
+"    color: white;\n"
+"}")
+        self.widget_3.setObjectName("widget_3")
+        self.label_3 = QLabel(self.widget_3)
+        self.label_3.setGeometry(QRect(10, 0, 351, 41))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_3.setFont(font)
+        self.label_3.setObjectName("label_3")
+        self.label_7 = QLabel(self.widget_3)
+        self.label_7.setGeometry(QRect(150, 50, 351, 41))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_7.setFont(font)
+        self.label_7.setObjectName("label_7")
+        self.pushButton = QPushButton(self.widget_3)
+        self.pushButton.setGeometry(QRect(120, 150, 93, 28))
+        self.pushButton.setFont(font)
+        self.pushButton.setObjectName("pushButton")
+        self.pushButton_B = QPushButton(self.widget_3)
+        self.pushButton_B.setGeometry(QRect(120, 210, 93, 28))
+        self.pushButton_B.setFont(font)
+        self.pushButton_B.setObjectName("pushButton_B")
+        self.pushButton_C = QPushButton(self.widget_3)
+        self.pushButton_C.setGeometry(QRect(120, 270, 93, 28))
+        self.pushButton_C.setFont(font)
+        self.pushButton_C.setObjectName("pushButton_C")
+        self.label_A = QLabel(self.widget_3)
+        self.label_A.setGeometry(QRect(230, 150, 55, 16))
+        self.label_A.setFont(font)
+        self.label_A.setObjectName("label_A")
+        self.label_B = QLabel(self.widget_3)
+        self.label_B.setGeometry(QRect(230, 210, 55, 16))
+        self.label_B.setFont(font)
+        self.label_B.setObjectName("label_B")
+        self.label_C = QLabel(self.widget_3)
+        self.label_C.setGeometry(QRect(230, 280, 55, 16))
+        self.label_C.setFont(font)
+        self.label_C.setObjectName("label_C")
+        self.label_4 = QLabel(self.widget_3)
+        self.label_4.setGeometry(QRect(390, 180, 141, 151))
+        self.label_4.setText("")
+        self.label_4.setPixmap(QPixmap(r"Recursos_Interfaz\vestir_int6.png"))
+        self.label_4.setScaledContents(True)
+        self.label_4.setObjectName("label_4")
+        self.label_6 = QLabel(self.widget)
+        self.label_6.setGeometry(QRect(250, 240, 531, 31))
+        self.label_6.setObjectName("label_6")
+
+        self.retranslateUi(Form)
+        QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        _translate = QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Pregunta 6"))
+        Form.setWindowIcon(QIcon(r"Recursos_Interfaz\Alzcare.png"))
+        self.label_2.setText(_translate("Form", "Alzcare - company"))
+        self.label_3.setText(_translate("Form", "<html><head/><body><p>Pregunta 6.</p></body></html>"))
+        self.label_7.setText(_translate("Form", "<html><head/><body><p>¿El paciente necesita ayuda para vestirse?</p></body></html>"))
+        self.pushButton.setText(_translate("Form", "A"))
+        self.pushButton_B.setText(_translate("Form", "B"))
+        self.pushButton_C.setText(_translate("Form", "C"))
+        self.label_A.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">No necesita ayuda</span></p></body></html>"))
+        self.label_B.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Necesita ayuda para los cordones</span></p></body></html>"))
+        self.label_C.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Necesita ayuda para todo</span></p></body></html>"))
+        self.label_6.setText(_translate("Form", "El cuidador deberá estar presente para realizar las siguientes preguntas:"))
+
+class Formato_Pregunta_6(QDialog):
+    def __init__(self, parent=None):
+        super(Formato_Pregunta_6, self).__init__(parent)
+        self.ui = Pregunta_6()
+        self.ui.setupUi(self)
+
+class Pregunta_7(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(967, 751)
+        self.widget = QWidget(Form)
+        self.widget.setGeometry(QRect(-90, -110, 1101, 881))
+        self.widget.setStyleSheet("QWidget {\n"
+"    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #0077b6, stop:0.5 #0096c7, stop:1 #00b4d8);\n"
+"}\n"
+"\n"
+"QLabel {\n"
+"    background-color: transparent;  /* Fondo transparente para QLabel */\n"
+"    color: white;  /* Color del texto del QLabel */\n"
+"    font-size: 16px;  /* Tamaño de fuente del QLabel */\n"
+"}\n"
+"\n"
+"QLineEdit {\n"
+"    background-color: white;  /* Fondo sólido blanco para QLineEdit */\n"
+"    border: 2px solid #00b4d8;\n"
+"    border-radius: 10px;\n"
+"    padding: 10px;\n"
+"    font-size: 16px;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid #0077b6; /* Color del borde al enfocar */\n"
+"    outline: none;\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton{\n"
+"    border-radius: 10px;\n"
+"    color: white;\n"
+"    background-color: rgb(0, 119, 182)\n"
+"}")
+        self.widget.setObjectName("widget")
+        self.label_5 = QLabel(self.widget)
+        self.label_5.setGeometry(QRect(610, 330, 61, 51))
+        self.label_5.setText("")
+        self.label_5.setPixmap(QPixmap(r"Recursos_Interfaz\Alzcare.png"))
+        self.label_5.setObjectName("label_5")
+        self.widget_2 = QWidget(self.widget)
+        self.widget_2.setGeometry(QRect(10, 110, 1191, 61))
+        self.widget_2.setStyleSheet("QWidget{\n"
+"    background-color: rgb(144, 224, 239);\n"
+"}")
+        self.widget_2.setObjectName("widget_2")
+        self.label_2 = QLabel(self.widget_2)
+        self.label_2.setGeometry(QRect(160, 20, 151, 21))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_2.setFont(font)
+        self.label_2.setObjectName("label_2")
+        self.label = QLabel(self.widget_2)
+        self.label.setGeometry(QRect(100, 10, 41, 41))
+        self.label.setText("")
+        self.label.setPixmap(QPixmap(r"Recursos_Interfaz\Alzcare.png"))
+        self.label.setScaledContents(True)
+        self.label.setObjectName("label")
+        self.pushButton_regresar = QPushButton(self.widget_2)
+        self.pushButton_regresar.setGeometry(QRect(960, 20, 81, 31))
+        self.pushButton_regresar.setText("")
+        icon = QIcon()
+        icon.addPixmap(QPixmap(r"Recursos_Interfaz\regresar.png"), QIcon.Normal, QIcon.Off)
+        self.pushButton_regresar.setIcon(icon)
+        self.pushButton_regresar.setIconSize(QSize(40, 240))
+        self.pushButton_regresar.setObjectName("pushButton_regresar")
+        self.widget_3 = QWidget(self.widget)
+        self.widget_3.setGeometry(QRect(240, 280, 651, 481))
+        self.widget_3.setStyleSheet("QWidget{\n"
+"    background-color: rgb(202, 240, 248);\n"
+"}\n"
+"QLabel{\n"
+"    color: rgb(0, 119, 182);}\n"
+"\n"
+"QPushButton{\n"
+"    background-color: rgb(0, 119, 182);\n"
+"    color: white;\n"
+"}")
+        self.widget_3.setObjectName("widget_3")
+        self.label_3 = QLabel(self.widget_3)
+        self.label_3.setGeometry(QRect(10, 0, 351, 41))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_3.setFont(font)
+        self.label_3.setObjectName("label_3")
+        self.label_7 = QLabel(self.widget_3)
+        self.label_7.setGeometry(QRect(60, 40, 571, 61))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_7.setFont(font)
+        self.label_7.setObjectName("label_7")
+        self.pushButton = QPushButton(self.widget_3)
+        self.pushButton.setGeometry(QRect(50, 150, 93, 28))
+        self.pushButton.setObjectName("pushButton")
+        self.pushButton_B = QPushButton(self.widget_3)
+        self.pushButton_B.setGeometry(QRect(50, 210, 93, 28))
+        self.pushButton_B.setObjectName("pushButton_B")
+        self.pushButton_C = QPushButton(self.widget_3)
+        self.pushButton_C.setGeometry(QRect(50, 260, 93, 28))
+        self.pushButton_C.setObjectName("pushButton_C")
+        self.label_A = QLabel(self.widget_3)
+        self.label_A.setGeometry(QRect(150, 160, 251, 16))
+        self.label_A.setObjectName("label_A")
+        self.label_B = QLabel(self.widget_3)
+        self.label_B.setGeometry(QRect(150, 210, 301, 20))
+        self.label_B.setObjectName("label_B")
+        self.label_C = QLabel(self.widget_3)
+        self.label_C.setGeometry(QRect(150, 270, 271, 16))
+        self.label_C.setObjectName("label_C")
+        self.label_4 = QLabel(self.widget_3)
+        self.label_4.setGeometry(QRect(270, 330, 151, 131))
+        self.label_4.setText("")
+        self.label_4.setPixmap(QPixmap(r"Recursos_Interfaz\foto_int7.png"))
+        self.label_4.setScaledContents(True)
+        self.label_4.setObjectName("label_4")
+        self.label_6 = QLabel(self.widget)
+        self.label_6.setGeometry(QRect(250, 240, 531, 31))
+        self.label_6.setObjectName("label_6")
+
+        self.retranslateUi(Form)
+        QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        _translate = QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Pregunta 7"))
+        Form.setWindowIcon(QIcon(r"Recursos_Interfaz\Alzcare.png"))
+        self.label_2.setText(_translate("Form", "Alzcare - company"))
+        self.label_3.setText(_translate("Form", "<html><head/><body><p>Pregunta 7.</p></body></html>"))
+        self.label_7.setText(_translate("Form", "<html><head/><body><p>El cuidador deberá mostrar al paciente una fotografía de </p><p>un familiar cercano al paciente</p></body></html>"))
+        self.pushButton.setText(_translate("Form", "A"))
+        self.pushButton_B.setText(_translate("Form", "B"))
+        self.pushButton_C.setText(_translate("Form", "C"))
+        self.label_A.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">El paciente reconoce e identifica al familiar</span></p></body></html>"))
+        self.label_B.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">El paciente reconoce el nombre, pero no al familiar</span></p></body></html>"))
+        self.label_C.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">El paciente no reconoce ni identifica al familiar</span></p></body></html>"))
+        self.label_6.setText(_translate("Form", "El cuidador deberá estar presente para realizar las siguientes preguntas:"))
+
+class Formato_Pregunta_7(QDialog):
+    def __init__(self, parent=None):
+        super(Formato_Pregunta_7, self).__init__(parent)
+        self.ui = Pregunta_7()
+        self.ui.setupUi(self)
+
+class Pregunta_8(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(967, 751)
+        self.widget = QWidget(Form)
+        self.widget.setGeometry(QRect(-90, -110, 1101, 881))
+        self.widget.setStyleSheet("QWidget {\n"
+"    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #0077b6, stop:0.5 #0096c7, stop:1 #00b4d8);\n"
+"}\n"
+"\n"
+"QLabel {\n"
+"    background-color: transparent;  /* Fondo transparente para QLabel */\n"
+"    color: white;  /* Color del texto del QLabel */\n"
+"    font-size: 16px;  /* Tamaño de fuente del QLabel */\n"
+"}\n"
+"\n"
+"QLineEdit {\n"
+"    background-color: white;  /* Fondo sólido blanco para QLineEdit */\n"
+"    border: 2px solid #00b4d8;\n"
+"    border-radius: 10px;\n"
+"    padding: 10px;\n"
+"    font-size: 16px;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid #0077b6; /* Color del borde al enfocar */\n"
+"    outline: none;\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton{\n"
+"    border-radius: 10px;\n"
+"    color: white;\n"
+"    background-color: rgb(0, 119, 182)\n"
+"}")
+        self.widget.setObjectName("widget")
+        self.label_5 = QLabel(self.widget)
+        self.label_5.setGeometry(QRect(610, 330, 61, 51))
+        self.label_5.setText("")
+        self.label_5.setPixmap(QPixmap(r"Recursos_Interfaz\Alzcare.png"))
+        self.label_5.setObjectName("label_5")
+        self.widget_2 = QWidget(self.widget)
+        self.widget_2.setGeometry(QRect(10, 110, 1191, 61))
+        self.widget_2.setStyleSheet("QWidget{\n"
+"    background-color: rgb(144, 224, 239);\n"
+"}")
+        self.widget_2.setObjectName("widget_2")
+        self.label_2 = QLabel(self.widget_2)
+        self.label_2.setGeometry(QRect(160, 20, 151, 21))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_2.setFont(font)
+        self.label_2.setObjectName("label_2")
+        self.label = QLabel(self.widget_2)
+        self.label.setGeometry(QRect(100, 10, 41, 41))
+        self.label.setText("")
+        self.label.setPixmap(QPixmap(r"Recursos_Interfaz\Alzcare.png"))
+        self.label.setScaledContents(True)
+        self.label.setObjectName("label")
+        self.pushButton_regresar = QPushButton(self.widget_2)
+        self.pushButton_regresar.setGeometry(QRect(960, 20, 81, 31))
+        self.pushButton_regresar.setText("")
+        icon = QIcon()
+        icon.addPixmap(QPixmap(r"Recursos_Interfaz\regresar.png"), QIcon.Normal, QIcon.Off)
+        self.pushButton_regresar.setIcon(icon)
+        self.pushButton_regresar.setIconSize(QSize(40, 240))
+        self.pushButton_regresar.setObjectName("pushButton_regresar")
+        self.widget_3 = QWidget(self.widget)
+        self.widget_3.setGeometry(QRect(240, 280, 651, 481))
+        self.widget_3.setStyleSheet("QWidget{\n"
+"    background-color: rgb(202, 240, 248);\n"
+"}\n"
+"QLabel{\n"
+"    color: rgb(0, 119, 182);}\n"
+"\n"
+"QPushButton{\n"
+"    background-color: rgb(0, 119, 182);\n"
+"    color: white;\n"
+"}")
+        self.widget_3.setObjectName("widget_3")
+        self.label_3 = QLabel(self.widget_3)
+        self.label_3.setGeometry(QRect(10, 0, 351, 41))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_3.setFont(font)
+        self.label_3.setObjectName("label_3")
+        self.label_7 = QLabel(self.widget_3)
+        self.label_7.setGeometry(QRect(150, 50, 371, 41))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_7.setFont(font)
+        self.label_7.setObjectName("label_7")
+        self.pushButton = QPushButton(self.widget_3)
+        self.pushButton.setGeometry(QRect(120, 150, 93, 28))
+        self.pushButton.setFont(font)
+        self.pushButton.setObjectName("pushButton")
+        self.pushButton_B = QPushButton(self.widget_3)
+        self.pushButton_B.setGeometry(QRect(120, 210, 93, 28))
+        self.pushButton_B.setFont(font)
+        self.pushButton_B.setObjectName("pushButton_B")
+        self.pushButton_C = QPushButton(self.widget_3)
+        self.pushButton_C.setGeometry(QRect(120, 270, 93, 28))
+        self.pushButton_C.setFont(font)
+        self.pushButton_C.setObjectName("pushButton_C")
+        self.label_A = QLabel(self.widget_3)
+        self.label_A.setGeometry(QRect(220, 150, 111, 16))
+        self.label_A.setObjectName("label_A")
+        self.label_B = QLabel(self.widget_3)
+        self.label_B.setGeometry(QRect(220, 210, 211, 16))
+        self.label_B.setObjectName("label_B")
+        self.label_C = QLabel(self.widget_3)
+        self.label_C.setGeometry(QRect(220, 270, 181, 16))
+        self.label_C.setObjectName("label_C")
+        self.label_4 = QLabel(self.widget_3)
+        self.label_4.setGeometry(QRect(240, 310, 161, 161))
+        self.label_4.setText("")
+        self.label_4.setPixmap(QPixmap(r"Recursos_Interfaz\aseo_int8.png"))
+        self.label_4.setScaledContents(True)
+        self.label_4.setObjectName("label_4")
+        self.label_6 = QLabel(self.widget)
+        self.label_6.setGeometry(QRect(250, 240, 531, 31))
+        self.label_6.setObjectName("label_6")
+
+        self.retranslateUi(Form)
+        QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        _translate = QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Pregunta 8"))
+        Form.setWindowIcon(QIcon(r"Recursos_Interfaz\Alzcare.png"))
+        self.label_2.setText(_translate("Form", "Alzcare - company"))
+        self.label_3.setText(_translate("Form", "<html><head/><body><p>Pregunta 8.</p></body></html>"))
+        self.label_7.setText(_translate("Form", "<html><head/><body><p>¿El paciente necesita ayuda para asearse?</p></body></html>"))
+        self.pushButton.setText(_translate("Form", "A"))
+        self.pushButton_B.setText(_translate("Form", "B"))
+        self.pushButton_C.setText(_translate("Form", "C"))
+        self.label_A.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">No necesita ayuda</span></p></body></html>"))
+        self.label_B.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Necesita ayuda para una extremidad</span></p></body></html>"))
+        self.label_C.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Necesita ayuda para dos o más</span></p></body></html>"))
+        self.label_6.setText(_translate("Form", "El cuidador deberá estar presente para realizar las siguientes preguntas:"))
+
+class Formato_Pregunta_8(QDialog):
+    def __init__(self, parent=None):
+        super(Formato_Pregunta_8, self).__init__(parent)
+        self.ui = Pregunta_8()
+        self.ui.setupUi(self)
+
+class Pregunta_9(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(967, 751)
+        self.widget = QWidget(Form)
+        self.widget.setGeometry(QRect(-90, -110, 1101, 881))
+        self.widget.setStyleSheet("QWidget {\n"
+"    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #0077b6, stop:0.5 #0096c7, stop:1 #00b4d8);\n"
+"}\n"
+"\n"
+"QLabel {\n"
+"    background-color: transparent;  /* Fondo transparente para QLabel */\n"
+"    color: white;  /* Color del texto del QLabel */\n"
+"    font-size: 16px;  /* Tamaño de fuente del QLabel */\n"
+"}\n"
+"\n"
+"QLineEdit {\n"
+"    background-color: white;  /* Fondo sólido blanco para QLineEdit */\n"
+"    border: 2px solid #00b4d8;\n"
+"    border-radius: 10px;\n"
+"    padding: 10px;\n"
+"    font-size: 16px;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid #0077b6; /* Color del borde al enfocar */\n"
+"    outline: none;\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton{\n"
+"    border-radius: 10px;\n"
+"    color: white;\n"
+"    background-color: rgb(0, 119, 182)\n"
+"}")
+        self.widget.setObjectName("widget")
+        self.label_5 = QLabel(self.widget)
+        self.label_5.setGeometry(QRect(610, 330, 61, 51))
+        self.label_5.setText("")
+        self.label_5.setPixmap(QPixmap(r"Recursos_Interfaz\Alzcare.png"))
+        self.label_5.setObjectName("label_5")
+        self.widget_2 = QWidget(self.widget)
+        self.widget_2.setGeometry(QRect(10, 110, 1191, 61))
+        self.widget_2.setStyleSheet("QWidget{\n"
+"    background-color: rgb(144, 224, 239);\n"
+"}")
+        self.widget_2.setObjectName("widget_2")
+        self.label_2 = QLabel(self.widget_2)
+        self.label_2.setGeometry(QRect(160, 20, 151, 21))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_2.setFont(font)
+        self.label_2.setObjectName("label_2")
+        self.label = QLabel(self.widget_2)
+        self.label.setGeometry(QRect(100, 10, 41, 41))
+        self.label.setText("")
+        self.label.setPixmap(QPixmap(r"Recursos_Interfaz\Alzcare.png"))
+        self.label.setScaledContents(True)
+        self.label.setObjectName("label")
+        self.pushButton_regresar = QPushButton(self.widget_2)
+        self.pushButton_regresar.setGeometry(QRect(960, 20, 81, 31))
+        self.pushButton_regresar.setText("")
+        icon = QIcon()
+        icon.addPixmap(QPixmap(r"Recursos_Interfaz\regresar.png"), QIcon.Normal, QIcon.Off)
+        self.pushButton_regresar.setIcon(icon)
+        self.pushButton_regresar.setIconSize(QSize(40, 240))
+        self.pushButton_regresar.setObjectName("pushButton_regresar")
+        self.widget_3 = QWidget(self.widget)
+        self.widget_3.setGeometry(QRect(240, 280, 651, 481))
+        self.widget_3.setStyleSheet("QWidget{\n"
+"    background-color: rgb(202, 240, 248);\n"
+"}\n"
+"QLabel{\n"
+"    color: rgb(0, 119, 182);}\n"
+"\n"
+"QPushButton{\n"
+"    background-color: rgb(0, 119, 182);\n"
+"    color: white;\n"
+"}")
+        self.widget_3.setObjectName("widget_3")
+        self.label_3 = QLabel(self.widget_3)
+        self.label_3.setGeometry(QRect(10, 0, 351, 41))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_3.setFont(font)
+        self.label_3.setObjectName("label_3")
+        self.label_7 = QLabel(self.widget_3)
+        self.label_7.setGeometry(QRect(50, 40, 551, 41))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_7.setFont(font)
+        self.label_7.setObjectName("label_7")
+        self.pushButton_A = QPushButton(self.widget_3)
+        self.pushButton_A.setGeometry(QRect(120, 150, 93, 28))
+        font = QFont()
+        font.setFamily("Montserrat")
+        self.pushButton_A.setFont(font)
+        self.pushButton_A.setObjectName("pushButton_A")
+        self.pushButton_B = QPushButton(self.widget_3)
+        self.pushButton_B.setGeometry(QRect(120, 230, 93, 28))
+        font = QFont()
+        font.setFamily("Montserrat")
+        self.pushButton_B.setFont(font)
+        self.pushButton_B.setObjectName("pushButton_B")
+        self.pushButton_C = QPushButton(self.widget_3)
+        self.pushButton_C.setGeometry(QRect(120, 270, 93, 28))
+        self.pushButton_C.setFont(font)
+        self.pushButton_C.setFont(font)
+        self.pushButton_C.setObjectName("pushButton_C")
+        self.label_A = QLabel(self.widget_3)
+        self.label_A.setGeometry(QRect(220, 150, 231, 21))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        self.label_A.setFont(font)
+        self.label_A.setObjectName("label_A")
+        self.label_B = QLabel(self.widget_3)
+        self.label_B.setGeometry(QRect(220, 230, 221, 21))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        self.label_B.setFont(font)
+        self.label_B.setObjectName("label_B")
+        self.label_C = QLabel(self.widget_3)
+        self.label_C.setGeometry(QRect(220, 270, 181, 16))
+        self.label_C.setFont(font)
+        self.label_C.setObjectName("label_C")
+        self.label_4 = QLabel(self.widget_3)
+        self.label_4.setGeometry(QRect(230, 320, 191, 121))
+        self.label_4.setText("")
+        self.label_4.setPixmap(QPixmap(r"Recursos_Interfaz\cama_int9.png"))
+        self.label_4.setScaledContents(True)
+        self.label_4.setObjectName("label_4")
+        self.label_6 = QLabel(self.widget)
+        self.label_6.setGeometry(QRect(250, 240, 531, 31))
+        self.label_6.setObjectName("label_6")
+
+        self.retranslateUi(Form)
+        QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        _translate = QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Pregunta 9"))
+        Form.setWindowIcon(QIcon(r"Recursos_Interfaz\Alzcare.png"))
+        self.label_2.setText(_translate("Form", "Alzcare - company"))
+        self.label_3.setText(_translate("Form", "<html><head/><body><p>Pregunta 9.</p><p><br/></p></body></html>"))
+        self.label_7.setText(_translate("Form", "<html><head/><body><p>¿El paciente necesita ayuda a la hora de levantarse de la cama?</p></body></html>"))
+        self.pushButton_A.setText(_translate("Form", "A"))
+        self.pushButton_B.setText(_translate("Form", "B"))
+        self.pushButton_C.setText(_translate("Form", "C"))
+        self.label_A.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Se sienta y se levanta sin ayuda</span></p></body></html>"))
+        self.label_B.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Se sienta y se levanta con ayuda</span></p></body></html>"))
+        self.label_C.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">No se levanta de la cama</span></p></body></html>"))
+        self.label_6.setText(_translate("Form", "El cuidador deberá estar presente para realizar las siguientes preguntas:"))
+
+class Formato_Pregunta_9(QDialog):
+    def __init__(self, parent=None):
+        super(Formato_Pregunta_9, self).__init__(parent)
+        self.ui = Pregunta_9()
+        self.ui.setupUi(self)
+
+class Pregunta_10(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(967, 734)
+        self.widget = QWidget(Form)
+        self.widget.setGeometry(QRect(-90, -110, 1101, 881))
+        self.widget.setStyleSheet("QWidget {\n"
+"    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #0077b6, stop:0.5 #0096c7, stop:1 #00b4d8);\n"
+"}\n"
+"\n"
+"QLabel {\n"
+"    background-color: transparent;  /* Fondo transparente para QLabel */\n"
+"    color: white;  /* Color del texto del QLabel */\n"
+"    font-size: 16px;  /* Tamaño de fuente del QLabel */\n"
+"}\n"
+"\n"
+"QLineEdit {\n"
+"    background-color: white;  /* Fondo sólido blanco para QLineEdit */\n"
+"    border: 2px solid #00b4d8;\n"
+"    border-radius: 10px;\n"
+"    padding: 10px;\n"
+"    font-size: 16px;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid #0077b6; /* Color del borde al enfocar */\n"
+"    outline: none;\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton{\n"
+"    border-radius: 10px;\n"
+"    color: white;\n"
+"    background-color: rgb(0, 119, 182)\n"
+"}")
+        self.widget.setObjectName("widget")
+        self.label_5 = QLabel(self.widget)
+        self.label_5.setGeometry(QRect(610, 330, 61, 51))
+        self.label_5.setText("")
+        self.label_5.setPixmap(QPixmap(r"Recursos_Interfaz\Alzcare.png"))
+        self.label_5.setObjectName("label_5")
+        self.widget_2 = QWidget(self.widget)
+        self.widget_2.setGeometry(QRect(10, 110, 1191, 61))
+        self.widget_2.setStyleSheet("QWidget{\n"
+"    background-color: rgb(144, 224, 239);\n"
+"}")
+        self.widget_2.setObjectName("widget_2")
+        self.label_2 = QLabel(self.widget_2)
+        self.label_2.setGeometry(QRect(160, 20, 151, 21))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_2.setFont(font)
+        self.label_2.setObjectName("label_2")
+        self.label = QLabel(self.widget_2)
+        self.label.setGeometry(QRect(100, 10, 41, 41))
+        self.label.setText("")
+        self.label.setPixmap(QPixmap(r"Recursos_Interfaz\Alzcare.png"))
+        self.label.setScaledContents(True)
+        self.label.setObjectName("label")
+        self.pushButton_regresar = QPushButton(self.widget_2)
+        self.pushButton_regresar.setGeometry(QRect(960, 20, 81, 31))
+        self.pushButton_regresar.setText("")
+        icon = QIcon()
+        icon.addPixmap(QPixmap(r"Recursos_Interfaz\regresar.png"), QIcon.Normal, QIcon.Off)
+        self.pushButton_regresar.setIcon(icon)
+        self.pushButton_regresar.setIconSize(QSize(40, 240))
+        self.pushButton_regresar.setObjectName("pushButton_regresar")
+        self.widget_3 = QWidget(self.widget)
+        self.widget_3.setGeometry(QRect(240, 280, 651, 481))
+        self.widget_3.setStyleSheet("QWidget{\n"
+"    background-color: rgb(202, 240, 248);\n"
+"}\n"
+"QLabel{\n"
+"    color: rgb(0, 119, 182);}\n"
+"\n"
+"QPushButton{\n"
+"    background-color: rgb(0, 119, 182);\n"
+"    color: white;\n"
+"}")
+        self.widget_3.setObjectName("widget_3")
+        self.label_3 = QLabel(self.widget_3)
+        self.label_3.setGeometry(QRect(10, 0, 351, 41))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(False)
+        font.setWeight(50)
+        self.label_3.setFont(font)
+        self.label_3.setObjectName("label_3")
+        self.label_7 = QLabel(self.widget_3)
+        self.label_7.setGeometry(QRect(160, 40, 421, 41))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_7.setFont(font)
+        self.label_7.setObjectName("label_7")
+        self.pushButton = QPushButton(self.widget_3)
+        self.pushButton.setGeometry(QRect(120, 150, 93, 28))
+        self.pushButton.setFont(font)
+        self.pushButton.setObjectName("pushButton")
+        self.pushButton_B = QPushButton(self.widget_3)
+        self.pushButton_B.setGeometry(QRect(120, 210, 93, 28))
+        self.pushButton_B.setFont(font)
+        self.pushButton_B.setObjectName("pushButton_B")
+        self.pushButton_C = QPushButton(self.widget_3)
+        self.pushButton_C.setGeometry(QRect(120, 270, 93, 28))
+        self.pushButton_C.setFont(font)
+        self.pushButton_C.setObjectName("pushButton_C")
+        self.pushButton_D = QPushButton(self.widget_3)
+        self.pushButton_D.setGeometry(QRect(120, 330, 93, 28))
+        self.pushButton_D.setFont(font)
+        self.pushButton_D.setObjectName("pushButton_D")
+        self.label_A = QLabel(self.widget_3)
+        self.label_A.setGeometry(QRect(220, 150, 261, 16))
+        self.label_A.setObjectName("label_A")
+        self.label_B = QLabel(self.widget_3)
+        self.label_B.setGeometry(QRect(220, 210, 141, 21))
+        self.label_B.setObjectName("label_B")
+        self.label_C = QLabel(self.widget_3)
+        self.label_C.setGeometry(QRect(220, 270, 141, 21))
+        self.label_C.setObjectName("label_C")
+        self.label_D = QLabel(self.widget_3)
+        self.label_D.setGeometry(QRect(220, 330, 221, 20))
+        self.label_D.setFont(font)
+        self.label_D.setObjectName("label_D")
+        self.label_6 = QLabel(self.widget)
+        self.label_6.setGeometry(QRect(250, 240, 531, 31))
+        self.label_6.setObjectName("label_6")
+
+        self.retranslateUi(Form)
+        QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        _translate = QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Pregunta 10"))
+        Form.setWindowIcon(QIcon(r"Recursos_Interfaz\Alzcare.png"))
+        self.label_2.setText(_translate("Form", "Alzcare - company"))
+        self.label_3.setText(_translate("Form", "<html><head/><body><p>Pregunta 10.</p></body></html>"))
+        self.label_7.setText(_translate("Form", "<html><head/><body><p>¿El paciente necesita ayuda en sus esfínteres?</p></body></html>"))
+        self.pushButton.setText(_translate("Form", "A"))
+        self.pushButton_B.setText(_translate("Form", "B"))
+        self.pushButton_C.setText(_translate("Form", "C"))
+        self.pushButton_D.setText(_translate("Form", "D"))
+        self.label_A.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Control completo de ambos esfínteres</span></p></body></html>"))
+        self.label_B.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Incontinencia ocasional</span></p></body></html>"))
+        self.label_C.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Necesita supervisión</span></p></body></html>"))
+        self.label_D.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Una sonda vesical o es incontinente</span></p></body></html>"))
+        self.label_6.setText(_translate("Form", "El cuidador deberá estar presente para realizar las siguientes preguntas:"))
+
+class Formato_Pregunta_10(QDialog):
+    def __init__(self, parent=None):
+        super(Formato_Pregunta_10, self).__init__(parent)
+        self.ui = Pregunta_10()
+        self.ui.setupUi(self)
+
 class Botonera(QMainWindow, Alzcare):
     def __init__(self, controlador):
         super().__init__()
@@ -1116,8 +2687,17 @@ class Botonera(QMainWindow, Alzcare):
         self.usuario = ""
         self.setupUi(self)
 
-
         self.menu_login = Formato_Log_in()
+        self.pregunta_1 = Formato_Pregunta_1()
+        self.pregunta_2 = Formato_Pregunta_2()
+        self.pregunta_3 = Formato_Pregunta_3()
+        self.pregunta_4 = Formato_Pregunta_4()
+        self.pregunta_5 = Formato_Pregunta_5()
+        self.pregunta_6 = Formato_Pregunta_6()
+        self.pregunta_7 = Formato_Pregunta_7()
+        self.pregunta_8 = Formato_Pregunta_8()
+        self.pregunta_9 = Formato_Pregunta_9()
+        self.pregunta_10 = Formato_Pregunta_10()
         self.menu_pre_registro = Formato_Pre_Registro()
         self.menu_registro_cuidador = Formato_Registro_Cuidador()
         self.menu_registro_paciente = Formato_Registro_Paciente()
@@ -1138,6 +2718,54 @@ class Botonera(QMainWindow, Alzcare):
 
         self.menu_login.ui.pushButton.clicked.connect(self.ventanas_inicio)
         self.menu_login.ui.pushButton_2.clicked.connect(self.ventana_seguimiento)
+
+        self.pregunta_1.ui.pushButton.clicked.connect(self.respuesta_pregunta_1)
+        self.pregunta_1.ui.pushButton_B.clicked.connect(self.respuesta_pregunta_1)
+        self.pregunta_1.ui.pushButton_C.clicked.connect(self.respuesta_pregunta_1)
+        self.pregunta_1.ui.pushButton_D.clicked.connect(self.respuesta_pregunta_1)
+        self.pregunta_1.ui.pushButton_regresar.clicked.connect(self.ventana_seguimiento)
+
+        self.pregunta_2.ui.pushButton.clicked.connect(self.respuesta_pregunta_2)
+        self.pregunta_2.ui.pushButton_C.clicked.connect(self.respuesta_pregunta_2)
+        self.pregunta_2.ui.pushButton_regresar.clicked.connect(self.ventana_seguimiento)
+
+        self.pregunta_3.ui.pushButton.clicked.connect(self.respuesta_pregunta_3)
+        self.pregunta_3.ui.pushButton_C.clicked.connect(self.respuesta_pregunta_3)
+        self.pregunta_3.ui.pushButton_regresar.clicked.connect(self.ventana_seguimiento)
+    
+        self.pregunta_4.ui.pushButton.clicked.connect(self.respuesta_pregunta_4)
+        self.pregunta_4.ui.pushButton_C.clicked.connect(self.respuesta_pregunta_4)
+        self.pregunta_4.ui.pushButton_regresar.clicked.connect(self.ventana_seguimiento)
+
+        self.pregunta_5.ui.pushButton.clicked.connect(self.respuesta_pregunta_5)
+        self.pregunta_5.ui.pushButton_C.clicked.connect(self.respuesta_pregunta_5)
+        self.pregunta_5.ui.pushButton_regresar.clicked.connect(self.ventana_seguimiento)
+
+        self.pregunta_6.ui.pushButton.clicked.connect(self.respuesta_pregunta_6)
+        self.pregunta_6.ui.pushButton_B.clicked.connect(self.respuesta_pregunta_6)
+        self.pregunta_6.ui.pushButton_C.clicked.connect(self.respuesta_pregunta_6)
+        self.pregunta_6.ui.pushButton_regresar.clicked.connect(self.ventana_seguimiento)
+
+        self.pregunta_7.ui.pushButton.clicked.connect(self.respuesta_pregunta_7)
+        self.pregunta_7.ui.pushButton_B.clicked.connect(self.respuesta_pregunta_7)
+        self.pregunta_7.ui.pushButton_C.clicked.connect(self.respuesta_pregunta_7)
+        self.pregunta_7.ui.pushButton_regresar.clicked.connect(self.ventana_seguimiento)
+
+        self.pregunta_8.ui.pushButton.clicked.connect(self.respuesta_pregunta_8)
+        self.pregunta_8.ui.pushButton_B.clicked.connect(self.respuesta_pregunta_8)
+        self.pregunta_8.ui.pushButton_C.clicked.connect(self.respuesta_pregunta_8)
+        self.pregunta_8.ui.pushButton_regresar.clicked.connect(self.ventana_seguimiento)
+
+        self.pregunta_9.ui.pushButton_A.clicked.connect(self.respuesta_pregunta_9)
+        self.pregunta_9.ui.pushButton_B.clicked.connect(self.respuesta_pregunta_9)
+        self.pregunta_9.ui.pushButton_C.clicked.connect(self.respuesta_pregunta_9)
+        self.pregunta_9.ui.pushButton_regresar.clicked.connect(self.ventana_seguimiento)
+
+        self.pregunta_10.ui.pushButton.clicked.connect(self.respuesta_pregunta_10)
+        self.pregunta_10.ui.pushButton_B.clicked.connect(self.respuesta_pregunta_10)
+        self.pregunta_10.ui.pushButton_C.clicked.connect(self.respuesta_pregunta_10)
+        self.pregunta_10.ui.pushButton_D.clicked.connect(self.respuesta_pregunta_10)
+        self.pregunta_10.ui.pushButton_regresar.clicked.connect(self.ventana_seguimiento)
 
         self.menu_pre_registro.ui.pushButton_paciente.clicked.connect(self.ventana_registro_paciente)
         self.menu_pre_registro.ui.pushButton_cuidador.clicked.connect(self.ventana_registro_cuidador)
@@ -1179,7 +2807,85 @@ class Botonera(QMainWindow, Alzcare):
             self.menu_seguimiento.show()
         else:
             QMessageBox.warning(self, "Error", "Usuario o contraseña incorrectos")
+
+    def respuesta_pregunta_1(self):
+        respuesta = str(self.pregunta_1.ui.sender().text())
+        self.controlador.respuesta_pregunta_1(respuesta)
+        self.pregunta_1.close()
+        self.pregunta_2.show()
     
+    def respuesta_pregunta_2(self):
+        respuesta = str(self.pregunta_2.ui.sender().text())
+        if respuesta == "C":
+            respuesta = "D"
+        self.controlador.respuesta_pregunta_2(respuesta)
+        self.pregunta_2.close()
+        self.pregunta_3.show()
+    
+    def respuesta_pregunta_3(self):
+        respuesta = str(self.pregunta_3.ui.sender().text())
+        if respuesta == "C":
+            respuesta = "D"
+        self.controlador.respuesta_pregunta_3(respuesta)
+        self.pregunta_3.close()
+        self.pregunta_4.show()
+    
+    def respuesta_pregunta_4(self):
+        respuesta = str(self.pregunta_4.ui.sender().text())
+        if respuesta == "C":
+            respuesta = "D"
+        self.controlador.respuesta_pregunta_4(respuesta)
+        self.pregunta_4.close()
+        self.pregunta_5.show()
+    
+    def respuesta_pregunta_5(self):
+        respuesta = str(self.pregunta_5.ui.sender().text())
+        if respuesta == "C":
+            respuesta = "D"
+        self.controlador.respuesta_pregunta_5(respuesta)
+        self.pregunta_5.close()
+        self.pregunta_6.show()
+
+    def respuesta_pregunta_6(self):
+        respuesta = str(self.pregunta_6.ui.sender().text())
+        if respuesta == "C":
+            respuesta = "D"
+        self.controlador.respuesta_pregunta_6(respuesta)
+        self.pregunta_6.close()
+        self.pregunta_7.show()
+    
+    def respuesta_pregunta_7(self):
+        respuesta = str(self.pregunta_7.ui.sender().text())
+        if respuesta == "C":
+            respuesta = "D"
+        elif respuesta == "B":
+            respuesta = "C"
+        self.controlador.respuesta_pregunta_7(respuesta)
+        self.pregunta_7.close()
+        self.pregunta_8.show()
+    
+    def respuesta_pregunta_8(self):
+        respuesta = str(self.pregunta_8.ui.sender().text())
+        if respuesta == "C":
+            respuesta = "D"
+        self.controlador.respuesta_pregunta_8(respuesta)
+        self.pregunta_8.close()
+        self.pregunta_9.show()
+
+    def respuesta_pregunta_9(self):
+        respuesta = str(self.pregunta_9.ui.sender().text())
+        if respuesta == "C":
+            respuesta = "D"
+        self.controlador.respuesta_pregunta_9(respuesta)
+        self.pregunta_9.close()
+        self.pregunta_10.show()
+
+    def respuesta_pregunta_10(self):
+        respuesta = str(self.pregunta_10.ui.sender().text())
+        self.controlador.respuesta_pregunta_10(respuesta)
+        self.pregunta_10.close()
+        self.menu_seguimiento.show()
+
     def boton_paginaRegistro(self):
         self.stackedWidget.setCurrentIndex(2)
         QTimer.singleShot(4000, self.ventana_pre_registro)
@@ -1200,9 +2906,9 @@ class Botonera(QMainWindow, Alzcare):
     
     def registrar_paciente(self):
         nombre = self.menu_registro_paciente.ui.lineEdit_nombre.text()
-        edad = self.menu_registro_paciente.ui.lineEdit_edad.text()
-        telefono = self.menu_registro_paciente.ui.lineEdit_celular.text()
-        cedula = self.menu_registro_paciente.ui.lineEdit_cedula.text()
+        edad = int(self.menu_registro_paciente.ui.lineEdit_edad.text())
+        telefono = int(self.menu_registro_paciente.ui.lineEdit_celular.text())
+        cedula = int(self.menu_registro_paciente.ui.lineEdit_cedula.text())
         lugar_residencia = self.menu_registro_paciente.ui.lineEdit_residencia.text()
         lugar_nacimiento = self.menu_registro_paciente.ui.lineEdit_nacimiento.text()
         fase_alzheimer = self.menu_registro_paciente.ui.lineEdit_fasealz.text()
@@ -1232,9 +2938,9 @@ class Botonera(QMainWindow, Alzcare):
     def registrar_cuidador(self):
         nombre = self.menu_registro_cuidador.ui.lineEdit_nombre.text()
         apellido = self.menu_registro_cuidador.ui.lineEdit_apellido.text()
-        cedula = self.menu_registro_cuidador.ui.lineEdit_cedula.text()
+        cedula = int(self.menu_registro_cuidador.ui.lineEdit_cedula.text())
         contrasena = self.menu_registro_cuidador.ui.lineEdit_contrasena.text()
-        telefono = self.menu_registro_cuidador.ui.lineEdit_celular.text()
+        telefono = int(self.menu_registro_cuidador.ui.lineEdit_celular.text())
         formacion = self.menu_registro_cuidador.ui.lineEdit_formacion.text()
         usuario = self.menu_registro_cuidador.ui.lineEdit_usuario.text()
         if not(nombre and apellido and cedula and contrasena and telefono and formacion and usuario):
@@ -1253,8 +2959,7 @@ class Botonera(QMainWindow, Alzcare):
                 self.menu_pre_registro.show()
             else:
                 QMessageBox.warning(self, "Error", "No se pudo registrar al cuidador")
-
-    
+  
     def boton_paginaMoca(self):
         self.stackedWidget.setCurrentIndex(3)
         QTimer.singleShot(4000, (lambda: webbrowser.open("https://mocacognition.com/paper/")))
