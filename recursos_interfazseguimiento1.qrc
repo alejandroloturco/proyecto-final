@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="prefijoNuevo">
+    <file>calendario.png</file>
+    <file>cerebro.png</file>
+    <file>regresar.png</file>
+    <file>Alzcare.png</file>
+  </qresource>
+</RCC>
