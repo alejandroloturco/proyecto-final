@@ -6,22 +6,26 @@ class Controlador():
         self.cuidador = Cuidador(listcui)
         self.paciente = Paciente(listpac)
         self.seguimiento = Seguimiento(listreg)
-        self.puntos_moca = 0
 
     def inicio(self):
-        self.menu = Menu_Principal(self)
-        self.menu.setup()
+        self.menu = Botonera(controlador)
+        self.menu.setWindowIcon(QIcon(r'Recursos_Interfaz\Alzcare.png'))
         self.menu.show()
-        sys.exit(self.aplicacion.exec_())  
+        sys.exit(self.aplicacion.exec_())
 
-    def conteo_puntos(self):
-        self.puntos_moca += 1
-        print(self.puntos_moca)
+    def validar_usuario(self, usuario, contrasena):
+        return self.cuidador.validar_usuario(usuario, contrasena)
+    
+    def registro_cuidador(self, nombre, apellido, telefono, cedula, formacion, usuario, contraseña):
+        return self.cuidador.registro_cuidador(nombre, apellido, telefono, cedula, formacion, usuario, contraseña)
+    
+    def registro_paciente(self, nombre, apellido, edad, telefono, cedula, residencia, nacimiento, fase, estudio, dominancia, tiempoalz):
+        return self.paciente.registro_paciente(nombre, apellido, edad, telefono, cedula, residencia, nacimiento, fase, estudio, dominancia, tiempoalz, self.cuidador.get_listcui())
 
 if __name__ == '__main__':
     crear_BDSQL()
     crear_tablasSQL()
     listcui, listpac, listreg = obtener_dataSQL()
-
+    app = QApplication(sys.argv)
     controlador = Controlador(listcui, listpac, listreg)
     controlador.inicio()
