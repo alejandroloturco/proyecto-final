@@ -1,7 +1,0 @@
-<RCC>
-  <qresource prefix="prefijoNuevo">
-    <file>edad.png</file>
-    <file>regresar.png</file>
-    <file>Alzcare.png</file>
-  </qresource>
-</RCC>
