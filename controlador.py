@@ -6,6 +6,7 @@ class Controlador():
         self.cuidador = Cuidador(listcui)
         self.paciente = Paciente(listpac)
         self.seguimiento = Seguimiento(listreg)
+        self.puntaje = 0
 
     def inicio(self):
         self.menu = Botonera(controlador)
@@ -21,6 +22,18 @@ class Controlador():
     
     def registro_paciente(self, nombre, apellido, edad, telefono, cedula, residencia, nacimiento, fase, estudio, dominancia, tiempoalz):
         return self.paciente.registro_paciente(nombre, apellido, edad, telefono, cedula, residencia, nacimiento, fase, estudio, dominancia, tiempoalz, self.cuidador.get_listcui())
+    
+    def registro_seguimiento(self, cedula, fecha, hora, actividad, observacion):
+        return self.seguimiento.registro_seguimiento(cedula, fecha, hora, actividad, observacion)
+    
+    def exportar_perfil(self, usuario):
+        return exportar_perfil(usuario)
+    
+    def importar_perfil(self, direccion):
+        return importar_perfil(direccion)
+    
+    def puntos(self, respuesta):
+        return asignar_puntos(self.puntaje ,respuesta)
 
 if __name__ == '__main__':
     crear_BDSQL()

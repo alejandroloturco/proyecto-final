@@ -1,12 +1,13 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QDialog, QVBoxLayout, QHBoxLayout ,QPushButton, QLabel, QStackedWidget, QLineEdit, QFormLayout, QComboBox, QStackedLayout, QMessageBox, QGraphicsView, QGraphicsScene, QGraphicsProxyWidget, QLabel, QGridLayout, QSpacerItem, QSizePolicy, QStatusBar
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QDialog, QVBoxLayout, QHBoxLayout ,QPushButton, QLabel, QStackedWidget, QLineEdit, QFormLayout, QComboBox, QStackedLayout, QMessageBox, QGraphicsView, QGraphicsScene, QGraphicsProxyWidget, QLabel, QGridLayout, QSpacerItem, QSizePolicy, QStatusBar, QFileDialog
 from PyQt5.QtCore  import QTimer, Qt, QTimer, QSize, QRect, QCoreApplication, QMetaObject, QRegExp
 from PyQt5.QtGui  import QPixmap, QFont, QIcon, QRegExpValidator, QIntValidator
 import webbrowser
+import random
 
 class Alzcare(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(921, 612)
+        MainWindow.resize(820, 590)
         MainWindow.setStyleSheet("QWidget {\n"
 "    background-color: rgb(225, 250, 255);\n"
 "}\n"
@@ -507,7 +508,21 @@ class Alzcare(object):
         self.boton_registro2.setText(_translate("MainWindow", "Registro"))
         self.boton_moca2.setText(_translate("MainWindow", "Moca"))
         self.pushButton_10.setText(_translate("MainWindow", "Salir"))
-        self.label_3.setText(_translate("MainWindow", "\"Tu asistente personal para una vida mejor\""))
+        x = random.sample(range(0, 7), 7)
+        if x[0] == 0:
+            self.label_3.setText(_translate("MainWindow", "\"Tu asistente personal para una vida mejor\"")) 
+        elif x[0] == 1:
+            self.label_3.setText(_translate("MainWindow", "\"Facilitando la vida con Alzheimer, un día a la vez\""))
+        elif x[0] == 2:
+            self.label_3.setText(_translate("MainWindow", "\"Cuidando a los que cuidan\""))
+        elif x[0] == 3:
+            self.label_3.setText(_translate("MainWindow", "\"Alzcare, tu mejor opción\""))
+        elif x[0] == 4:
+            self.label_3.setText(_translate("MainWindow", "\"Un día a la vez, un paso a la vez\""))
+        elif x[0] == 5:
+            self.label_3.setText(_translate("MainWindow", "\"Nos importa tu bienestar. Te acompañamos en cada paso\""))
+        elif x[0] == 6:
+            self.label_3.setText(_translate("MainWindow", "\"Cuidamos de ti con dedicación y cariño diario\""))
         self.label_7.setText(_translate("MainWindow", "Faciltando la vida con Alzheimer, un día a la vez"))
         self.label_12.setText(_translate("MainWindow", "Test moca"))
         self.label_13.setText(_translate("MainWindow", "Seguimiento"))
@@ -1098,6 +1113,7 @@ class Botonera(QMainWindow, Alzcare):
     def __init__(self, controlador):
         super().__init__()
         self.controlador = controlador
+        self.usuario = ""
         self.setupUi(self)
 
 
@@ -1244,4 +1260,9 @@ class Botonera(QMainWindow, Alzcare):
         QTimer.singleShot(4000, (lambda: webbrowser.open("https://mocacognition.com/paper/")))
 
     def importacion_datos(self):
-        self.menu_pre_registro.close()
+        direccion, _ = QFileDialog.getOpenFileName(self, "Seleccione el archivo", "", "JSON Files (*.json)")
+        if direccion:
+            if self.controlador.importar_datos(direccion):
+                QMessageBox.information(self, "Importación", "Datos importados con éxito")
+            else:
+                QMessageBox.warning(self, "Error", "No se pudo importar los datos")

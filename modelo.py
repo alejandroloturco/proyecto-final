@@ -1,8 +1,7 @@
 from datetime import datetime
 import mysql.connector
-import json
 import os
-import random
+import json
 from bson import json_util
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
@@ -10,27 +9,30 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cv2
 import pydicom
-import nltk
-from spellchecker import SpellChecker
-import spacy
 import sys 
 
-def vaidacion_p(palabra):
-    nlp = spacy.load('en_core_web_sm')
-    spell = SpellChecker()    
-    if spell.correction(palabra) != palabra:
-        return False
-    if not palabra.lower().startswith('p'):
-        return False
-    doc = nlp(palabra)
-    token = doc[0]
-    if token.pos_ == 'NOUN':
-        return False
-    if token.pos_ == 'VERB' and token.tag_ != 'VB':
-        return False
-    if token.tag_ not in ['VB', 'JJ', 'RB']: 
-        return False
-    return True
+def asignar_puntos(respuesta,puntos):
+    if respuesta == "A":
+        puntos += 3
+    elif respuesta == "B":
+        puntos += 2
+    elif respuesta == "C":
+        puntos += 1
+    elif respuesta == "D":
+        puntos += 0
+    return puntos
+
+def contador():
+    precont = 0
+    for filename in os.listdir('Perfiles_Exportados'):
+        if filename.endswith('.json'):
+            subcont = int(filename.split(".")[0].split("_")[-1])
+            if precont < subcont:
+                precont = subcont
+            elif precont >= subcont:
+                cont = precont
+    cont = precont
+    return cont
 
 def crear_BDSQL():
     cnx = mysql.connector.connect(
@@ -148,17 +150,17 @@ def añadir_cuidador(nombre,apellido,telefono,cedula,formacion,usuario,contrase�
 
 def añadir_paciente(id_cuidador,nombre,apellido,edad,telefono,cedula,nacimiento,procedencia,fase,escolaridad,mano_dominante,tiempo_alz, listpac):
     '''Se ingresa un paciente a la base de datos'''
-    #try:            
-    cursorSQL, cnxSQL = conectar_SQL()
-    listdatareg = []
-    listus = ()        
-    listus = (len(listpac),id_cuidador,nombre,apellido,edad,telefono,cedula,nacimiento,procedencia,fase,escolaridad,mano_dominante,tiempo_alz)
-    listdatareg.append(listus)
-    cursorSQL.executemany("""INSERT INTO paciente (ID, ID_Cuidador, Nombre, Apellido, Edad, Telefono, Cedula, Nacimiento, Procedencia, Fase, Escolaridad, Mano_dominante, Tiempo_Alz) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", listdatareg)
-    desconectar_SQL(cnxSQL,cursorSQL)
-    return True
-    #except: 
-    #    print("Dato ingresado no valido")
+    try:            
+        cursorSQL, cnxSQL = conectar_SQL()
+        listdatareg = []
+        listus = ()        
+        listus = (len(listpac),id_cuidador,nombre,apellido,edad,telefono,cedula,nacimiento,procedencia,fase,escolaridad,mano_dominante,tiempo_alz)
+        listdatareg.append(listus)
+        cursorSQL.executemany("""INSERT INTO paciente (ID, ID_Cuidador, Nombre, Apellido, Edad, Telefono, Cedula, Nacimiento, Procedencia, Fase, Escolaridad, Mano_dominante, Tiempo_Alz) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", listdatareg)
+        desconectar_SQL(cnxSQL,cursorSQL)
+        return True
+    except: 
+        print("Dato ingresado no valido")
 
 def añadir_respuestas(id,fecha,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10):    
     '''Se ingresan las respuestas de las 10 preguntas en fio'''
@@ -174,7 +176,87 @@ def añadir_respuestas(id,fecha,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10):
     except: 
         print("Dato ingresado no valido")
     
-    
+def exportar_perfil(usuario):
+    '''Exporta el perfil del usuario en formato json'''
+    cursorSQL, cnx = conectar_SQL()
+    direccion = (f"Perfiles_Exportados\Perfil_{contador()+1}.json")
+    cursorSQL.execute("SELECT * FROM cuidador WHERE Usuario = '"+usuario+"'")
+    resultado = cursorSQL.fetchall()
+    for i in resultado:
+        diccui = {}
+        diccui = {
+            "ID": (i[0]),
+            "Nombre": (i[1]),
+            "Apellido": (i[2]),
+            "Telefono": (i[3]),
+            "Cedula": (i[4]),
+            "Formacion": (i[5]),
+            "Usuario": (i[6]),
+            "Contraseña": (i[7])
+            }
+        
+    cursorSQL.execute("SELECT * FROM paciente WHERE ID_Cuidador = '"+str(diccui["ID"])+"'")
+    resultado = cursorSQL.fetchall()
+    listpac = []
+    for i in resultado:
+        dicpac = {}
+        dicpac = {
+            "ID": (i[0]),
+            "ID_Cuidador": (i[1]),
+            "Nombre": (i[2]),
+            "Apellido": (i[3]),
+            "Edad": (i[4]),
+            "Telefono": (i[5]),
+            "Cedula": (i[6]),
+            "Nacimiento": (i[7]),
+            "Procedencia": (i[8]),                                             
+            "Fase": (i[9]),
+            "Escolaridad": (i[10]),
+            "Mano_Dominante": (i[11])
+            }
+        listpac.append(dicpac)
+    diccui["Paciente"] = listpac
+    cursorSQL.execute("SELECT * FROM seguimiento WHERE ID_Paciente = '"+str(listpac[0]["ID"])+"'")
+    resultado = cursorSQL.fetchall()
+    listreg = []
+    for i in resultado:
+        dichm = {}
+        dichm = {
+            "ID": (i[0]),
+            "ID_Paciente": (i[1]),
+            "Fecha_Registro": (i[2]),
+            "Pregunta_1": (i[3]),
+            "Pregunta_2": (i[4]),
+            "Pregunta_3": (i[5]),
+            "Pregunta_4": (i[6]),
+            "Pregunta_5": (i[7]),
+            "Pregunta_6": (i[8]),
+            "Pregunta_7": (i[9]),
+            "Pregunta_8": (i[10]),
+            "Pregunta_9": (i[11]),
+            "Pregunta_10": (i[12])         
+            }
+        listreg.append(dichm)
+    diccui["Paciente"][i]["Seguimiento"] = listreg
+    with open(direccion, 'w', encoding='utf-8') as file:
+        json.dump(diccui,file,indent=3, ensure_ascii=False)
+    desconectar_SQL(cnx,cursorSQL)
+    return True
+
+def importar_perfil(direccion):
+    '''Importa el perfil del usuario en formato json'''
+    with open(direccion, 'r', encoding='utf-8') as file:
+        data = json.load(file)
+    try:
+        añadir_cuidador(data["Nombre"],data["Apellido"],data["Telefono"],data["Cedula"],data["Formacion"],data["Usuario"],data["Contraseña"], data["Paciente"])
+        for i in range(len(data["Paciente"])):
+            añadir_paciente(data["Paciente"][i]["ID_Cuidador"],data["Paciente"][i]["Nombre"],data["Paciente"][i]["Apellido"],data["Paciente"][i]["Edad"],data["Paciente"][i]["Telefono"],data["Paciente"][i]["Cedula"],data["Paciente"][i]["Nacimiento"],data["Paciente"][i]["Procedencia"],data["Paciente"][i]["Fase"],data["Paciente"][i]["Escolaridad"],data["Paciente"][i]["Mano_Dominante"],data["Paciente"][i]["Tiempo_Alz"], data["Paciente"])
+            for x in range(len(data["Paciente"][i]["Seguimiento"])):
+                añadir_respuestas(data["Paciente"][i]["ID"],data["Paciente"][i]["Seguimiento"][x]["Fecha_Registro"],data["Paciente"][i]["Seguimiento"][x]["Pregunta_1"],data["Paciente"][i]["Seguimiento"][x]["Pregunta_2"],data["Paciente"][i]["Seguimiento"][x]["Pregunta_3"],data["Paciente"][i]["Seguimiento"][x]["Pregunta_4"],data["Paciente"][i]["Seguimiento"][x]["Pregunta_5"],data["Paciente"][i]["Seguimiento"][x]["Pregunta_6"],data["Paciente"][i]["Seguimiento"][x]["Pregunta_7"],data["Paciente"][i]["Seguimiento"][x]["Pregunta_8"],data["Paciente"][i]["Seguimiento"][x]["Pregunta_9"],data["Paciente"][i]["Seguimiento"][x]["Pregunta_10"])
+        return True
+    except:
+        print("Error al importar perfil")
+        return False
 class Cuidador:
     def __init__(self,listcui):
         self._listcui = listcui
@@ -219,5 +301,8 @@ class Seguimiento:
     
     def registro_seguimiento(self, id, fecha, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10):
         self._listreg.append({"ID": len(self._listreg)+1, "ID_Paciente": id, "Fecha_Registro": fecha, "Pregunta_1": p1, "Pregunta_2": p2, "Pregunta_3": p3, "Pregunta_4": p4, "Pregunta_5": p5, "Pregunta_6": p6, "Pregunta_7": p7, "Pregunta_8": p8, "Pregunta_9": p9, "Pregunta_10": p10})
-        añadir_respuestas(id,fecha,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10)
+        if añadir_respuestas(id,fecha,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10):
+            return True
+        else:
+            return False
 
