@@ -280,23 +280,23 @@ def importar_perfil(direccion):
     '''Importa el perfil del usuario en formato json'''
     with open(direccion, 'r', encoding='utf-8') as file:
         data = json.load(file)
-    #try:
-    listcui, listpac, listreg = obtener_dataSQL()
-    cuidador = data["Cuidador"][0]
-    paciente = data["Paciente"][0]
-    seguimiento = data["Seguimiento"]
-    x = len(listreg)
-    y = len(listpac)
-    z = len(listcui)
-    añadir_cuidador(cuidador["Nombre"],cuidador["Apellido"],cuidador["Telefono"],cuidador["Cedula"],cuidador["Formacion"],cuidador["Usuario"],cuidador["Contraseña"], z)
-    añadir_paciente(paciente["ID_Cuidador"],paciente["Nombre"],paciente["Apellido"],paciente["Edad"],paciente["Telefono"],paciente["Cedula"],paciente["Nacimiento"],paciente["Procedencia"],paciente["Fase"],paciente["Escolaridad"],paciente["Mano_Dominante"],paciente["Tiempo_Alz"], y)
-    for i in seguimiento:
-        añadir_respuestas(i["ID_Paciente"],i["Fecha_Registro"],i["Pregunta_1"],i["Pregunta_2"],i["Pregunta_3"],i["Pregunta_4"],i["Pregunta_5"],i["Pregunta_6"],i["Pregunta_7"],i["Pregunta_8"],i["Pregunta_9"],i["Pregunta_10"],i["Puntos_Totales"], x)
-        x += 1
-    return True
-    #except:
-    #    print("Error al importar perfil")
-    #    return False
+    try:
+        listcui, listpac, listreg = obtener_dataSQL()
+        cuidador = data["Cuidador"][0]
+        paciente = data["Paciente"][0]
+        seguimiento = data["Seguimiento"]
+        x = len(listreg)
+        y = len(listpac)
+        z = len(listcui)
+        añadir_cuidador(cuidador["Nombre"],cuidador["Apellido"],cuidador["Telefono"],cuidador["Cedula"],cuidador["Formacion"],cuidador["Usuario"],cuidador["Contraseña"], z)
+        añadir_paciente(paciente["ID_Cuidador"],paciente["Nombre"],paciente["Apellido"],paciente["Edad"],paciente["Telefono"],paciente["Cedula"],paciente["Nacimiento"],paciente["Procedencia"],paciente["Fase"],paciente["Escolaridad"],paciente["Mano_Dominante"],paciente["Tiempo_Alz"], y)
+        for i in seguimiento:
+            añadir_respuestas(i["ID_Paciente"],i["Fecha_Registro"],i["Pregunta_1"],i["Pregunta_2"],i["Pregunta_3"],i["Pregunta_4"],i["Pregunta_5"],i["Pregunta_6"],i["Pregunta_7"],i["Pregunta_8"],i["Pregunta_9"],i["Pregunta_10"],i["Puntos_Totales"], x)
+            x += 1
+        return True
+    except:
+        print("Error al importar perfil")
+        return False
 
 def id_paciente(usuario):
     '''Se obtiene el id del paciente'''
