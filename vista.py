@@ -3321,13 +3321,13 @@ class Botonera(QMainWindow, Alzcare):
     def importacion_perfil(self):
         direccion, _ = QFileDialog.getOpenFileName(self, "Seleccione el archivo", "", "JSON Files (*.json)")
         if direccion:
-            if self.controlador.importar_datos(direccion):
+            if self.controlador.importar_perfil(direccion):
                 QMessageBox.information(self, "Importación", "Datos importados con éxito")
             else:
                 QMessageBox.warning(self, "Error", "No se pudo importar los datos")
     
-    def exportar_perfil(self, usuario):
-        if self.controlador.exportar_perfil(usuario):
+    def exportar_perfil(self):
+        if self.controlador.exportar_perfil(self.usuario):
             QMessageBox.information(self, "Exportación", "Datos exportados con éxito")
         else:
             QMessageBox.warning(self, "Error", "No se pudo exportar los datos")

@@ -1,0 +1,81 @@
+{
+   "Cuidador": [
+      {
+         "ID": 1,
+         "Nombre": "Pedro",
+         "Apellido": "Pablo",
+         "Telefono": 3241232242,
+         "Cedula": 1004726312,
+         "Formacion": "Enfermero",
+         "Usuario": "cuidador_1",
+         "Contraseña": "admin123"
+      }
+   ],
+   "Paciente": [
+      {
+         "ID": 1,
+         "ID_Cuidador": 1,
+         "Nombre": "Mario",
+         "Apellido": "Mario",
+         "Edad": 20,
+         "Telefono": 3214123125,
+         "Cedula": 1043123234,
+         "Nacimiento": "Medellin",
+         "Procedencia": "Medellin",
+         "Fase": "terminal",
+         "Escolaridad": "Universitarios",
+         "Mano_Dominante": "Mano derecha",
+         "Tiempo_Alz": "3 años"
+      }
+   ],
+   "Seguimiento": [
+      {
+         "ID": 1,
+         "ID_Paciente": 1,
+         "Fecha_Registro": "2024-06-03 18:59:59",
+         "Pregunta_1": "B",
+         "Pregunta_2": "D",
+         "Pregunta_3": "A",
+         "Pregunta_4": "A",
+         "Pregunta_5": "D",
+         "Pregunta_6": "A",
+         "Pregunta_7": "C",
+         "Pregunta_8": "D",
+         "Pregunta_9": "B",
+         "Pregunta_10": "C",
+         "Puntos_Totales": 15
+      },
+      {
+         "ID": 2,
+         "ID_Paciente": 1,
+         "Fecha_Registro": "2024-06-04 19:12:22",
+         "Pregunta_1": "C",
+         "Pregunta_2": "A",
+         "Pregunta_3": "D",
+         "Pregunta_4": "A",
+         "Pregunta_5": "A",
+         "Pregunta_6": "B",
+         "Pregunta_7": "A",
+         "Pregunta_8": "D",
+         "Pregunta_9": "B",
+         "Pregunta_10": "C",
+         "Puntos_Totales": 18
+      },
+      {
+         "ID": 3,
+         "ID_Paciente": 1,
+         "Fecha_Registro": "2024-06-05 19:12:32",
+         "Pregunta_1": "A",
+         "Pregunta_2": "D",
+         "Pregunta_3": "A",
+         "Pregunta_4": "D",
+         "Pregunta_5": "A",
+         "Pregunta_6": "D",
+         "Pregunta_7": "A",
+         "Pregunta_8": "D",
+         "Pregunta_9": "D",
+         "Pregunta_10": "A",
+         "Puntos_Totales": 15
+      }
+   ]
+}
