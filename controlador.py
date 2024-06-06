@@ -23,8 +23,28 @@ class Controlador():
     def registro_paciente(self, nombre: str, apellido: str, edad: int, telefono: int, cedula: int, residencia: str, nacimiento: str, fase: str, estudio: str, dominancia: str, tiempoalz: str) -> bool:
         return self.paciente.registro_paciente(nombre, apellido, edad, telefono, cedula, residencia, nacimiento, fase, estudio, dominancia, tiempoalz, self.cuidador.get_listcui())
     
-    def registro_seguimiento(self, id: int, fecha, p: list) -> bool:
-        return self.seguimiento.registro_seguimiento(id, fecha, p)
+    def registro_seguimiento(self, usuario, listaresp: list) -> bool:
+        id = id_paciente(usuario)
+        fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        bool = self.seguimiento.registro_seguimiento(id, fecha, listaresp, self.puntaje)
+        self.puntaje = 0
+        return bool
+    
+    def grafico(self, usuario: str):
+        id = id_paciente(usuario)
+        datos = self.seguimiento.datos_histograma(id)
+        fechas = datos["fechas"]
+        puntajes = datos["puntajes"]
+        plt.bar(fechas, puntajes, color = 'blue')
+        plt.xlabel('Fechas')
+        plt.ylabel('Puntajes')
+        plt.title('Puntajes de seguimiento')
+        buf = BytesIO()
+        plt.savefig(buf, format='png')
+        buf.seek(0)
+        pixmap = QPixmap()
+        pixmap.loadFromData(buf.getvalue(), 'PNG')
+        return pixmap, puntajes[-1]
     
     def exportar_perfil(self, usuario: str) -> bool:
         return exportar_perfil(usuario)
@@ -33,7 +53,7 @@ class Controlador():
         return importar_perfil(direccion)
     
     def puntos(self, respuesta: str):
-        return self.puntaje + puntos[respuesta]
+        self.puntaje += obtener_puntos(respuesta)
 
 if __name__ == '__main__':
     crear_BDSQL()

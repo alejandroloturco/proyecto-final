@@ -647,7 +647,7 @@ class Log_in(object):
         self.pushButton_3.setObjectName("pushButton_3")
 
         self.retranslateUi(Form)
-        self.pushButton_3.clicked.connect(Form.close) # type: ignore
+        self.pushButton_3.clicked.connect(Form.close)
         QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
@@ -768,7 +768,7 @@ class Pre_Registro(object):
         self.pushButton_salir.setObjectName("pushButton_salir")
 
         self.retranslateUi(Form)
-        self.pushButton_salir.clicked['bool'].connect(Form.close) # type: ignore
+        self.pushButton_salir.clicked['bool'].connect(Form.close)
         QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
@@ -917,7 +917,7 @@ class Registro_Cuidador(object):
         self.label_9.setObjectName("label_9")
 
         self.retranslateUi(Form)
-        self.pushButton_3.clicked['bool'].connect(Form.close) # type: ignore
+        self.pushButton_3.clicked['bool'].connect(Form.close)
         QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
@@ -1078,7 +1078,7 @@ class Registro_Paciente(object):
         self.label_12.setObjectName("label_12")
 
         self.retranslateUi(Form)
-        self.pushButton_3.clicked.connect(Form.close) # type: ignore
+        self.pushButton_3.clicked.connect(Form.close)
         QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
@@ -1105,6 +1105,317 @@ class Formato_Registro_Paciente(QDialog):
     def __init__(self, parent=None):
         super(Formato_Registro_Paciente, self).__init__(parent)
         self.ui = Registro_Paciente()
+        self.ui.setupUi(self)
+
+class Seguimiento_Paciente(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(1092, 801)
+        self.widget = QWidget(Form)
+        self.widget.setGeometry(QRect(-50, -20, 1281, 921))
+        self.widget.setStyleSheet("QWidget {\n"
+"    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #0077b6, stop:0.5 #0096c7, stop:1 #00b4d8);\n"
+"}\n"
+"\n"
+"QLabel {\n"
+"    background-color: transparent;  /* Fondo transparente para QLabel */\n"
+"    color: white;  /* Color del texto del QLabel */\n"
+"    font-size: 16px;  /* Tamaño de fuente del QLabel */\n"
+"}\n"
+"\n"
+"QLineEdit {\n"
+"    background-color: white;  /* Fondo sólido blanco para QLineEdit */\n"
+"    border: 2px solid #00b4d8;\n"
+"    border-radius: 10px;\n"
+"    padding: 10px;\n"
+"    font-size: 16px;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid #0077b6; /* Color del borde al enfocar */\n"
+"    outline: none;\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton{\n"
+"    border-radius: 10px;\n"
+"    background-color: rgb(0, 180, 216);\n"
+"}")
+        self.widget.setObjectName("widget")
+        self.label = QLabel(self.widget)
+        self.label.setGeometry(QRect(440, 70, 321, 61))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label.setFont(font)
+        self.label.setObjectName("label")
+        self.label_2 = QLabel(self.widget)
+        self.label_2.setGeometry(QRect(70, 40, 171, 21))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        self.label_2.setFont(font)
+        self.label_2.setObjectName("label_2")
+        self.label_3 = QLabel(self.widget)
+        self.label_3.setGeometry(QRect(550, 180, 101, 21))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        self.label_3.setFont(font)
+        self.label_3.setObjectName("label_3")
+        self.widget_6 = QWidget(self.widget)
+        self.widget_6.setGeometry(QRect(120, 370, 271, 311))
+        self.widget_6.setStyleSheet("QWidget {\n"
+"    background-color: rgb(225, 255, 255);\n"
+"}\n"
+"\n"
+"QLabel{\n"
+"    color: rgb(0, 5, 1);\n"
+"}\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid #0077b6; \n"
+"    outline: none;\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton{\n"
+"    border-radius: 10px;\n"
+"    background-color: rgb(0, 119, 182);\n"
+"    color:white;\n"
+"}")
+        self.widget_6.setObjectName("widget_6")
+        self.label_4 = QLabel(self.widget_6)
+        self.label_4.setGeometry(QRect(50, 40, 191, 181))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        self.label_4.setFont(font)
+        self.label_4.setObjectName("label_4")
+        self.pushButton_4 = QPushButton(self.widget_6)
+        self.pushButton_4.setGeometry(QRect(30, 270, 221, 28))
+        font = QFont()
+        font.setFamily("Montserrat")
+        self.pushButton_4.setFont(font)
+        self.pushButton_4.setObjectName("pushButton_4")
+        self.widget_7 = QWidget(self.widget)
+        self.widget_7.setGeometry(QRect(430, 370, 281, 311))
+        self.widget_7.setStyleSheet("QWidget {\n"
+"    background-color: rgb(225, 255, 255);\n"
+"}\n"
+"\n"
+"QLabel{\n"
+"    color: rgb(0, 5, 1);\n"
+"}\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid #0077b6; \n"
+"    outline: none;\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton{\n"
+"    border-radius: 10px;\n"
+"    background-color: rgb(0, 119, 182);\n"
+"    color:white;\n"
+"}")
+        self.widget_7.setObjectName("widget_7")
+        self.pushButton_5 = QPushButton(self.widget_7)
+        self.pushButton_5.setGeometry(QRect(30, 270, 221, 28))
+        font = QFont()
+        font.setFamily("Montserrat")
+        self.pushButton_5.setFont(font)
+        self.pushButton_5.setObjectName("pushButton_5")
+        self.label_5 = QLabel(self.widget_7)
+        self.label_5.setGeometry(QRect(10, 40, 321, 181))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        self.label_5.setFont(font)
+        self.label_5.setObjectName("label_5")
+        self.widget_8 = QWidget(self.widget)
+        self.widget_8.setGeometry(QRect(740, 370, 311, 311))
+        self.widget_8.setStyleSheet("QWidget {\n"
+"    background-color: rgb(225, 255, 255);\n"
+"}\n"
+"\n"
+"QLabel{\n"
+"    color: rgb(0, 5, 1);\n"
+"}\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid #0077b6; \n"
+"    outline: none;\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton{\n"
+"    border-radius: 10px;\n"
+"    background-color: rgb(0, 119, 182);\n"
+"    color:white;\n"
+"}")
+        self.widget_8.setObjectName("widget_8")
+        self.pushButton_3 = QPushButton(self.widget_8)
+        self.pushButton_3.setGeometry(QRect(40, 270, 221, 28))
+        font = QFont()
+        font.setFamily("Montserrat")
+        self.pushButton_3.setFont(font)
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.label_6 = QLabel(self.widget_8)
+        self.label_6.setGeometry(QRect(20, 20, 421, 231))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        self.label_6.setFont(font)
+        self.label_6.setObjectName("label_6")
+        self.label_7 = QLabel(self.widget)
+        self.label_7.setGeometry(QRect(190, 250, 141, 111))
+        self.label_7.setText("")
+        self.label_7.setPixmap(QPixmap(r"Recursos_Interfaz\seguimiento_intprincipal.png"))
+        self.label_7.setScaledContents(True)
+        self.label_7.setObjectName("label_7")
+        self.label_8 = QLabel(self.widget)
+        self.label_8.setGeometry(QRect(520, 260, 111, 111))
+        self.label_8.setText("")
+        self.label_8.setPixmap(QPixmap(r"Recursos_Interfaz\estadisticas.png"))
+        self.label_8.setScaledContents(True)
+        self.label_8.setObjectName("label_8")
+        self.label_9 = QLabel(self.widget)
+        self.label_9.setGeometry(QRect(840, 260, 131, 101))
+        self.label_9.setText("")
+        self.label_9.setPixmap(QPixmap(r"Recursos_Interfaz\exportar.png"))
+        self.label_9.setScaledContents(True)
+        self.label_9.setObjectName("label_9")
+        self.pushButton = QPushButton(self.widget)
+        self.pushButton.setGeometry(QRect(1030, 760, 93, 28))
+        self.pushButton.setStyleSheet("QPushButton {\n"
+"    border: none; /* Quitar el borde */\n"
+"    background-color: transparent; /* Fondo transparente */\n"
+"    border-radius: 10px;\n"
+"}\n"
+"")
+        self.pushButton.setText("")
+        icon = QIcon()
+        icon.addPixmap(QPixmap(r"Recursos_Interfaz\salir2.png"), QIcon.Normal, QIcon.Off)
+        self.pushButton.setIcon(icon)
+        self.pushButton.setIconSize(QSize(30, 30))
+        self.pushButton.setObjectName("pushButton")
+        self.pushButton_2 = QPushButton(self.widget)
+        self.pushButton_2.setGeometry(QRect(1010, 50, 101, 41))
+        self.pushButton_2.setStyleSheet("QPushButton {\n"
+"    border: none; /* Quitar el borde */\n"
+"    background-color: transparent; /* Fondo transparente */\n"
+"    border-radius: 10px;\n"
+"}\n"
+"")
+        self.pushButton_2.setText("")
+        icon1 = QIcon()
+        icon1.addPixmap(QPixmap(r"Recursos_Interfaz\regresar.png"), QIcon.Normal, QIcon.Off)
+        self.pushButton_2.setIcon(icon1)
+        self.pushButton_2.setIconSize(QSize(30, 30))
+        self.pushButton_2.setObjectName("pushButton_2")
+
+        self.retranslateUi(Form)
+        self.pushButton.clicked.connect(Form.close)
+        QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        _translate = QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Seguimiento Paciente"))
+        Form.setWindowIcon(QIcon(r"Recursos_Interfaz\Alzcare.png"))
+        self.label.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:12pt;\">SEGUIMIENTO DE PACIENTES</span></p></body></html>"))
+        self.label_2.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:9pt;\">Alzcare - company</span></p></body></html>"))
+        self.label_3.setText(_translate("Form", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">Servicios</span></p></body></html>"))
+        self.label_4.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:9pt;\">Evalúa el estado diario </span></p><p><span style=\" font-size:9pt;\">del paciente con 10 </span></p><p><span style=\" font-size:9pt;\">preguntas clave </span></p></body></html>"))
+        self.pushButton_4.setText(_translate("Form", "Seguimiento"))
+        self.pushButton_5.setText(_translate("Form", "Estadísticas"))
+        self.label_5.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:9pt;\">Visualiza las estadísticas basadas </span></p><p><span style=\" font-size:9pt;\">en el puntaje obtenido </span></p><p><span style=\" font-size:9pt;\">del seguimiento. </span></p><p><span style=\" font-size:9pt;\">Analiza el progreso y las áreas </span></p><p><span style=\" font-size:9pt;\">que necesitan atención.</span></p></body></html>"))
+        self.pushButton_3.setText(_translate("Form", "Exportar perfil"))
+        self.label_6.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:9pt;\">Exporta la información completa </span></p><p><span style=\" font-size:9pt;\">del usuario y sus respuestas al </span></p><p><span style=\" font-size:9pt;\">seguimiento, manteniendo un registro </span></p><p><span style=\" font-size:9pt;\">detallado y accesible para revisiones</span></p><p><span style=\" font-size:9pt;\">futuras.</span></p></body></html>"))
+
+class Formato_Seguimiento(QDialog):
+    def __init__(self, parent=None):
+        super(Formato_Seguimiento, self).__init__(parent)
+        self.ui = Seguimiento_Paciente()
+        self.ui.setupUi(self)
+
+class Graficos(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(914, 651)
+        Form.setStyleSheet("QWidget {\n"
+"    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #0077b6, stop:0.5 #0096c7, stop:1 #00b4d8);\n"
+"}\n"
+"\n"
+"QLabel {\n"
+"    background-color: transparent;  /* Fondo transparente para QLabel */\n"
+"    color: white;  /* Color del texto del QLabel */\n"
+"    font-size: 16px;  /* Tamaño de fuente del QLabel */\n"
+"}\n"
+"\n"
+"QLineEdit {\n"
+"    background-color: white;  /* Fondo sólido blanco para QLineEdit */\n"
+"    border: 2px solid #00b4d8;\n"
+"    border-radius: 10px;\n"
+"    padding: 10px;\n"
+"    font-size: 16px;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid #0077b6; /* Color del borde al enfocar */\n"
+"    outline: none;\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton {\n"
+"    border: none; /* Quitar el borde */\n"
+"    background-color: transparent; /* Fondo transparente */\n"
+"    border-radius: 10px;\n"
+"}\n"
+"")
+        self.label = QLabel(Form)
+        self.label.setGeometry(QRect(280, 40, 331, 61))
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label.setFont(font)
+        self.label.setObjectName("label")
+        self.widget = QWidget(Form)
+        self.widget.setGeometry(QRect(150, 130, 621, 451))
+        self.widget.setStyleSheet("QWidget {\n"
+"    background-color: rgb(225, 255, 255);\n"
+"}\n"
+"")
+        self.widget.setObjectName("widget")
+        self.label_2 = QLabel(self.widget)
+        self.label_2.setGeometry(QRect(50, 30, 501, 391))
+        self.label_2.setText("")
+        self.label_2.setObjectName("label_2")
+        self.pushButton = QPushButton(Form)
+        self.pushButton.setGeometry(QRect(790, 590, 111, 31))
+        self.pushButton.setText("")
+        icon = QIcon()
+        icon.addPixmap(QPixmap(r"Recursos_Interfaz\salir2.png"), QIcon.Normal, QIcon.Off)
+        self.pushButton.setIcon(icon)
+        self.pushButton.setObjectName("pushButton")
+
+        self.retranslateUi(Form)
+        self.pushButton.clicked.connect(Form.close)
+        QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        _translate = QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Grafico de progreso"))
+        Form.setWindowIcon(QIcon(r"Recursos_Interfaz\Alzcare.png"))
+        self.label.setText(_translate("Form", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">GRÁFICOS Y ESTADÍSTICAS</span></p></body></html>"))
+
+class Formato_Graficos(QDialog):
+    def __init__(self, parent=None):
+        super(Formato_Graficos, self).__init__(parent)
+        self.ui = Graficos()
         self.ui.setupUi(self)
 
 class Pregunta_1(object):
@@ -1211,35 +1522,27 @@ class Pregunta_1(object):
         self.label_7.setObjectName("label_7")
         self.pushButton = QPushButton(self.widget_3)
         self.pushButton.setGeometry(QRect(120, 150, 93, 28))
-        self.pushButton.setFont(font)
         self.pushButton.setObjectName("pushButton")
         self.pushButton_B = QPushButton(self.widget_3)
         self.pushButton_B.setGeometry(QRect(120, 210, 93, 28))
-        self.pushButton_B.setFont(font)
         self.pushButton_B.setObjectName("pushButton_B")
         self.pushButton_C = QPushButton(self.widget_3)
         self.pushButton_C.setGeometry(QRect(120, 270, 93, 28))
-        self.pushButton_C.setFont(font)
         self.pushButton_C.setObjectName("pushButton_C")
         self.pushButton_D = QPushButton(self.widget_3)
         self.pushButton_D.setGeometry(QRect(120, 330, 93, 28))
-        self.pushButton_D.setFont(font)
         self.pushButton_D.setObjectName("pushButton_D")
         self.label_A = QLabel(self.widget_3)
         self.label_A.setGeometry(QRect(230, 150, 55, 16))
-        self.label_A.setFont(font)
         self.label_A.setObjectName("label_A")
         self.label_B = QLabel(self.widget_3)
         self.label_B.setGeometry(QRect(230, 210, 55, 16))
-        self.label_B.setFont(font)
         self.label_B.setObjectName("label_B")
         self.label_C = QLabel(self.widget_3)
         self.label_C.setGeometry(QRect(230, 280, 55, 16))
-        self.label_C.setFont(font)
         self.label_C.setObjectName("label_C")
         self.label_D = QLabel(self.widget_3)
         self.label_D.setGeometry(QRect(230, 340, 55, 16))
-        self.label_D.setFont(font)
         self.label_D.setObjectName("label_D")
         self.label_9 = QLabel(self.widget_3)
         self.label_9.setGeometry(QRect(370, 160, 231, 201))
@@ -1266,9 +1569,13 @@ class Pregunta_1(object):
         self.pushButton_C.setText(_translate("Form", "C"))
         self.pushButton_D.setText(_translate("Form", "D"))
         self.label_A.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Respondio correctamente</span></p></body></html>"))
+        self.label_A.adjustSize()
         self.label_B.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Se equivoco en la ciudad</span></p></body></html>"))
+        self.label_B.adjustSize()
         self.label_C.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Se equivoco en el mes</span></p></body></html>"))
+        self.label_C.adjustSize()
         self.label_D.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Se equivoco en el año</span></p></body></html>"))
+        self.label_D.adjustSize()
         self.label_6.setText(_translate("Form", "El cuidador deberá estar presente para realizar las siguientes preguntas:"))
 
 class Formato_Pregunta_1(QDialog):
@@ -1381,11 +1688,9 @@ class Pregunta_2(object):
         self.label_7.setObjectName("label_7")
         self.pushButton = QPushButton(self.widget_3)
         self.pushButton.setGeometry(QRect(120, 150, 93, 28))
-        self.pushButton.setFont(font)
         self.pushButton.setObjectName("pushButton")
         self.pushButton_C = QPushButton(self.widget_3)
         self.pushButton_C.setGeometry(QRect(120, 270, 93, 28))
-        self.pushButton_C.setFont(font)
         self.pushButton_C.setObjectName("pushButton_C")
         self.label_A = QLabel(self.widget_3)
         self.label_A.setGeometry(QRect(230, 150, 55, 16))
@@ -1418,7 +1723,9 @@ class Pregunta_2(object):
         self.pushButton.setText(_translate("Form", "A"))
         self.pushButton_C.setText(_translate("Form", "C"))
         self.label_A.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Respondio correctamente</span></p></body></html>"))
+        self.label_A.adjustSize()
         self.label_C.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Respondio incorrectamente</span></p></body></html>"))
+        self.label_C.adjustSize()
         self.label_6.setText(_translate("Form", "El cuidador deberá estar presente para realizar las siguientes preguntas:"))
 
 class Formato_Pregunta_2(QDialog):
@@ -1531,11 +1838,9 @@ class Pregunta_3(object):
         self.label_7.setObjectName("label_7")
         self.pushButton = QPushButton(self.widget_3)
         self.pushButton.setGeometry(QRect(120, 150, 93, 28))
-        self.pushButton.setFont(font)
         self.pushButton.setObjectName("pushButton")
         self.pushButton_C = QPushButton(self.widget_3)
         self.pushButton_C.setGeometry(QRect(120, 270, 93, 28))
-        self.pushButton_C.setFont(font)
         self.pushButton_C.setObjectName("pushButton_C")
         self.label_A = QLabel(self.widget_3)
         self.label_A.setGeometry(QRect(230, 150, 55, 16))
@@ -1568,7 +1873,9 @@ class Pregunta_3(object):
         self.pushButton.setText(_translate("Form", "A"))
         self.pushButton_C.setText(_translate("Form", "C"))
         self.label_A.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Respondio correctamente</span></p></body></html>"))
+        self.label_A.adjustSize()
         self.label_C.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Respondio incorrectamente</span></p></body></html>"))
+        self.label_C.adjustSize()
         self.label_6.setText(_translate("Form", "El cuidador deberá estar presente para realizar las siguientes preguntas:"))
 
 class Formato_Pregunta_3(QDialog):
@@ -1681,11 +1988,9 @@ class Pregunta_4(object):
         self.label_7.setObjectName("label_7")
         self.pushButton = QPushButton(self.widget_3)
         self.pushButton.setGeometry(QRect(120, 150, 93, 28))
-        self.pushButton.setFont(font)
         self.pushButton.setObjectName("pushButton")
         self.pushButton_C = QPushButton(self.widget_3)
         self.pushButton_C.setGeometry(QRect(120, 270, 93, 28))
-        self.pushButton_C.setFont(font)
         self.pushButton_C.setObjectName("pushButton_C")
         self.label_A = QLabel(self.widget_3)
         self.label_A.setGeometry(QRect(230, 150, 55, 16))
@@ -1718,7 +2023,9 @@ class Pregunta_4(object):
         self.pushButton.setText(_translate("Form", "A"))
         self.pushButton_C.setText(_translate("Form", "C"))
         self.label_A.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Reconoce su situacion</span></p></body></html>"))
+        self.label_A.adjustSize()
         self.label_C.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">No reconoce su situacion</span></p></body></html>"))
+        self.label_C.adjustSize()
         self.label_6.setText(_translate("Form", "El cuidador deberá estar presente para realizar las siguientes preguntas:"))
 
 class Formato_Pregunta_4(QDialog):
@@ -1831,11 +2138,9 @@ class Pregunta_5(object):
         self.label_7.setObjectName("label_7")
         self.pushButton = QPushButton(self.widget_3)
         self.pushButton.setGeometry(QRect(120, 150, 93, 28))
-        self.pushButton.setFont(font)
         self.pushButton.setObjectName("pushButton")
         self.pushButton_C = QPushButton(self.widget_3)
         self.pushButton_C.setGeometry(QRect(120, 270, 93, 28))
-        self.pushButton_C.setFont(font)
         self.pushButton_C.setObjectName("pushButton_C")
         self.label_A = QLabel(self.widget_3)
         self.label_A.setGeometry(QRect(230, 150, 55, 16))
@@ -1863,12 +2168,14 @@ class Pregunta_5(object):
         Form.setWindowTitle(_translate("Form", "Pregunta 5"))
         Form.setWindowIcon(QIcon(r"Recursos_Interfaz\Alzcare.png"))
         self.label_2.setText(_translate("Form", "Alzcare - company"))
-        self.label_3.setText(_translate("Form", "<html><head/><body><p>Pregunta 1.</p></body></html>"))
+        self.label_3.setText(_translate("Form", "<html><head/><body><p>Pregunta 5.</p></body></html>"))
         self.label_7.setText(_translate("Form", "<html><head/><body><p>Sabes cómo se llama tu cuidador?</p></body></html>"))
         self.pushButton.setText(_translate("Form", "A"))
         self.pushButton_C.setText(_translate("Form", "C"))
         self.label_A.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Respondio correctamente</span></p></body></html>"))
+        self.label_A.adjustSize()
         self.label_C.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Respondio incorrectamente</span></p></body></html>"))
+        self.label_C.adjustSize()
         self.label_6.setText(_translate("Form", "El cuidador deberá estar presente para realizar las siguientes preguntas:"))
 
 class Formato_Pregunta_5(QDialog):
@@ -1981,15 +2288,12 @@ class Pregunta_6(object):
         self.label_7.setObjectName("label_7")
         self.pushButton = QPushButton(self.widget_3)
         self.pushButton.setGeometry(QRect(120, 150, 93, 28))
-        self.pushButton.setFont(font)
         self.pushButton.setObjectName("pushButton")
         self.pushButton_B = QPushButton(self.widget_3)
         self.pushButton_B.setGeometry(QRect(120, 210, 93, 28))
-        self.pushButton_B.setFont(font)
         self.pushButton_B.setObjectName("pushButton_B")
         self.pushButton_C = QPushButton(self.widget_3)
         self.pushButton_C.setGeometry(QRect(120, 270, 93, 28))
-        self.pushButton_C.setFont(font)
         self.pushButton_C.setObjectName("pushButton_C")
         self.label_A = QLabel(self.widget_3)
         self.label_A.setGeometry(QRect(230, 150, 55, 16))
@@ -2027,8 +2331,11 @@ class Pregunta_6(object):
         self.pushButton_B.setText(_translate("Form", "B"))
         self.pushButton_C.setText(_translate("Form", "C"))
         self.label_A.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">No necesita ayuda</span></p></body></html>"))
+        self.label_A.adjustSize()
         self.label_B.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Necesita ayuda para los cordones</span></p></body></html>"))
+        self.label_B.adjustSize()
         self.label_C.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">Necesita ayuda para todo</span></p></body></html>"))
+        self.label_C.adjustSize()
         self.label_6.setText(_translate("Form", "El cuidador deberá estar presente para realizar las siguientes preguntas:"))
 
 class Formato_Pregunta_6(QDialog):
@@ -2181,8 +2488,11 @@ class Pregunta_7(object):
         self.pushButton_B.setText(_translate("Form", "B"))
         self.pushButton_C.setText(_translate("Form", "C"))
         self.label_A.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">El paciente reconoce e identifica al familiar</span></p></body></html>"))
+        self.label_A.adjustSize()
         self.label_B.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">El paciente reconoce el nombre, pero no al familiar</span></p></body></html>"))
+        self.label_B.adjustSize()
         self.label_C.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:8pt;\">El paciente no reconoce ni identifica al familiar</span></p></body></html>"))
+        self.label_C.adjustSize()
         self.label_6.setText(_translate("Form", "El cuidador deberá estar presente para realizar las siguientes preguntas:"))
 
 class Formato_Pregunta_7(QDialog):
@@ -2295,15 +2605,12 @@ class Pregunta_8(object):
         self.label_7.setObjectName("label_7")
         self.pushButton = QPushButton(self.widget_3)
         self.pushButton.setGeometry(QRect(120, 150, 93, 28))
-        self.pushButton.setFont(font)
         self.pushButton.setObjectName("pushButton")
         self.pushButton_B = QPushButton(self.widget_3)
         self.pushButton_B.setGeometry(QRect(120, 210, 93, 28))
-        self.pushButton_B.setFont(font)
         self.pushButton_B.setObjectName("pushButton_B")
         self.pushButton_C = QPushButton(self.widget_3)
         self.pushButton_C.setGeometry(QRect(120, 270, 93, 28))
-        self.pushButton_C.setFont(font)
         self.pushButton_C.setObjectName("pushButton_C")
         self.label_A = QLabel(self.widget_3)
         self.label_A.setGeometry(QRect(220, 150, 111, 16))
@@ -2457,13 +2764,13 @@ class Pregunta_9(object):
         self.pushButton_A.setFont(font)
         self.pushButton_A.setObjectName("pushButton_A")
         self.pushButton_B = QPushButton(self.widget_3)
-        self.pushButton_B.setGeometry(QRect(120, 230, 93, 28))
+        self.pushButton_B.setGeometry(QRect(120, 190, 93, 28))  
         font = QFont()
         font.setFamily("Montserrat")
         self.pushButton_B.setFont(font)
         self.pushButton_B.setObjectName("pushButton_B")
         self.pushButton_C = QPushButton(self.widget_3)
-        self.pushButton_C.setGeometry(QRect(120, 270, 93, 28))
+        self.pushButton_C.setGeometry(QRect(120, 230, 93, 28))
         self.pushButton_C.setFont(font)
         self.pushButton_C.setFont(font)
         self.pushButton_C.setObjectName("pushButton_C")
@@ -2475,14 +2782,14 @@ class Pregunta_9(object):
         self.label_A.setFont(font)
         self.label_A.setObjectName("label_A")
         self.label_B = QLabel(self.widget_3)
-        self.label_B.setGeometry(QRect(220, 230, 221, 21))
+        self.label_B.setGeometry(QRect(220, 190, 221, 21))
         font = QFont()
         font.setFamily("Montserrat")
         font.setPointSize(1)
         self.label_B.setFont(font)
         self.label_B.setObjectName("label_B")
         self.label_C = QLabel(self.widget_3)
-        self.label_C.setGeometry(QRect(220, 270, 181, 16))
+        self.label_C.setGeometry(QRect(220, 230, 181, 16))
         self.label_C.setFont(font)
         self.label_C.setObjectName("label_C")
         self.label_4 = QLabel(self.widget_3)
@@ -2623,19 +2930,15 @@ class Pregunta_10(object):
         self.label_7.setObjectName("label_7")
         self.pushButton = QPushButton(self.widget_3)
         self.pushButton.setGeometry(QRect(120, 150, 93, 28))
-        self.pushButton.setFont(font)
         self.pushButton.setObjectName("pushButton")
         self.pushButton_B = QPushButton(self.widget_3)
         self.pushButton_B.setGeometry(QRect(120, 210, 93, 28))
-        self.pushButton_B.setFont(font)
         self.pushButton_B.setObjectName("pushButton_B")
         self.pushButton_C = QPushButton(self.widget_3)
         self.pushButton_C.setGeometry(QRect(120, 270, 93, 28))
-        self.pushButton_C.setFont(font)
         self.pushButton_C.setObjectName("pushButton_C")
         self.pushButton_D = QPushButton(self.widget_3)
         self.pushButton_D.setGeometry(QRect(120, 330, 93, 28))
-        self.pushButton_D.setFont(font)
         self.pushButton_D.setObjectName("pushButton_D")
         self.label_A = QLabel(self.widget_3)
         self.label_A.setGeometry(QRect(220, 150, 261, 16))
@@ -2685,9 +2988,12 @@ class Botonera(QMainWindow, Alzcare):
         super().__init__()
         self.controlador = controlador
         self.usuario = ""
+        self.respuestas = []
         self.setupUi(self)
 
         self.menu_login = Formato_Log_in()
+        self.menu_seguimiento = Formato_Seguimiento()
+        self.menu_graficos = Formato_Graficos()
         self.pregunta_1 = Formato_Pregunta_1()
         self.pregunta_2 = Formato_Pregunta_2()
         self.pregunta_3 = Formato_Pregunta_3()
@@ -2718,6 +3024,11 @@ class Botonera(QMainWindow, Alzcare):
 
         self.menu_login.ui.pushButton.clicked.connect(self.ventanas_inicio)
         self.menu_login.ui.pushButton_2.clicked.connect(self.ventana_seguimiento)
+
+        self.menu_seguimiento.ui.pushButton_2.clicked.connect(self.cerrar_sesion)
+        self.menu_seguimiento.ui.pushButton_3.clicked.connect(self.exportar_perfil)
+        self.menu_seguimiento.ui.pushButton_4.clicked.connect(self.ciclo_preguntas)
+        self.menu_seguimiento.ui.pushButton_5.clicked.connect(self.ventana_graficos)
 
         self.pregunta_1.ui.pushButton.clicked.connect(self.respuesta_pregunta_1)
         self.pregunta_1.ui.pushButton_B.clicked.connect(self.respuesta_pregunta_1)
@@ -2771,7 +3082,7 @@ class Botonera(QMainWindow, Alzcare):
         self.menu_pre_registro.ui.pushButton_cuidador.clicked.connect(self.ventana_registro_cuidador)
         self.menu_pre_registro.ui.pushButton_salir.clicked.connect(self.close)
         self.menu_pre_registro.ui.pushButton_regresar.clicked.connect(self.ventanas_inicio)
-        self.menu_pre_registro.ui.pushButton.clicked.connect(self.importacion_datos)
+        self.menu_pre_registro.ui.pushButton.clicked.connect(self.importacion_perfil)
 
         self.menu_registro_cuidador.ui.pushButton_.clicked.connect(self.registrar_cuidador)
         self.menu_registro_cuidador.ui.pushButton_2.clicked.connect(self.ventana_pre_registro)
@@ -2803,88 +3114,131 @@ class Botonera(QMainWindow, Alzcare):
         contrasena = self.menu_login.ui.lineEdit_2.text()
         if self.controlador.validar_usuario(usuario, contrasena):
             QMessageBox.information(self, "Ingreso", "Ingreso exitoso")
-            self.close()
+            self.menu_login.close()
+            self.usuario = usuario
             self.menu_seguimiento.show()
         else:
             QMessageBox.warning(self, "Error", "Usuario o contraseña incorrectos")
 
+    def cerrar_sesion(self):
+        self.menu_seguimiento.close()
+        self.usuario = ""
+        self.ventanas_inicio()
+    
+    def ventana_graficos(self):
+        self.menu_seguimiento.close()
+        pixmap,punto = self.controlador.grafico(self.usuario)
+        if punto >= 21:
+            QMessageBox.information(self, "Resultado", "Vas muy bien :D")
+        elif punto >= 16:
+            QMessageBox.information(self, "Resultado", "Puedes mejorar :|")
+        elif punto >= 11:
+            QMessageBox.information(self, "Resultado", "Debes mejorar :(")
+        else:
+            QMessageBox.information(self, "Resultado", "Debes mejorar mucho :C")
+        self.menu_graficos.ui.label_2.setPixmap(pixmap)
+        self.menu_graficos.ui.label_2.setScaledContents(True)
+        self.menu_graficos.show()
+
+    def ciclo_preguntas(self):
+        self.menu_seguimiento.close()
+        self.pregunta_1.show()
+
     def respuesta_pregunta_1(self):
-        respuesta = str(self.pregunta_1.ui.sender().text())
-        self.controlador.respuesta_pregunta_1(respuesta)
+        respuesta = str(self.sender().text())
+        self.respuestas.append(respuesta)
+        self.controlador.puntos(respuesta)
         self.pregunta_1.close()
         self.pregunta_2.show()
     
     def respuesta_pregunta_2(self):
-        respuesta = str(self.pregunta_2.ui.sender().text())
+        respuesta = str(self.sender().text())
         if respuesta == "C":
             respuesta = "D"
-        self.controlador.respuesta_pregunta_2(respuesta)
+        self.respuestas.append(respuesta)
+        self.controlador.puntos(respuesta)
         self.pregunta_2.close()
         self.pregunta_3.show()
     
     def respuesta_pregunta_3(self):
-        respuesta = str(self.pregunta_3.ui.sender().text())
+        respuesta = str(self.sender().text())
         if respuesta == "C":
             respuesta = "D"
-        self.controlador.respuesta_pregunta_3(respuesta)
+        self.respuestas.append(respuesta)
+        self.controlador.puntos(respuesta)
         self.pregunta_3.close()
         self.pregunta_4.show()
     
     def respuesta_pregunta_4(self):
-        respuesta = str(self.pregunta_4.ui.sender().text())
+        respuesta = str(self.sender().text())
         if respuesta == "C":
             respuesta = "D"
-        self.controlador.respuesta_pregunta_4(respuesta)
+        self.respuestas.append(respuesta)
+        self.controlador.puntos(respuesta)
         self.pregunta_4.close()
         self.pregunta_5.show()
     
     def respuesta_pregunta_5(self):
-        respuesta = str(self.pregunta_5.ui.sender().text())
+        respuesta = str(self.sender().text())
         if respuesta == "C":
             respuesta = "D"
-        self.controlador.respuesta_pregunta_5(respuesta)
+        self.respuestas.append(respuesta)
+        self.controlador.puntos(respuesta)
         self.pregunta_5.close()
         self.pregunta_6.show()
 
     def respuesta_pregunta_6(self):
-        respuesta = str(self.pregunta_6.ui.sender().text())
+        respuesta = str(self.sender().text())
         if respuesta == "C":
             respuesta = "D"
-        self.controlador.respuesta_pregunta_6(respuesta)
+        self.respuestas.append(respuesta)
+        self.controlador.puntos(respuesta)
         self.pregunta_6.close()
         self.pregunta_7.show()
     
     def respuesta_pregunta_7(self):
-        respuesta = str(self.pregunta_7.ui.sender().text())
+        respuesta = str(self.sender().text())
         if respuesta == "C":
             respuesta = "D"
         elif respuesta == "B":
             respuesta = "C"
-        self.controlador.respuesta_pregunta_7(respuesta)
+        self.respuestas.append(respuesta)
+        self.controlador.puntos(respuesta)
         self.pregunta_7.close()
         self.pregunta_8.show()
     
     def respuesta_pregunta_8(self):
-        respuesta = str(self.pregunta_8.ui.sender().text())
+        respuesta = str(self.sender().text())
         if respuesta == "C":
             respuesta = "D"
-        self.controlador.respuesta_pregunta_8(respuesta)
+        self.respuestas.append(respuesta)    
+        self.controlador.puntos(respuesta)
         self.pregunta_8.close()
         self.pregunta_9.show()
 
     def respuesta_pregunta_9(self):
-        respuesta = str(self.pregunta_9.ui.sender().text())
+        respuesta = str(self.sender().text())
         if respuesta == "C":
             respuesta = "D"
-        self.controlador.respuesta_pregunta_9(respuesta)
+        self.respuestas.append(respuesta)
+        self.controlador.puntos(respuesta)
         self.pregunta_9.close()
         self.pregunta_10.show()
 
     def respuesta_pregunta_10(self):
-        respuesta = str(self.pregunta_10.ui.sender().text())
-        self.controlador.respuesta_pregunta_10(respuesta)
-        self.pregunta_10.close()
-        self.menu_seguimiento.show()
+        respuesta = str(self.sender().text())
+        self.respuestas.append(respuesta)
+        self.controlador.puntos(respuesta)
+        if self.controlador.registro_seguimiento(self.usuario, self.respuestas):
+            QMessageBox.information(self, "Registro", "Seguimiento registrado con éxito")
+            self.pregunta_10.close()
+            self.menu_seguimiento.show()
+            self.respuestas = []
+        else:
+            QMessageBox.warning(self, "Error", "No se pudo registrar el seguimiento")
+            self.pregunta_10.close()
+            self.menu_seguimiento.show()
+            self.respuestas = []
 
     def boton_paginaRegistro(self):
         self.stackedWidget.setCurrentIndex(2)
@@ -2964,10 +3318,16 @@ class Botonera(QMainWindow, Alzcare):
         self.stackedWidget.setCurrentIndex(3)
         QTimer.singleShot(4000, (lambda: webbrowser.open("https://mocacognition.com/paper/")))
 
-    def importacion_datos(self):
+    def importacion_perfil(self):
         direccion, _ = QFileDialog.getOpenFileName(self, "Seleccione el archivo", "", "JSON Files (*.json)")
         if direccion:
             if self.controlador.importar_datos(direccion):
                 QMessageBox.information(self, "Importación", "Datos importados con éxito")
             else:
                 QMessageBox.warning(self, "Error", "No se pudo importar los datos")
+    
+    def exportar_perfil(self, usuario):
+        if self.controlador.exportar_perfil(usuario):
+            QMessageBox.information(self, "Exportación", "Datos exportados con éxito")
+        else:
+            QMessageBox.warning(self, "Error", "No se pudo exportar los datos")

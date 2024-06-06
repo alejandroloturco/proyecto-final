@@ -4,7 +4,8 @@ import os
 import json
 from bson import json_util
 import numpy as np
-import cv2
+import matplotlib.pyplot as plt
+from io import BytesIO
 import sys 
 
 puntos: dict[str, int] = {
@@ -13,6 +14,8 @@ puntos: dict[str, int] = {
     "C": 1,
     "D": 0
 }
+def obtener_puntos(respuesta: str) -> int:
+    return puntos[respuesta]
 
 def contador() -> int:
     precont: int = 0
@@ -56,9 +59,9 @@ def desconectar_SQL(cnx,cursor):
 def crear_tablasSQL():
     cursorSQL, cnx = conectar_SQL()
     cursorSQL.execute("USE alzcare;")
-    cursorSQL.execute("CREATE TABLE IF NOT EXISTS cuidador (ID INT UNSIGNED PRIMARY KEY,Nombre VARCHAR(225) NOT NULL,Apellido VARCHAR(225) NOT NULL,Telefono INT(10) NOT NULL,Cedula INT(10) NOT NULL,Formacion VARCHAR(225) NOT NULL,Usuario VARCHAR(225) NOT NULL,Contraseña VARCHAR(225) NOT NULL)")
-    cursorSQL.execute("CREATE TABLE IF NOT EXISTS paciente (ID INT UNSIGNED PRIMARY KEY,ID_Cuidador INT UNSIGNED NOT NULL,Nombre VARCHAR(225) NOT NULL,Apellido VARCHAR(225) NOT NULL,Edad INT(10) NOT NULL,Telefono INT(10) NOT NULL,Cedula INT(3) NOT NULL,Nacimiento VARCHAR(225) NOT NULL,Procedencia VARCHAR(225) NOT NULL,Fase VARCHAR(225) NOT NULL,Escolaridad VARCHAR(225) NOT NULL,Mano_dominante VARCHAR(225) NOT NULL,Tiempo_Alz VARCHAR(225) NOT NULL,FOREIGN KEY (ID_Cuidador) REFERENCES cuidador(ID) ON UPDATE CASCADE ON DELETE CASCADE)")
-    cursorSQL.execute("CREATE TABLE IF NOT EXISTS seguimiento (ID INT UNSIGNED PRIMARY KEY,ID_Paciente INT UNSIGNED NOT NULL,Fecha_Registro VARCHAR(225) NOT NULL,Pregunta_1 INT NOT NULL,Pregunta_2 INT NOT NULL,Pregunta_3 INT NOT NULL,Pregunta_4 INT NOT NULL,Pregunta_5 INT NOT NULL,Pregunta_6 INT NOT NULL,Pregunta_7 INT NOT NULL,Pregunta_8 INT NOT NULL,Pregunta_9 INT NOT NULL,Pregunta_10 INT NOT NULL,FOREIGN KEY (ID_Paciente) REFERENCES paciente(ID) ON UPDATE CASCADE ON DELETE CASCADE)")
+    cursorSQL.execute("CREATE TABLE IF NOT EXISTS cuidador (ID INT UNSIGNED PRIMARY KEY,Nombre VARCHAR(225) NOT NULL,Apellido VARCHAR(225) NOT NULL,Telefono BIGINT(10) NOT NULL,Cedula BIGINT(10) NOT NULL,Formacion VARCHAR(225) NOT NULL,Usuario VARCHAR(225) NOT NULL,Contraseña VARCHAR(225) NOT NULL)")
+    cursorSQL.execute("CREATE TABLE IF NOT EXISTS paciente (ID INT UNSIGNED PRIMARY KEY,ID_Cuidador INT UNSIGNED NOT NULL,Nombre VARCHAR(225) NOT NULL,Apellido VARCHAR(225) NOT NULL,Edad INT(3) NOT NULL,Telefono BIGINT(10) NOT NULL,Cedula BIGINT(10) NOT NULL,Nacimiento VARCHAR(225) NOT NULL,Procedencia VARCHAR(225) NOT NULL,Fase VARCHAR(225) NOT NULL,Escolaridad VARCHAR(225) NOT NULL,Mano_dominante VARCHAR(225) NOT NULL,Tiempo_Alz VARCHAR(225) NOT NULL,FOREIGN KEY (ID_Cuidador) REFERENCES cuidador(ID) ON UPDATE CASCADE ON DELETE CASCADE)")
+    cursorSQL.execute("CREATE TABLE IF NOT EXISTS seguimiento (ID INT UNSIGNED PRIMARY KEY,ID_Paciente INT UNSIGNED NOT NULL,Fecha_Registro VARCHAR(225) NOT NULL,Pregunta_1 VARCHAR(1) NOT NULL,Pregunta_2 VARCHAR(1) NOT NULL,Pregunta_3 VARCHAR(1) NOT NULL,Pregunta_4 VARCHAR(1) NOT NULL,Pregunta_5 VARCHAR(1) NOT NULL,Pregunta_6 VARCHAR(1) NOT NULL,Pregunta_7 VARCHAR(1) NOT NULL,Pregunta_8 VARCHAR(1) NOT NULL,Pregunta_9 VARCHAR(1) NOT NULL,Pregunta_10 VARCHAR(1) NOT NULL,Puntos_Totales INT(3) NOT NULL,FOREIGN KEY (ID_Paciente) REFERENCES paciente(ID) ON UPDATE CASCADE ON DELETE CASCADE)")
     desconectar_SQL(cnx,cursorSQL)
     
 def obtener_dataSQL():
@@ -120,14 +123,15 @@ def obtener_dataSQL():
                 "Pregunta_7": (i[9]),
                 "Pregunta_8": (i[10]),
                 "Pregunta_9": (i[11]),
-                "Pregunta_10": (i[12])
+                "Pregunta_10": (i[12]),
+                "Puntos_Totales": (i[13])
                 }
             listreg.append(dichm) 
     desconectar_SQL(cnx,cursorSQL)
     return listcui, listpac, listreg
 
 def añadir_cuidador(nombre: str, apellido: str,
-                    telefono: int, cedula: int, formacion: str, usuario: str,contraseña: str, listcui: list[dict[str, int | str]]
+                    telefono: int, cedula: int, formacion: str, usuario: str,contraseña: str, listcui
                    ) -> bool:
     '''Se ingresa un cuidador a la base de datos'''
     try:
@@ -141,11 +145,11 @@ def añadir_cuidador(nombre: str, apellido: str,
         return True
     except:
         print("Dato ingresado no valido")
-        return False # did you forget this maybe? --verarr
+        return False
 
 def añadir_paciente(id_cuidador,
     nombre: str, apellido: str,
-    edad, telefono: int, cedula: int, nacimiento: str, procedencia, fase: str, escolaridad, mano_dominante, tiempo_alz, listpac # TODO: more type annotations --verarr
+    edad: int, telefono: int, cedula: int, nacimiento: str, procedencia: str, fase: str, escolaridad: str, mano_dominante: str, tiempo_alz: str, listpac 
 ) -> bool:
     '''Se ingresa un paciente a la base de datos'''
     try:            
@@ -159,17 +163,17 @@ def añadir_paciente(id_cuidador,
         return True
     except: 
         print("Dato ingresado no valido")
-        return False # did you forget this maybe? --verarr
+        return False
 
-def añadir_respuestas(id,fecha,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10):    
+def añadir_respuestas(id,fecha,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,total,listreg):    
     '''Se ingresan las respuestas de las 10 preguntas en fio'''
     try:            
         cursorSQL, cnxSQL = conectar_SQL()
         listdatareg = []
         listus = ()        
-        listus = (id,fecha,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10)
+        listus = (len(listreg),id,fecha,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,total)
         listdatareg.append(listus)
-        cursorSQL.executemany("""INSERT INTO seguimiento (ID_Paciente, Fecha_Registro, Pregunta_1, Pregunta_2, Pregunta_3, Pregunta_4, Pregunta_5, Pregunta_6, Pregunta_7, Pregunta_8, Pregunta_9, Pregunta_10) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", listdatareg)
+        cursorSQL.executemany("""INSERT INTO seguimiento (ID,ID_Paciente, Fecha_Registro, Pregunta_1, Pregunta_2, Pregunta_3, Pregunta_4, Pregunta_5, Pregunta_6, Pregunta_7, Pregunta_8, Pregunta_9, Pregunta_10, Puntos_Totales) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", listdatareg)
         desconectar_SQL(cnxSQL,cursorSQL)
         return True
     except: 
@@ -256,6 +260,48 @@ def importar_perfil(direccion):
     except:
         print("Error al importar perfil")
         return False
+
+def id_paciente(usuario):
+    '''Se obtiene el id del paciente'''
+    cursorSQL, cnx = conectar_SQL()
+    cursorSQL.execute("SELECT * FROM cuidador WHERE Usuario = '"+usuario+"'")
+    resultado = cursorSQL.fetchall()
+    for i in resultado:
+        diccui = {}
+        diccui = {
+            "ID": (i[0]),
+            "Nombre": (i[1]),
+            "Apellido": (i[2]),
+            "Telefono": (i[3]),
+            "Cedula": (i[4]),
+            "Formacion": (i[5]),
+            "Usuario": (i[6]),
+            "Contraseña": (i[7])
+            }
+    cursorSQL.execute("SELECT * FROM paciente WHERE ID_Cuidador = '"+str(diccui["ID"])+"'")
+    resultado = cursorSQL.fetchall()
+    listpac = []
+    for i in resultado:
+        dicpac = {}
+        dicpac = {
+            "ID": (i[0]),
+            "ID_Cuidador": (i[1]),
+            "Nombre": (i[2]),
+            "Apellido": (i[3]),
+            "Edad": (i[4]),
+            "Telefono": (i[5]),
+            "Cedula": (i[6]),
+            "Nacimiento": (i[7]),
+            "Procedencia": (i[8]),                                             
+            "Fase": (i[9]),
+            "Escolaridad": (i[10]),
+            "Mano_Dominante": (i[11])
+            }
+        listpac.append(dicpac)
+    desconectar_SQL(cnx,cursorSQL)
+    return listpac[0]["ID"]
+
+
 class Cuidador:
     def __init__(self,listcui):
         self._listcui = listcui
@@ -278,6 +324,7 @@ class Cuidador:
             return True
         else:
             return False
+    
   
 class Paciente:
     def __init__(self, listpac):
@@ -296,6 +343,7 @@ class Paciente:
         else:
             return False
         
+        
 class Seguimiento:
     def __init__(self, listreg):
         self._listreg = listreg
@@ -303,10 +351,19 @@ class Seguimiento:
     def get_listreg(self):
         return self._listreg
     
-    def registro_seguimiento(self, id, fecha, p):
-        self._listreg.append({"ID": len(self._listreg)+1, "ID_Paciente": id, "Fecha_Registro": fecha, "Pregunta_1": p[0], "Pregunta_2": p[1], "Pregunta_3": p[2], "Pregunta_4": p[3], "Pregunta_5": p[4], "Pregunta_6": p[5], "Pregunta_7": p[6], "Pregunta_8": p[7], "Pregunta_9": p[8], "Pregunta_10": p[9]})
-        if añadir_respuestas(id,fecha,p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8],p[9]):
+    def registro_seguimiento(self, id, fecha, p, puntaje):
+        self._listreg.append({"ID": len(self._listreg)+1, "ID_Paciente": id, "Fecha_Registro": fecha, "Pregunta_1": p[0], "Pregunta_2": p[1], "Pregunta_3": p[2], "Pregunta_4": p[3], "Pregunta_5": p[4], "Pregunta_6": p[5], "Pregunta_7": p[6], "Pregunta_8": p[7], "Pregunta_9": p[8], "Pregunta_10": p[9], "Puntos_Totales": puntaje})
+        if añadir_respuestas(id,fecha,p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8],p[9],puntaje,self._listreg):
             return True
         else:
             return False
+    
+    def datos_histograma(self,id):
+        fechas = []
+        puntajes = []
+        for i in range(len(self._listreg)):
+            if self._listreg[i]["ID_Paciente"] == id:
+                fechas.append(self._listreg[i]["Fecha_Registro"])
+                puntajes.append(self._listreg[i]["Puntos_Totales"])
+        return {"fechas": fechas, "puntajes": puntajes}
 
